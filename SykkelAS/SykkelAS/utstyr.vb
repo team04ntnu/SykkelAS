@@ -1,4 +1,4 @@
-﻿Public Class utstyr
+﻿Public Class Utstyr
     Private id As Integer
     Private merke As String
     Private type As String

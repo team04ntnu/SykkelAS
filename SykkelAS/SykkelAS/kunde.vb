@@ -1,4 +1,4 @@
-﻿Public Class kunde
+﻿Public Class Kunde
     Private nr As Integer
     Private fornavn As String
     Private etternavn As String

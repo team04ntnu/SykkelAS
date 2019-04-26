@@ -48,6 +48,7 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MySql.Data, Version=8.0.15.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
@@ -73,15 +74,27 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="avdeling.vb" />
-    <Compile Include="Form1.vb">
+    <Compile Include="Administrator.Designer.vb">
+      <DependentUpon>Administrator.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Administrator.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.vb">
-      <DependentUpon>Form1.vb</DependentUpon>
+    <Compile Include="Avdeling.vb" />
+    <Compile Include="Hovedmeny.Designer.vb">
+      <DependentUpon>Hovedmeny.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Hovedmeny.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="kunde.vb" />
+    <Compile Include="Innlogging.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Innlogging.Designer.vb">
+      <DependentUpon>Innlogging.vb</DependentUpon>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Kunde.vb" />
     <Compile Include="Leieavtale.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
@@ -98,11 +111,17 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="poststed.vb" />
+    <Compile Include="Sted.vb" />
     <Compile Include="Sykkel.vb" />
-    <Compile Include="utstyr.vb" />
+    <Compile Include="Utstyr.vb" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Administrator.resx">
+      <DependentUpon>Administrator.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Innlogging.resx">
+      <DependentUpon>Innlogging.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
