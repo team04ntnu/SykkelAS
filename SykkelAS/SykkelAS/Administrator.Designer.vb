@@ -28,7 +28,7 @@ Partial Class Administrator
         Me.lblAdresse = New System.Windows.Forms.Label()
         Me.lblPostnummer = New System.Windows.Forms.Label()
         Me.txtPostnummer = New System.Windows.Forms.TextBox()
-        Me.TextBox3 = New System.Windows.Forms.TextBox()
+        Me.txtSted = New System.Windows.Forms.TextBox()
         Me.lblSted = New System.Windows.Forms.Label()
         Me.txtEpost = New System.Windows.Forms.TextBox()
         Me.lblEpost = New System.Windows.Forms.Label()
@@ -96,13 +96,13 @@ Partial Class Administrator
         Me.txtPostnummer.Size = New System.Drawing.Size(200, 20)
         Me.txtPostnummer.TabIndex = 6
         '
-        'TextBox3
+        'txtSted
         '
-        Me.TextBox3.Location = New System.Drawing.Point(107, 162)
-        Me.TextBox3.Name = "TextBox3"
-        Me.TextBox3.ReadOnly = True
-        Me.TextBox3.Size = New System.Drawing.Size(200, 20)
-        Me.TextBox3.TabIndex = 7
+        Me.txtSted.Location = New System.Drawing.Point(107, 162)
+        Me.txtSted.Name = "txtSted"
+        Me.txtSted.ReadOnly = True
+        Me.txtSted.Size = New System.Drawing.Size(200, 20)
+        Me.txtSted.TabIndex = 7
         '
         'lblSted
         '
@@ -260,7 +260,7 @@ Partial Class Administrator
         Me.Controls.Add(Me.lblAvdelingsnavn)
         Me.Controls.Add(Me.lblEpost)
         Me.Controls.Add(Me.lblBekreftPassord)
-        Me.Controls.Add(Me.TextBox3)
+        Me.Controls.Add(Me.txtSted)
         Me.Controls.Add(Me.txtAdresse)
         Me.Controls.Add(Me.txtTelefon)
         Me.Controls.Add(Me.lblPassord)
@@ -284,7 +284,7 @@ Partial Class Administrator
     Friend WithEvents lblAdresse As Label
     Friend WithEvents lblPostnummer As Label
     Friend WithEvents txtPostnummer As TextBox
-    Friend WithEvents TextBox3 As TextBox
+    Friend WithEvents txtSted As TextBox
     Friend WithEvents lblSted As Label
     Friend WithEvents txtEpost As TextBox
     Friend WithEvents lblEpost As Label

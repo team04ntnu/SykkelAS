@@ -37,6 +37,7 @@ Partial Class Innlogging
         Me.cmbAvdeling.Name = "cmbAvdeling"
         Me.cmbAvdeling.Size = New System.Drawing.Size(121, 21)
         Me.cmbAvdeling.TabIndex = 0
+        Me.cmbAvdeling.Text = "admin"
         '
         'txtPassord
         '
@@ -45,6 +46,7 @@ Partial Class Innlogging
         Me.txtPassord.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
         Me.txtPassord.Size = New System.Drawing.Size(121, 20)
         Me.txtPassord.TabIndex = 1
+        Me.txtPassord.Text = "admin"
         '
         'btnLoggInn
         '
