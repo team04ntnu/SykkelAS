@@ -44,7 +44,7 @@ Partial Class Administrator
         Me.btnOppdater = New System.Windows.Forms.Button()
         Me.btnSlett = New System.Windows.Forms.Button()
         Me.cmbAvdeling = New System.Windows.Forms.ComboBox()
-        Me.btnTilbake = New System.Windows.Forms.Button()
+        Me.btnLoggUt = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'txtAvdelingsnavn
@@ -234,21 +234,21 @@ Partial Class Administrator
         Me.cmbAvdeling.Size = New System.Drawing.Size(292, 21)
         Me.cmbAvdeling.TabIndex = 24
         '
-        'btnTilbake
+        'btnLoggUt
         '
-        Me.btnTilbake.Location = New System.Drawing.Point(13, 415)
-        Me.btnTilbake.Name = "btnTilbake"
-        Me.btnTilbake.Size = New System.Drawing.Size(294, 23)
-        Me.btnTilbake.TabIndex = 25
-        Me.btnTilbake.Text = "Gå tilbake til innloggingsvindu"
-        Me.btnTilbake.UseVisualStyleBackColor = True
+        Me.btnLoggUt.Location = New System.Drawing.Point(15, 426)
+        Me.btnLoggUt.Name = "btnLoggUt"
+        Me.btnLoggUt.Size = New System.Drawing.Size(292, 23)
+        Me.btnLoggUt.TabIndex = 25
+        Me.btnLoggUt.Text = "Logg ut"
+        Me.btnLoggUt.UseVisualStyleBackColor = True
         '
         'Administrator
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(800, 450)
-        Me.Controls.Add(Me.btnTilbake)
+        Me.ClientSize = New System.Drawing.Size(384, 461)
+        Me.Controls.Add(Me.btnLoggUt)
         Me.Controls.Add(Me.cmbAvdeling)
         Me.Controls.Add(Me.btnSlett)
         Me.Controls.Add(Me.btnOppdater)
@@ -300,5 +300,5 @@ Partial Class Administrator
     Friend WithEvents btnOppdater As Button
     Friend WithEvents btnSlett As Button
     Friend WithEvents cmbAvdeling As ComboBox
-    Friend WithEvents btnTilbake As Button
+    Friend WithEvents btnLoggUt As Button
 End Class

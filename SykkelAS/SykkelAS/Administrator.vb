@@ -132,8 +132,9 @@ Public Class Administrator
         SlettTekstfelt()
     End Sub
 
-    Private Sub btnTilbake_Click(sender As Object, e As EventArgs) Handles btnTilbake.Click
+    Private Sub btnLoggUt_Click(sender As Object, e As EventArgs) Handles btnLoggUt.Click
         Innlogging.Show()
         Me.Hide()
     End Sub
+
 End Class

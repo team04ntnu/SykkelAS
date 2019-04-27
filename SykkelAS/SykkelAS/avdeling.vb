@@ -69,4 +69,8 @@ Public Class Avdeling
         End Try
     End Sub
 
+    Public Function HentAvdelingNavn() As String
+        Return navn
+    End Function
+
 End Class

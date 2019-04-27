@@ -119,6 +119,9 @@
     <EmbeddedResource Include="Administrator.resx">
       <DependentUpon>Administrator.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Hovedmeny.resx">
+      <DependentUpon>Hovedmeny.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Innlogging.resx">
       <DependentUpon>Innlogging.vb</DependentUpon>
     </EmbeddedResource>

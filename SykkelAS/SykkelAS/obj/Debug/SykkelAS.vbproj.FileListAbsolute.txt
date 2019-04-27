@@ -15,3 +15,4 @@ C:\Users\Terje\Dropbox\Informatikk\IINI1010 Objektorientert programmering med sy
 C:\Users\Terje\Dropbox\Informatikk\IINI1010 Objektorientert programmering med systemarbeid\SA\Prosjekt\SykkelAS\SykkelAS\SykkelAS\bin\Debug\MySql.Data.xml
 C:\Users\Terje\Dropbox\Informatikk\IINI1010 Objektorientert programmering med systemarbeid\SA\Prosjekt\SykkelAS\SykkelAS\SykkelAS\obj\Debug\SykkelAS.vbproj.CopyComplete
 C:\Users\Terje\Dropbox\Informatikk\IINI1010 Objektorientert programmering med systemarbeid\SA\Prosjekt\SykkelAS\SykkelAS\SykkelAS\obj\Debug\SykkelAS.Administrator.resources
+C:\Users\Terje\Dropbox\Informatikk\IINI1010 Objektorientert programmering med systemarbeid\SA\Prosjekt\SykkelAS\SykkelAS\SykkelAS\obj\Debug\SykkelAS.Hovedmeny.resources
