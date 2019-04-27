@@ -1,5 +1,35 @@
-﻿Public Class Administrator
+﻿Imports MySql.Data.MySqlClient
+Public Class Administrator
+    Private tilkobling As New MySqlConnection("Server=mysql.stud.iie.ntnu.no;Database=g_iini1010_04;Uid=g_iini1010_04;Pwd=QXXLn0wu")
     Private navn, telefon, epost, adresse, postnummer, passord As String
+    Public avdelingValg As New ArrayList()
+
+    Public Sub OppdaterValg()
+        'Henter navnet på alle avdelingene som ligger i databasen
+        'Legger resultatet i en arraylist
+        Try
+            avdelingValg.Clear()
+            tilkobling.Open()
+            Dim sql As New MySqlCommand("SELECT avdeling_navn FROM avdeling", tilkobling)
+            Dim leser = sql.ExecuteReader()
+            While leser.Read()
+                Dim resultat = leser("avdeling_navn")
+                avdelingValg.Add(resultat)
+            End While
+            tilkobling.Close()
+        Catch feilmelding As MySqlException
+            MsgBox(feilmelding.Message)
+        Finally
+            tilkobling.Dispose()
+        End Try
+    End Sub
+
+    Private Sub Administrator_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'Oppdaterer liste over eksisterende avdelinger når programmet starter
+        For Each avdeling In avdelingValg
+            cmbAvdeling.Items.Add(avdeling)
+        Next
+    End Sub
 
     Private Sub btnOppdater_Click(sender As Object, e As EventArgs) Handles btnOppdater.Click
 
@@ -27,10 +57,13 @@
         Dim nyAvdeling As New Avdeling(navn, telefon, epost, adresse, postnummer, passord)
         'Henter metode for å opprette avdeling i database
         'Legger til avdelingsnavn i nedrekksliste dersom den har blitt lagt til
-        If nyAvdeling.Opprett() = True Then
-            cmbAvdeling.Items.Add(navn)
-            Innlogging.cmbAvdeling.Items.Add(navn)
-        End If
+        nyAvdeling.Opprett()
+        cmbAvdeling.Items.Add(navn)
+        'Oppdaterer liste over avdelinger
+        OppdaterValg()
+        For Each avdeling In avdelingValg
+            cmbAvdeling.Items.Add(avdeling)
+        Next
     End Sub
 
     Private Sub btnSlett_Click(sender As Object, e As EventArgs) Handles btnSlett.Click
@@ -48,5 +81,4 @@
         Innlogging.Show()
         Me.Hide()
     End Sub
-
 End Class

@@ -19,7 +19,7 @@ Public Class Avdeling
     End Sub
 
     'Metode for å opprette ny avdeling i databasen
-    Public Function Opprett()
+    Public Sub Opprett()
         Try
             tilkobling.Open()
 
@@ -34,19 +34,10 @@ Public Class Avdeling
             sql.ExecuteNonQuery()
             MsgBox("Utført")
             tilkobling.Close()
-            Return True
         Catch feilmelding As MySqlException
             MsgBox(feilmelding.Message)
-            Return False
-        End Try
-    End Function
-
-    'Funksjon for å hente eksisterende avdeling
-    Public Sub Hent()
-        Try
-            Dim sql As New MySqlCommand("SELECT * FROM avdeling", tilkobling)
-        Catch feilmelding As MySqlException
-            MsgBox(feilmelding.Message)
+        Finally
+            tilkobling.Dispose()
         End Try
     End Sub
 
