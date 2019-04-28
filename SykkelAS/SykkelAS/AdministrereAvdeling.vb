@@ -1,5 +1,5 @@
 ﻿Imports MySql.Data.MySqlClient
-Public Class Administrator
+Public Class AdministrereAvdeling
     'Private tilkobling As New MySqlConnection("Server=mysql.stud.iie.ntnu.no;Database=g_iini1010_04;Uid=g_iini1010_04;Pwd=QXXLn0wu")
     Private navn, telefon, epost, adresse, postnummer, passord As String
     Private nr As Integer

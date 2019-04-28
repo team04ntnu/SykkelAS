@@ -14,7 +14,6 @@ C:\Users\Terje\Dropbox\Informatikk\IINI1010 Objektorientert programmering med sy
 C:\Users\Terje\Dropbox\Informatikk\IINI1010 Objektorientert programmering med systemarbeid\SA\Prosjekt\SykkelAS\SykkelAS\SykkelAS\bin\Debug\Google.Protobuf.dll
 C:\Users\Terje\Dropbox\Informatikk\IINI1010 Objektorientert programmering med systemarbeid\SA\Prosjekt\SykkelAS\SykkelAS\SykkelAS\bin\Debug\MySql.Data.xml
 C:\Users\Terje\Dropbox\Informatikk\IINI1010 Objektorientert programmering med systemarbeid\SA\Prosjekt\SykkelAS\SykkelAS\SykkelAS\obj\Debug\SykkelAS.vbproj.CopyComplete
-C:\Users\Terje\Dropbox\Informatikk\IINI1010 Objektorientert programmering med systemarbeid\SA\Prosjekt\SykkelAS\SykkelAS\SykkelAS\obj\Debug\SykkelAS.Administrator.resources
 C:\Users\Terje\Dropbox\Informatikk\IINI1010 Objektorientert programmering med systemarbeid\SA\Prosjekt\SykkelAS\SykkelAS\SykkelAS\obj\Debug\SykkelAS.Hovedmeny.resources
 C:\Users\Ole Joachim\Desktop\Team04\SykkelAS\SykkelAS\obj\Debug\SykkelAS.vbprojAssemblyReference.cache
 C:\Users\Ole Joachim\Desktop\Team04\SykkelAS\SykkelAS\obj\Debug\SykkelAS.Administrator.resources
@@ -34,3 +33,5 @@ C:\Users\Ole Joachim\Desktop\Team04\SykkelAS\SykkelAS\bin\Debug\MySql.Data.dll
 C:\Users\Ole Joachim\Desktop\Team04\SykkelAS\SykkelAS\bin\Debug\Google.Protobuf.dll
 C:\Users\Ole Joachim\Desktop\Team04\SykkelAS\SykkelAS\bin\Debug\MySql.Data.xml
 C:\Users\Ole Joachim\Desktop\Team04\SykkelAS\SykkelAS\obj\Debug\SykkelAS.vbproj.CopyComplete
+C:\Users\Terje\Dropbox\Informatikk\IINI1010 Objektorientert programmering med systemarbeid\SA\Prosjekt\SykkelAS\SykkelAS\SykkelAS\obj\Debug\SykkelAS.AdministrereAvdeling.resources
+C:\Users\Terje\Dropbox\Informatikk\IINI1010 Objektorientert programmering med systemarbeid\SA\Prosjekt\SykkelAS\SykkelAS\SykkelAS\obj\Debug\SykkelAS.AdministrereKunde.resources

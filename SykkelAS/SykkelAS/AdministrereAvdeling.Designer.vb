@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class Administrator
+Partial Class AdministrereAvdeling
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -243,7 +243,7 @@ Partial Class Administrator
         Me.btnLoggUt.Text = "Logg ut"
         Me.btnLoggUt.UseVisualStyleBackColor = True
         '
-        'Administrator
+        'AdministrereAvdeling
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -271,8 +271,8 @@ Partial Class Administrator
         Me.Controls.Add(Me.lblSted)
         Me.Controls.Add(Me.lblPostnummer)
         Me.Controls.Add(Me.txtPassord)
-        Me.Name = "Administrator"
-        Me.Text = "Administrator"
+        Me.Name = "AdministrereAvdeling"
+        Me.Text = "AS SykkelUtleie"
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

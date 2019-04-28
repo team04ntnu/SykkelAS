@@ -9,8 +9,8 @@ Public Class Innlogging
         'Fjerner tidligere oppføringer i avdelingsliste
         cmbAvdeling.Items.Clear()
         'Oppdaterer liste for å velge avdeling
-        Administrator.OppdaterValg()
-        For Each avdeling In Administrator.avdelingValg
+        AdministrereAvdeling.OppdaterValg()
+        For Each avdeling In AdministrereAvdeling.avdelingValg
             cmbAvdeling.Items.Add(avdeling)
         Next
     End Sub
@@ -21,7 +21,7 @@ Public Class Innlogging
             MsgBox("Du må velge en avdeling før du kan fortsette")
             'Sjekker om brukeren forsøker å logge inn som administrator
         ElseIf cmbAvdeling.Text = "admin" And txtPassord.Text = "admin" Then
-            Administrator.Show()
+            AdministrereAvdeling.Show()
             Me.Hide()
         ElseIf cmbAvdeling.Text <> "admin" Then
             'Setter variabelen navn til valgt avdeling

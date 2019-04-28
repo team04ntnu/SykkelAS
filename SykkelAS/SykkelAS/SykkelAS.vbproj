@@ -74,10 +74,28 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Administrator.Designer.vb">
-      <DependentUpon>Administrator.vb</DependentUpon>
+    <Compile Include="AdministrereAvdeling.Designer.vb">
+      <DependentUpon>AdministrereAvdeling.vb</DependentUpon>
     </Compile>
-    <Compile Include="Administrator.vb">
+    <Compile Include="AdministrereAvdeling.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdministrereKunde.Designer.vb">
+      <DependentUpon>AdministrereKunde.vb</DependentUpon>
+    </Compile>
+    <Compile Include="AdministrereKunde.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdministrereSykkel.Designer.vb">
+      <DependentUpon>AdministrereSykkel.vb</DependentUpon>
+    </Compile>
+    <Compile Include="AdministrereSykkel.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdministrereUtstyr.Designer.vb">
+      <DependentUpon>AdministrereUtstyr.vb</DependentUpon>
+    </Compile>
+    <Compile Include="AdministrereUtstyr.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Avdeling.vb" />
@@ -116,8 +134,17 @@
     <Compile Include="Utstyr.vb" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Administrator.resx">
-      <DependentUpon>Administrator.vb</DependentUpon>
+    <EmbeddedResource Include="AdministrereAvdeling.resx">
+      <DependentUpon>AdministrereAvdeling.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdministrereKunde.resx">
+      <DependentUpon>AdministrereKunde.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdministrereSykkel.resx">
+      <DependentUpon>AdministrereSykkel.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdministrereUtstyr.resx">
+      <DependentUpon>AdministrereUtstyr.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Hovedmeny.resx">
       <DependentUpon>Hovedmeny.vb</DependentUpon>

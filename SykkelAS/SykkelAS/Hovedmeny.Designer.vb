@@ -53,7 +53,7 @@ Partial Class Hovedmeny
         Me.Controls.Add(Me.btnLoggUt)
         Me.Controls.Add(Me.lblInnloggetAvdeling)
         Me.Name = "Hovedmeny"
-        Me.Text = "Hovedmeny"
+        Me.Text = "AS SykkelUtleie"
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

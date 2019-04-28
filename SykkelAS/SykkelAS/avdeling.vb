@@ -1,24 +1,23 @@
 ﻿Imports MySql.Data.MySqlClient
 Public Class Avdeling
-    'Private tilkobling As New MySqlConnection("Server=mysql.stud.iie.ntnu.no;Database=g_iini1010_04;Uid=g_iini1010_04;Pwd=QXXLn0wu")
     Private navn, telefon, epost, adresse, postnummer, passord As String
     Private nr As Integer
 
     'Konstruktør for å opprette avdeling
-    Public Sub New(ByVal nr As Integer,
-                   ByVal navn As String,
+    Public Sub New(ByVal navn As String,
                    ByVal telefon As String,
                    ByVal epost As String,
                    ByVal adresse As String,
                    ByVal postnummer As String,
-                   ByVal passord As String)
-        Me.nr = nr
+                   ByVal passord As String,
+                   ByVal nr As Integer)
         Me.navn = navn
         Me.telefon = telefon
         Me.epost = epost
         Me.adresse = adresse
         Me.postnummer = postnummer
         Me.passord = passord
+        Me.nr = nr
     End Sub
 
     'Metode for å opprette ny avdeling i databasen
@@ -54,13 +53,15 @@ Public Class Avdeling
             Dim sql As New MySqlCommand("UPDATE avdeling SET avdeling_navn = @navn, telefon = @telefon, epost = @epost, 
                                         adresse = @adresse, postnummer = @postnummer, passord = @passord
                                         WHERE avdeling_nr = @nr", tilkobling)
-            sql.Parameters.AddWithValue("@nr", nr)
-            sql.Parameters.AddWithValue("@navn", navn)
-            sql.Parameters.AddWithValue("@telefon", telefon)
-            sql.Parameters.AddWithValue("@epost", epost)
-            sql.Parameters.AddWithValue("@adresse", adresse)
-            sql.Parameters.AddWithValue("@postnummer", postnummer)
-            sql.Parameters.AddWithValue("@passord", passord)
+            With sql.Parameters
+                .AddWithValue("@nr", nr)
+                .AddWithValue("@navn", navn)
+                .AddWithValue("@telefon", telefon)
+                .AddWithValue("@epost", epost)
+                .AddWithValue("@adresse", adresse)
+                .AddWithValue("@postnummer", postnummer)
+                .AddWithValue("@passord", passord)
+            End With
             sql.ExecuteNonQuery()
             MsgBox("Utført")
             tilkobling.Close()
