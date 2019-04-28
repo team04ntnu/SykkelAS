@@ -98,4 +98,27 @@ Public Class Avdeling
         End Try
     End Function
 
+    Public Function hentUtstyr() As DataTable
+        Try
+            databasetilkobling.databaseTilkobling()
+            tilkobling.Open()
+
+            Dim sql As New MySqlCommand("SELECT utstyr_merke, utstyr_type, pris_time, pris_døgn, pris_helg, status FROM utstyr WHERE lokasjon = @navn ", tilkobling)
+            sql.Parameters.AddWithValue("@navn", navn)
+            sql.ExecuteNonQuery()
+            MsgBox("Utført")
+            Dim da As New MySqlDataAdapter
+            Dim utstyrstabell As New DataTable
+
+            da.SelectCommand = sql
+            da.Fill(utstyrstabell)
+            tilkobling.Close()
+            Return utstyrstabell
+        Catch feilmelding As MySqlException
+            MsgBox(feilmelding.Message)
+        Finally
+            tilkobling.Dispose()
+        End Try
+    End Function
+
 End Class
