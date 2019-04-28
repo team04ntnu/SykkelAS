@@ -1,6 +1,6 @@
 ﻿Imports MySql.Data.MySqlClient
 Public Class Innlogging
-    Private tilkobling As New MySqlConnection("Server=mysql.stud.iie.ntnu.no;Database=g_iini1010_04;Uid=g_iini1010_04;Pwd=QXXLn0wu")
+    'Private tilkobling As New MySqlConnection("Server=mysql.stud.iie.ntnu.no;Database=g_iini1010_04;Uid=g_iini1010_04;Pwd=QXXLn0wu")
     Private navn, telefon, epost, adresse, postnummer, passord As String
     Private nr As Integer
     Public innloggetAvdeling As Avdeling
@@ -28,6 +28,7 @@ Public Class Innlogging
             navn = cmbAvdeling.Text
             'Henter info om valgt avdeling fra databasen
             Try
+                databasetilkobling.databaseTilkobling()
                 tilkobling.Open()
                 Dim sql As New MySqlCommand("SELECT * FROM avdeling WHERE avdeling_navn = @navn", tilkobling)
                 sql.Parameters.AddWithValue("@navn", navn)

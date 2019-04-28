@@ -1,6 +1,6 @@
 ﻿Imports MySql.Data.MySqlClient
 Public Class Administrator
-    Private tilkobling As New MySqlConnection("Server=mysql.stud.iie.ntnu.no;Database=g_iini1010_04;Uid=g_iini1010_04;Pwd=QXXLn0wu")
+    'Private tilkobling As New MySqlConnection("Server=mysql.stud.iie.ntnu.no;Database=g_iini1010_04;Uid=g_iini1010_04;Pwd=QXXLn0wu")
     Private navn, telefon, epost, adresse, postnummer, passord As String
     Private nr As Integer
     Public avdelingValg As New ArrayList()
@@ -38,6 +38,7 @@ Public Class Administrator
         'Legger resultatet i en arraylist
         Try
             avdelingValg.Clear()
+            databasetilkobling.databaseTilkobling()
             tilkobling.Open()
             Dim sql As New MySqlCommand("SELECT avdeling_navn FROM avdeling", tilkobling)
             Dim leser = sql.ExecuteReader()
@@ -63,6 +64,7 @@ Public Class Administrator
         'Fyller ut tekstfelt når avdeling velges
         navn = cmbAvdeling.Text
         Try
+            databasetilkobling.databaseTilkobling()
             tilkobling.Open()
             Dim sql As New MySqlCommand("SELECT * FROM avdeling a INNER JOIN sted s ON a.postnummer = s.postnummer 
                                         WHERE avdeling_navn = @navn", tilkobling)
