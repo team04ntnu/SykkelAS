@@ -82,7 +82,7 @@ Public Class Avdeling
             tilkobling.Open()
 
             Dim sql As New MySqlCommand("SELECT sykkel_merke, sykkel_type, pris_time, pris_døgn, pris_helg, status FROM sykkel WHERE lokasjon = @navn ", tilkobling)
-            sql.Parameters.AddWithValue("@navn", navn)
+            sql.Parameters.AddWithValue("@navn", nr)
             sql.ExecuteNonQuery()
             MsgBox("Utført")
             Dim da As New MySqlDataAdapter
@@ -104,8 +104,8 @@ Public Class Avdeling
             databasetilkobling.databaseTilkobling()
             tilkobling.Open()
 
-            Dim sql As New MySqlCommand("SELECT utstyr_merke, utstyr_type, pris_time, pris_døgn, pris_helg, status FROM utstyr WHERE lokasjon = @navn ", tilkobling)
-            sql.Parameters.AddWithValue("@navn", navn)
+            Dim sql As New MySqlCommand("SELECT utstyr_merke, utstyr_type, pris_time, pris_døgn, pris_helg, status FROM utstyr WHERE lokasjon = @avdeling_nr ", tilkobling)
+            sql.Parameters.AddWithValue("@avdeling_nr", nr)
             sql.ExecuteNonQuery()
             MsgBox("Utført")
             Dim da As New MySqlDataAdapter
