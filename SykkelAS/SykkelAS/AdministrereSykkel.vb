@@ -4,7 +4,7 @@ Public Class AdministrereSykkel
     Private innlogget, id, pris_time, pris_døgn, pris_helg, avdeling_nr As Integer
     Private maxRader, inc As Integer
     Private sykkeltabell As New DataTable
-    Private sykkelrad As DataRow
+    Private rad As DataRow
 
     Private Sub SlettTekstfelt()
         txtSykkelID.Text = ""
@@ -46,21 +46,21 @@ Public Class AdministrereSykkel
     End Sub
 
     Private Sub naviger()
-        sykkelrad = sykkeltabell.Rows(inc)
-        txtSykkelID.Text = sykkelrad(0)
-        txtSykkelMerke.Text = sykkelrad(1)
-        txtSykkelType.Text = sykkelrad(2)
-        txtSykkelRamme.Text = sykkelrad(3)
-        txtSykkelHjul.Text = sykkelrad(4)
-        txtSykkelGir.Text = sykkelrad(5)
-        txtSykkelVekt.Text = sykkelrad(6)
-        txtSykkelRammeNummer.Text = sykkelrad(7)
-        txtPrisTime.Text = sykkelrad(8)
-        txtPrisDøgn.Text = sykkelrad(9)
-        txtPrisHelg.Text = sykkelrad(10)
-        txtLokasjon.Text = sykkelrad(11)
-        txtStatus.Text = sykkelrad(12)
-        txtAvdeling.Text = sykkelrad(13)
+        rad = sykkeltabell.Rows(inc)
+        txtSykkelID.Text = rad(0)
+        txtSykkelMerke.Text = rad(1)
+        txtSykkelType.Text = rad(2)
+        txtSykkelRamme.Text = rad(3)
+        txtSykkelHjul.Text = rad(4)
+        txtSykkelGir.Text = rad(5)
+        txtSykkelVekt.Text = rad(6)
+        txtSykkelRammeNummer.Text = rad(7)
+        txtPrisTime.Text = rad(8)
+        txtPrisDøgn.Text = rad(9)
+        txtPrisHelg.Text = rad(10)
+        txtLokasjon.Text = rad(11)
+        txtStatus.Text = rad(12)
+        txtAvdeling.Text = rad(13)
     End Sub
 
     'Henter info fra tekstfelt og legger i variabler
@@ -149,6 +149,62 @@ Public Class AdministrereSykkel
 
     Private Sub btnSlett_Click(sender As Object, e As EventArgs) Handles btnSlett.Click
         SlettTekstfelt()
+    End Sub
+
+    Private Sub btnSøk_Click(sender As Object, e As EventArgs) Handles btnSøk.Click
+        'Sletter tidligere søkeresultat
+        lstResultat.Items.Clear()
+        'Søker gjennom sykkeltabell
+        Dim søk As String
+        søk = txtSok.Text
+        'Første loop går gjennom hver rad i tabellen
+        For Each rad In sykkeltabell.Rows
+            'Andre loop går gjennom hver celle i hver enkelt rad
+            'Stopper på 12 for å ikke søke på avdeling_nr
+            For i = 0 To 12
+                If CStr(rad(i)) = søk Then
+                    Dim resultat = rad(0) & " " & rad(1)
+                    lstResultat.Items.Add(resultat)
+                End If
+            Next i
+        Next rad
+    End Sub
+
+    Private Sub lstResultat_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lstResultat.SelectedIndexChanged
+        'Oppdaterer tekstfelt med valgt søkeresultat
+        'Skjer bare hvis man klikker på en sykkel i listeboksen
+        If lstResultat.SelectedItem <> "" Then
+            Dim valgt As String = lstResultat.SelectedItem
+            'Henter id til valgt sykkel (tallet helt til venstre i resultatet)
+            id = CInt(valgt.Split(" ")(0))
+            'Setter startindeks til -1 
+            Dim valgtIndeks = -1
+            'Henter ut riktig indeks i sykkeltabell for valgt sykkel
+            Dim i As Integer
+            For i = 0 To sykkeltabell.Rows.Count - 1
+                'Sjekker første kolonne i hver rad etter id til valgt sykkel
+                If sykkeltabell.Rows(i).Item(0) = id Then
+                    valgtIndeks = i
+                    Exit For
+                End If
+            Next i
+            'Definerer rad som skal skrives til tekstfelt
+            rad = sykkeltabell.Rows(valgtIndeks)
+            txtSykkelID.Text = rad(0)
+            txtSykkelMerke.Text = rad(1)
+            txtSykkelType.Text = rad(2)
+            txtSykkelRamme.Text = rad(3)
+            txtSykkelHjul.Text = rad(4)
+            txtSykkelGir.Text = rad(5)
+            txtSykkelVekt.Text = rad(6)
+            txtSykkelRammeNummer.Text = rad(7)
+            txtPrisTime.Text = rad(8)
+            txtPrisDøgn.Text = rad(9)
+            txtPrisHelg.Text = rad(10)
+            txtLokasjon.Text = rad(11)
+            txtStatus.Text = rad(12)
+            txtAvdeling.Text = rad(13)
+        End If
     End Sub
 
     Private Sub btnTilbake_Click(sender As Object, e As EventArgs) Handles btnTilbake.Click

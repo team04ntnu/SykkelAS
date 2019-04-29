@@ -59,38 +59,41 @@ Partial Class AdministrereSykkel
         Me.Label13 = New System.Windows.Forms.Label()
         Me.txtAvdeling = New System.Windows.Forms.TextBox()
         Me.Label14 = New System.Windows.Forms.Label()
+        Me.btnSøk = New System.Windows.Forms.Button()
+        Me.txtSok = New System.Windows.Forms.TextBox()
+        Me.lstResultat = New System.Windows.Forms.ListBox()
         Me.SuspendLayout()
         '
         'btnOppdater
         '
-        Me.btnOppdater.Location = New System.Drawing.Point(144, 422)
+        Me.btnOppdater.Location = New System.Drawing.Point(134, 422)
         Me.btnOppdater.Name = "btnOppdater"
-        Me.btnOppdater.Size = New System.Drawing.Size(167, 23)
+        Me.btnOppdater.Size = New System.Drawing.Size(200, 23)
         Me.btnOppdater.TabIndex = 0
         Me.btnOppdater.Text = "Oppdater"
         Me.btnOppdater.UseVisualStyleBackColor = True
         '
         'btnOpprett
         '
-        Me.btnOpprett.Location = New System.Drawing.Point(144, 451)
+        Me.btnOpprett.Location = New System.Drawing.Point(134, 451)
         Me.btnOpprett.Name = "btnOpprett"
-        Me.btnOpprett.Size = New System.Drawing.Size(167, 23)
+        Me.btnOpprett.Size = New System.Drawing.Size(200, 23)
         Me.btnOpprett.TabIndex = 1
         Me.btnOpprett.Text = "Opprett ny sykkel"
         Me.btnOpprett.UseVisualStyleBackColor = True
         '
         'btnSlett
         '
-        Me.btnSlett.Location = New System.Drawing.Point(144, 480)
+        Me.btnSlett.Location = New System.Drawing.Point(134, 480)
         Me.btnSlett.Name = "btnSlett"
-        Me.btnSlett.Size = New System.Drawing.Size(167, 23)
+        Me.btnSlett.Size = New System.Drawing.Size(200, 23)
         Me.btnSlett.TabIndex = 2
         Me.btnSlett.Text = "Slett tekstfelt"
         Me.btnSlett.UseVisualStyleBackColor = True
         '
         'btnTilbake
         '
-        Me.btnTilbake.Location = New System.Drawing.Point(305, 526)
+        Me.btnTilbake.Location = New System.Drawing.Point(652, 526)
         Me.btnTilbake.Name = "btnTilbake"
         Me.btnTilbake.Size = New System.Drawing.Size(167, 23)
         Me.btnTilbake.TabIndex = 3
@@ -102,63 +105,63 @@ Partial Class AdministrereSykkel
         Me.txtSykkelID.Location = New System.Drawing.Point(134, 26)
         Me.txtSykkelID.Name = "txtSykkelID"
         Me.txtSykkelID.ReadOnly = True
-        Me.txtSykkelID.Size = New System.Drawing.Size(192, 20)
+        Me.txtSykkelID.Size = New System.Drawing.Size(200, 20)
         Me.txtSykkelID.TabIndex = 4
         '
         'txtSykkelMerke
         '
         Me.txtSykkelMerke.Location = New System.Drawing.Point(134, 52)
         Me.txtSykkelMerke.Name = "txtSykkelMerke"
-        Me.txtSykkelMerke.Size = New System.Drawing.Size(192, 20)
+        Me.txtSykkelMerke.Size = New System.Drawing.Size(200, 20)
         Me.txtSykkelMerke.TabIndex = 5
         '
         'txtSykkelType
         '
         Me.txtSykkelType.Location = New System.Drawing.Point(134, 78)
         Me.txtSykkelType.Name = "txtSykkelType"
-        Me.txtSykkelType.Size = New System.Drawing.Size(192, 20)
+        Me.txtSykkelType.Size = New System.Drawing.Size(200, 20)
         Me.txtSykkelType.TabIndex = 6
         '
         'txtSykkelHjul
         '
         Me.txtSykkelHjul.Location = New System.Drawing.Point(134, 130)
         Me.txtSykkelHjul.Name = "txtSykkelHjul"
-        Me.txtSykkelHjul.Size = New System.Drawing.Size(192, 20)
+        Me.txtSykkelHjul.Size = New System.Drawing.Size(200, 20)
         Me.txtSykkelHjul.TabIndex = 7
         '
         'txtSykkelGir
         '
         Me.txtSykkelGir.Location = New System.Drawing.Point(134, 156)
         Me.txtSykkelGir.Name = "txtSykkelGir"
-        Me.txtSykkelGir.Size = New System.Drawing.Size(192, 20)
+        Me.txtSykkelGir.Size = New System.Drawing.Size(200, 20)
         Me.txtSykkelGir.TabIndex = 8
         '
         'txtSykkelVekt
         '
         Me.txtSykkelVekt.Location = New System.Drawing.Point(134, 182)
         Me.txtSykkelVekt.Name = "txtSykkelVekt"
-        Me.txtSykkelVekt.Size = New System.Drawing.Size(192, 20)
+        Me.txtSykkelVekt.Size = New System.Drawing.Size(200, 20)
         Me.txtSykkelVekt.TabIndex = 9
         '
         'txtSykkelRammeNummer
         '
         Me.txtSykkelRammeNummer.Location = New System.Drawing.Point(134, 208)
         Me.txtSykkelRammeNummer.Name = "txtSykkelRammeNummer"
-        Me.txtSykkelRammeNummer.Size = New System.Drawing.Size(192, 20)
+        Me.txtSykkelRammeNummer.Size = New System.Drawing.Size(200, 20)
         Me.txtSykkelRammeNummer.TabIndex = 10
         '
         'txtPrisTime
         '
         Me.txtPrisTime.Location = New System.Drawing.Point(134, 234)
         Me.txtPrisTime.Name = "txtPrisTime"
-        Me.txtPrisTime.Size = New System.Drawing.Size(192, 20)
+        Me.txtPrisTime.Size = New System.Drawing.Size(200, 20)
         Me.txtPrisTime.TabIndex = 11
         '
         'txtPrisDøgn
         '
         Me.txtPrisDøgn.Location = New System.Drawing.Point(134, 260)
         Me.txtPrisDøgn.Name = "txtPrisDøgn"
-        Me.txtPrisDøgn.Size = New System.Drawing.Size(192, 20)
+        Me.txtPrisDøgn.Size = New System.Drawing.Size(200, 20)
         Me.txtPrisDøgn.TabIndex = 12
         '
         'Label1
@@ -246,21 +249,21 @@ Partial Class AdministrereSykkel
         '
         Me.txtPrisHelg.Location = New System.Drawing.Point(134, 286)
         Me.txtPrisHelg.Name = "txtPrisHelg"
-        Me.txtPrisHelg.Size = New System.Drawing.Size(192, 20)
+        Me.txtPrisHelg.Size = New System.Drawing.Size(200, 20)
         Me.txtPrisHelg.TabIndex = 22
         '
         'txtLokasjon
         '
         Me.txtLokasjon.Location = New System.Drawing.Point(134, 312)
         Me.txtLokasjon.Name = "txtLokasjon"
-        Me.txtLokasjon.Size = New System.Drawing.Size(192, 20)
+        Me.txtLokasjon.Size = New System.Drawing.Size(200, 20)
         Me.txtLokasjon.TabIndex = 23
         '
         'txtStatus
         '
         Me.txtStatus.Location = New System.Drawing.Point(134, 338)
         Me.txtStatus.Name = "txtStatus"
-        Me.txtStatus.Size = New System.Drawing.Size(192, 20)
+        Me.txtStatus.Size = New System.Drawing.Size(200, 20)
         Me.txtStatus.TabIndex = 24
         '
         'Label10
@@ -295,12 +298,12 @@ Partial Class AdministrereSykkel
         Me.cmbSykkel.FormattingEnabled = True
         Me.cmbSykkel.Location = New System.Drawing.Point(134, 395)
         Me.cmbSykkel.Name = "cmbSykkel"
-        Me.cmbSykkel.Size = New System.Drawing.Size(192, 21)
+        Me.cmbSykkel.Size = New System.Drawing.Size(200, 21)
         Me.cmbSykkel.TabIndex = 28
         '
         'btnSiste
         '
-        Me.btnSiste.Location = New System.Drawing.Point(317, 451)
+        Me.btnSiste.Location = New System.Drawing.Point(340, 451)
         Me.btnSiste.Name = "btnSiste"
         Me.btnSiste.Size = New System.Drawing.Size(75, 23)
         Me.btnSiste.TabIndex = 30
@@ -309,7 +312,7 @@ Partial Class AdministrereSykkel
         '
         'btnNeste
         '
-        Me.btnNeste.Location = New System.Drawing.Point(317, 422)
+        Me.btnNeste.Location = New System.Drawing.Point(340, 422)
         Me.btnNeste.Name = "btnNeste"
         Me.btnNeste.Size = New System.Drawing.Size(75, 23)
         Me.btnNeste.TabIndex = 29
@@ -318,7 +321,7 @@ Partial Class AdministrereSykkel
         '
         'btnFørste
         '
-        Me.btnFørste.Location = New System.Drawing.Point(63, 451)
+        Me.btnFørste.Location = New System.Drawing.Point(53, 451)
         Me.btnFørste.Name = "btnFørste"
         Me.btnFørste.Size = New System.Drawing.Size(75, 23)
         Me.btnFørste.TabIndex = 32
@@ -327,7 +330,7 @@ Partial Class AdministrereSykkel
         '
         'btnForrige
         '
-        Me.btnForrige.Location = New System.Drawing.Point(63, 422)
+        Me.btnForrige.Location = New System.Drawing.Point(53, 422)
         Me.btnForrige.Name = "btnForrige"
         Me.btnForrige.Size = New System.Drawing.Size(75, 23)
         Me.btnForrige.TabIndex = 31
@@ -338,7 +341,7 @@ Partial Class AdministrereSykkel
         '
         Me.txtSykkelRamme.Location = New System.Drawing.Point(134, 104)
         Me.txtSykkelRamme.Name = "txtSykkelRamme"
-        Me.txtSykkelRamme.Size = New System.Drawing.Size(192, 20)
+        Me.txtSykkelRamme.Size = New System.Drawing.Size(200, 20)
         Me.txtSykkelRamme.TabIndex = 33
         '
         'Label13
@@ -355,7 +358,7 @@ Partial Class AdministrereSykkel
         Me.txtAvdeling.Location = New System.Drawing.Point(134, 365)
         Me.txtAvdeling.Name = "txtAvdeling"
         Me.txtAvdeling.ReadOnly = True
-        Me.txtAvdeling.Size = New System.Drawing.Size(192, 20)
+        Me.txtAvdeling.Size = New System.Drawing.Size(200, 20)
         Me.txtAvdeling.TabIndex = 35
         '
         'Label14
@@ -367,12 +370,39 @@ Partial Class AdministrereSykkel
         Me.Label14.TabIndex = 36
         Me.Label14.Text = "Tilhører avdeling"
         '
+        'btnSøk
+        '
+        Me.btnSøk.Location = New System.Drawing.Point(410, 52)
+        Me.btnSøk.Name = "btnSøk"
+        Me.btnSøk.Size = New System.Drawing.Size(192, 23)
+        Me.btnSøk.TabIndex = 37
+        Me.btnSøk.Text = "Søk"
+        Me.btnSøk.UseVisualStyleBackColor = True
+        '
+        'txtSok
+        '
+        Me.txtSok.Location = New System.Drawing.Point(410, 26)
+        Me.txtSok.Name = "txtSok"
+        Me.txtSok.Size = New System.Drawing.Size(192, 20)
+        Me.txtSok.TabIndex = 38
+        '
+        'lstResultat
+        '
+        Me.lstResultat.FormattingEnabled = True
+        Me.lstResultat.Location = New System.Drawing.Point(410, 82)
+        Me.lstResultat.Name = "lstResultat"
+        Me.lstResultat.Size = New System.Drawing.Size(192, 134)
+        Me.lstResultat.TabIndex = 39
+        '
         'AdministrereSykkel
         '
         Me.AllowDrop = True
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(484, 561)
+        Me.ClientSize = New System.Drawing.Size(831, 561)
+        Me.Controls.Add(Me.lstResultat)
+        Me.Controls.Add(Me.txtSok)
+        Me.Controls.Add(Me.btnSøk)
         Me.Controls.Add(Me.Label14)
         Me.Controls.Add(Me.txtAvdeling)
         Me.Controls.Add(Me.Label13)
@@ -454,4 +484,7 @@ Partial Class AdministrereSykkel
     Friend WithEvents Label13 As Label
     Friend WithEvents txtAvdeling As TextBox
     Friend WithEvents Label14 As Label
+    Friend WithEvents btnSøk As Button
+    Friend WithEvents txtSok As TextBox
+    Friend WithEvents lstResultat As ListBox
 End Class
