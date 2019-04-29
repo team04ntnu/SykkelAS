@@ -4,20 +4,21 @@ Public Class Sykkel
     Private id, pris_time, pris_døgn, pris_helg, avdeling_nr As Integer
 
     'Konstruktør for å opprette sykkel
-    Public Sub New(ByVal merke As String,
+    Public Sub New(ByVal id As Integer,
+                   ByVal merke As String,
                    ByVal type As String,
                    ByVal ramme As String,
                    ByVal hjul As String,
                    ByVal gir As String,
                    ByVal vekt As String,
                    ByVal rammenummer As String,
-                   ByVal lokasjon As String,
-                   ByVal status As String,
-                   ByVal id As Integer,
                    ByVal pris_time As Integer,
                    ByVal pris_døgn As Integer,
                    ByVal pris_helg As Integer,
+                   ByVal lokasjon As String,
+                   ByVal status As String,
                    ByVal avdeling_nr As Integer)
+        Me.id = id
         Me.merke = merke
         Me.type = type
         Me.ramme = ramme
@@ -25,12 +26,11 @@ Public Class Sykkel
         Me.gir = gir
         Me.vekt = vekt
         Me.rammenummer = rammenummer
-        Me.lokasjon = lokasjon
-        Me.status = status
-        Me.id = id
         Me.pris_time = pris_time
         Me.pris_døgn = pris_døgn
         Me.pris_helg = pris_helg
+        Me.lokasjon = lokasjon
+        Me.status = status
         Me.avdeling_nr = avdeling_nr
     End Sub
 
@@ -78,8 +78,10 @@ Public Class Sykkel
             Dim sql As New MySqlCommand("UPDATE sykkel SET sykkel_merke = @merke, sykkel_type = @type, ramme = @ramme, 
                                         hjul = @hjul, gir = @gir, vekt = @vekt, rammenummer = @rammenummer,
                                         pris_time = @pris_time, pris_døgn = @pris_døgn, pris_helg = @pris_helg, 
-                                        lokasjon = @lokasjon, status = @status, avdeling_nr = @avdeling_nr", tilkobling)
+                                        lokasjon = @lokasjon, status = @status, avdeling_nr = @avdeling_nr
+                                        WHERE sykkel_id = @id", tilkobling)
             With sql.Parameters
+                .AddWithValue("@id", id)
                 .AddWithValue("@merke", merke)
                 .AddWithValue("@type", type)
                 .AddWithValue("@ramme", ramme)

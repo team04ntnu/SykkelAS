@@ -26,7 +26,7 @@ Partial Class AdministrereSykkel
         Me.btnOpprett = New System.Windows.Forms.Button()
         Me.btnSlett = New System.Windows.Forms.Button()
         Me.btnTilbake = New System.Windows.Forms.Button()
-        Me.txtSykkelNr = New System.Windows.Forms.TextBox()
+        Me.txtSykkelID = New System.Windows.Forms.TextBox()
         Me.txtSykkelMerke = New System.Windows.Forms.TextBox()
         Me.txtSykkelType = New System.Windows.Forms.TextBox()
         Me.txtSykkelHjul = New System.Windows.Forms.TextBox()
@@ -57,6 +57,8 @@ Partial Class AdministrereSykkel
         Me.btnForrige = New System.Windows.Forms.Button()
         Me.txtSykkelRamme = New System.Windows.Forms.TextBox()
         Me.Label13 = New System.Windows.Forms.Label()
+        Me.txtAvdeling = New System.Windows.Forms.TextBox()
+        Me.Label14 = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'btnOppdater
@@ -95,13 +97,13 @@ Partial Class AdministrereSykkel
         Me.btnTilbake.Text = "Hovedmeny"
         Me.btnTilbake.UseVisualStyleBackColor = True
         '
-        'txtSykkelNr
+        'txtSykkelID
         '
-        Me.txtSykkelNr.Location = New System.Drawing.Point(134, 26)
-        Me.txtSykkelNr.Name = "txtSykkelNr"
-        Me.txtSykkelNr.ReadOnly = True
-        Me.txtSykkelNr.Size = New System.Drawing.Size(192, 20)
-        Me.txtSykkelNr.TabIndex = 4
+        Me.txtSykkelID.Location = New System.Drawing.Point(134, 26)
+        Me.txtSykkelID.Name = "txtSykkelID"
+        Me.txtSykkelID.ReadOnly = True
+        Me.txtSykkelID.Size = New System.Drawing.Size(192, 20)
+        Me.txtSykkelID.TabIndex = 4
         '
         'txtSykkelMerke
         '
@@ -348,12 +350,31 @@ Partial Class AdministrereSykkel
         Me.Label13.TabIndex = 34
         Me.Label13.Text = "Ramme"
         '
+        'txtAvdeling
+        '
+        Me.txtAvdeling.Location = New System.Drawing.Point(134, 365)
+        Me.txtAvdeling.Name = "txtAvdeling"
+        Me.txtAvdeling.ReadOnly = True
+        Me.txtAvdeling.Size = New System.Drawing.Size(192, 20)
+        Me.txtAvdeling.TabIndex = 35
+        '
+        'Label14
+        '
+        Me.Label14.AutoSize = True
+        Me.Label14.Location = New System.Drawing.Point(43, 368)
+        Me.Label14.Name = "Label14"
+        Me.Label14.Size = New System.Drawing.Size(85, 13)
+        Me.Label14.TabIndex = 36
+        Me.Label14.Text = "Tilhører avdeling"
+        '
         'AdministrereSykkel
         '
         Me.AllowDrop = True
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(484, 561)
+        Me.Controls.Add(Me.Label14)
+        Me.Controls.Add(Me.txtAvdeling)
         Me.Controls.Add(Me.Label13)
         Me.Controls.Add(Me.txtSykkelRamme)
         Me.Controls.Add(Me.btnFørste)
@@ -384,7 +405,7 @@ Partial Class AdministrereSykkel
         Me.Controls.Add(Me.txtSykkelHjul)
         Me.Controls.Add(Me.txtSykkelType)
         Me.Controls.Add(Me.txtSykkelMerke)
-        Me.Controls.Add(Me.txtSykkelNr)
+        Me.Controls.Add(Me.txtSykkelID)
         Me.Controls.Add(Me.btnTilbake)
         Me.Controls.Add(Me.btnSlett)
         Me.Controls.Add(Me.btnOpprett)
@@ -400,7 +421,7 @@ Partial Class AdministrereSykkel
     Friend WithEvents btnOpprett As Button
     Friend WithEvents btnSlett As Button
     Friend WithEvents btnTilbake As Button
-    Friend WithEvents txtSykkelNr As TextBox
+    Friend WithEvents txtSykkelID As TextBox
     Friend WithEvents txtSykkelMerke As TextBox
     Friend WithEvents txtSykkelType As TextBox
     Friend WithEvents txtSykkelHjul As TextBox
@@ -431,4 +452,6 @@ Partial Class AdministrereSykkel
     Friend WithEvents btnForrige As Button
     Friend WithEvents txtSykkelRamme As TextBox
     Friend WithEvents Label13 As Label
+    Friend WithEvents txtAvdeling As TextBox
+    Friend WithEvents Label14 As Label
 End Class
