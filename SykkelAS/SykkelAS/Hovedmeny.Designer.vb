@@ -24,6 +24,9 @@ Partial Class Hovedmeny
     Private Sub InitializeComponent()
         Me.lblInnloggetAvdeling = New System.Windows.Forms.Label()
         Me.btnLoggUt = New System.Windows.Forms.Button()
+        Me.btnKunde = New System.Windows.Forms.Button()
+        Me.btnSykkel = New System.Windows.Forms.Button()
+        Me.btnUtstyr = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'lblInnloggetAvdeling
@@ -45,11 +48,41 @@ Partial Class Hovedmeny
         Me.btnLoggUt.Text = "Logg ut"
         Me.btnLoggUt.UseVisualStyleBackColor = True
         '
+        'btnKunde
+        '
+        Me.btnKunde.Location = New System.Drawing.Point(12, 12)
+        Me.btnKunde.Name = "btnKunde"
+        Me.btnKunde.Size = New System.Drawing.Size(200, 23)
+        Me.btnKunde.TabIndex = 2
+        Me.btnKunde.Text = "Administrer kunde"
+        Me.btnKunde.UseVisualStyleBackColor = True
+        '
+        'btnSykkel
+        '
+        Me.btnSykkel.Location = New System.Drawing.Point(12, 41)
+        Me.btnSykkel.Name = "btnSykkel"
+        Me.btnSykkel.Size = New System.Drawing.Size(200, 23)
+        Me.btnSykkel.TabIndex = 3
+        Me.btnSykkel.Text = "Administrer sykkel"
+        Me.btnSykkel.UseVisualStyleBackColor = True
+        '
+        'btnUtstyr
+        '
+        Me.btnUtstyr.Location = New System.Drawing.Point(12, 70)
+        Me.btnUtstyr.Name = "btnUtstyr"
+        Me.btnUtstyr.Size = New System.Drawing.Size(200, 23)
+        Me.btnUtstyr.TabIndex = 4
+        Me.btnUtstyr.Text = "Administrer utstyr"
+        Me.btnUtstyr.UseVisualStyleBackColor = True
+        '
         'Hovedmeny
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(984, 461)
+        Me.Controls.Add(Me.btnUtstyr)
+        Me.Controls.Add(Me.btnSykkel)
+        Me.Controls.Add(Me.btnKunde)
         Me.Controls.Add(Me.btnLoggUt)
         Me.Controls.Add(Me.lblInnloggetAvdeling)
         Me.Name = "Hovedmeny"
@@ -61,4 +94,7 @@ Partial Class Hovedmeny
 
     Friend WithEvents lblInnloggetAvdeling As Label
     Friend WithEvents btnLoggUt As Button
+    Friend WithEvents btnKunde As Button
+    Friend WithEvents btnSykkel As Button
+    Friend WithEvents btnUtstyr As Button
 End Class

@@ -53,7 +53,7 @@ Public Class Innlogging
                 innloggetAvdeling = New Avdeling(nr, navn, telefon, epost, adresse, postnummer, passord)
 
                 'Hovedmeny.Show()
-                AdministrereSykkel.Show()
+                Hovedmeny.Show()
                 Me.Hide()
             Else
                 MsgBox("Feil avdeling eller passord")

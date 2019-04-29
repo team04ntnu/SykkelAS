@@ -9,4 +9,18 @@
         Me.Hide()
     End Sub
 
+    Private Sub btnKunde_Click(sender As Object, e As EventArgs) Handles btnKunde.Click
+        AdministrereKunde.Show()
+        Me.Hide()
+    End Sub
+
+    Private Sub btnSykkel_Click(sender As Object, e As EventArgs) Handles btnSykkel.Click
+        AdministrereSykkel.Show()
+        Me.Hide()
+    End Sub
+
+    Private Sub btnUtstyr_Click(sender As Object, e As EventArgs) Handles btnUtstyr.Click
+        AdministrereUtstyr.Show()
+        Me.Hide()
+    End Sub
 End Class

@@ -36,7 +36,7 @@ Public Class Avdeling
             sql.Parameters.AddWithValue("@postnummer", postnummer)
             sql.Parameters.AddWithValue("@passord", passord)
             sql.ExecuteNonQuery()
-            MsgBox("Utført")
+            MsgBox("Avdeling opprettet")
             tilkobling.Close()
         Catch feilmelding As MySqlException
             MsgBox(feilmelding.Message)
@@ -64,7 +64,7 @@ Public Class Avdeling
                 .AddWithValue("@passord", passord)
             End With
             sql.ExecuteNonQuery()
-            MsgBox("Utført")
+            MsgBox("Avdeling oppdatert")
             tilkobling.Close()
         Catch feilmelding As MySqlException
             MsgBox(feilmelding.Message)
@@ -85,7 +85,6 @@ Public Class Avdeling
             Dim sql As New MySqlCommand("SELECT * FROM sykkel WHERE avdeling_nr = @nr ", tilkobling)
             sql.Parameters.AddWithValue("@nr", nr)
             sql.ExecuteNonQuery()
-            MsgBox("Utført")
             Dim da As New MySqlDataAdapter
 
             da.SelectCommand = sql
@@ -107,7 +106,6 @@ Public Class Avdeling
             Dim sql As New MySqlCommand("SELECT utstyr_merke, utstyr_type, pris_time, pris_døgn, pris_helg, status FROM utstyr WHERE lokasjon = @avdeling_nr ", tilkobling)
             sql.Parameters.AddWithValue("@avdeling_nr", nr)
             sql.ExecuteNonQuery()
-            MsgBox("Utført")
             Dim da As New MySqlDataAdapter
             Dim utstyrstabell As New DataTable
 

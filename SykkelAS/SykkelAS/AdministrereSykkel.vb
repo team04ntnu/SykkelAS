@@ -2,8 +2,7 @@
     Dim maxRader As Integer
     Dim inc As Integer
 
-
-    Private Sub Administrator_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub AdministrereSykkel_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Innlogging.innloggetAvdeling.hentSykkel()
         maxRader = Innlogging.innloggetAvdeling.sykkeltabell.Rows.Count
         inc = -1
@@ -55,7 +54,10 @@
         txtPrisHelg.Text = Innlogging.innloggetAvdeling.sykkeltabell.Rows(inc).Item(8)
         txtLokasjon.Text = Innlogging.innloggetAvdeling.sykkeltabell.Rows(inc).Item(9)
         txtStatus.Text = Innlogging.innloggetAvdeling.sykkeltabell.Rows(inc).Item(10)
-
     End Sub
 
+    Private Sub btnTilbake_Click(sender As Object, e As EventArgs) Handles btnTilbake.Click
+        Hovedmeny.Show()
+        Me.Hide()
+    End Sub
 End Class

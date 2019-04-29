@@ -60,7 +60,7 @@ Public Class Sykkel
                 .AddWithValue("@avdeling_nr", avdeling_nr)
             End With
             sql.ExecuteNonQuery()
-            MsgBox("Utført")
+            MsgBox("Sykkel opprettet")
             tilkobling.Close()
         Catch feilmelding As MySqlException
             MsgBox(feilmelding.Message)
@@ -95,7 +95,7 @@ Public Class Sykkel
                 .AddWithValue("@avdeling_nr", avdeling_nr)
             End With
             sql.ExecuteNonQuery()
-            MsgBox("Utført")
+            MsgBox("Sykkel oppdatert")
             tilkobling.Close()
         Catch feilmelding As MySqlException
             MsgBox(feilmelding.Message)

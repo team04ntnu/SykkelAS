@@ -38,3 +38,5 @@ C:\Users\Ole Joachim\Desktop\Team04\SykkelAS\SykkelAS\obj\Debug\SykkelAS.Adminis
 C:\Users\Ole Joachim\Desktop\Team04\SykkelAS\SykkelAS\obj\Debug\SykkelAS.AdministrereKunde.resources
 C:\Users\Ole Joachim\Desktop\Team04\SykkelAS\SykkelAS\obj\Debug\SykkelAS.AdministrereSykkel.resources
 C:\Users\Ole Joachim\Desktop\Team04\SykkelAS\SykkelAS\obj\Debug\SykkelAS.AdministrereUtstyr.resources
+C:\Users\Terje\Dropbox\Informatikk\IINI1010 Objektorientert programmering med systemarbeid\SA\Prosjekt\SykkelAS\SykkelAS\SykkelAS\obj\Debug\SykkelAS.AdministrereSykkel.resources
+C:\Users\Terje\Dropbox\Informatikk\IINI1010 Objektorientert programmering med systemarbeid\SA\Prosjekt\SykkelAS\SykkelAS\SykkelAS\obj\Debug\SykkelAS.AdministrereUtstyr.resources

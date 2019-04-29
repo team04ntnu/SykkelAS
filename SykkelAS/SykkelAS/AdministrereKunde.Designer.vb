@@ -22,16 +22,29 @@ Partial Class AdministrereKunde
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.btnTilbake = New System.Windows.Forms.Button()
         Me.SuspendLayout()
+        '
+        'btnTilbake
+        '
+        Me.btnTilbake.Location = New System.Drawing.Point(305, 526)
+        Me.btnTilbake.Name = "btnTilbake"
+        Me.btnTilbake.Size = New System.Drawing.Size(167, 23)
+        Me.btnTilbake.TabIndex = 4
+        Me.btnTilbake.Text = "Hovedmeny"
+        Me.btnTilbake.UseVisualStyleBackColor = True
         '
         'AdministrereKunde
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.ClientSize = New System.Drawing.Size(484, 561)
+        Me.Controls.Add(Me.btnTilbake)
         Me.Name = "AdministrereKunde"
         Me.Text = "AS SykkelUtleie"
         Me.ResumeLayout(False)
 
     End Sub
+
+    Friend WithEvents btnTilbake As Button
 End Class

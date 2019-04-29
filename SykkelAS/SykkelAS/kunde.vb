@@ -37,7 +37,7 @@ Public Class Kunde
                 .AddWithValue("@epost", epost)
             End With
             sql.ExecuteNonQuery()
-            MsgBox("Utført")
+            MsgBox("Kunde opprettet")
             tilkobling.Close()
         Catch feilmelding As MySqlException
             MsgBox(feilmelding.Message)
@@ -63,7 +63,7 @@ Public Class Kunde
                 .AddWithValue("@epost", epost)
             End With
             sql.ExecuteNonQuery()
-            MsgBox("Utført")
+            MsgBox("Kunde oppdatert")
             tilkobling.Close()
         Catch feilmelding As MySqlException
             MsgBox(feilmelding.Message)

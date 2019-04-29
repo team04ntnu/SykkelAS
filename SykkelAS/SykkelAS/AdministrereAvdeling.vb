@@ -53,7 +53,7 @@ Public Class AdministrereAvdeling
         End Try
     End Sub
 
-    Private Sub Administrator_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub AdministrereAvdeling_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'Oppdaterer liste over eksisterende avdelinger når programmet starter
         For Each avdeling In avdelingValg
             cmbAvdeling.Items.Add(avdeling)

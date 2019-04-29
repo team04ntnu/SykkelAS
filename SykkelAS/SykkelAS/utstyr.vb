@@ -48,7 +48,7 @@ Public Class Utstyr
                 .AddWithValue("@avdeling_nr", avdeling_nr)
             End With
             sql.ExecuteNonQuery()
-            MsgBox("Utført")
+            MsgBox("Utstyr opprettet")
             tilkobling.Close()
         Catch feilmelding As MySqlException
             MsgBox(feilmelding.Message)
@@ -78,7 +78,7 @@ Public Class Utstyr
                 .AddWithValue("@avdeling_nr", avdeling_nr)
             End With
             sql.ExecuteNonQuery()
-            MsgBox("Utført")
+            MsgBox("Utstyr oppdatert")
             tilkobling.Close()
         Catch feilmelding As MySqlException
             MsgBox(feilmelding.Message)
