@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class AdministrereSykkel
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class AdministrereSykkel
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.btnOppdater = New System.Windows.Forms.Button()
         Me.btnOpprett = New System.Windows.Forms.Button()
@@ -51,6 +51,10 @@ Partial Class AdministrereSykkel
         Me.Label11 = New System.Windows.Forms.Label()
         Me.Label12 = New System.Windows.Forms.Label()
         Me.cmbSykkel = New System.Windows.Forms.ComboBox()
+        Me.btnSiste = New System.Windows.Forms.Button()
+        Me.btnNeste = New System.Windows.Forms.Button()
+        Me.btnFørste = New System.Windows.Forms.Button()
+        Me.btnForrige = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'btnOppdater
@@ -157,9 +161,9 @@ Partial Class AdministrereSykkel
         Me.Label1.AutoSize = True
         Me.Label1.Location = New System.Drawing.Point(31, 29)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(48, 13)
+        Me.Label1.Size = New System.Drawing.Size(50, 13)
         Me.Label1.TabIndex = 13
-        Me.Label1.Text = "SykkelId"
+        Me.Label1.Text = "SykkelNr"
         '
         'Label2
         '
@@ -289,11 +293,51 @@ Partial Class AdministrereSykkel
         Me.cmbSykkel.Size = New System.Drawing.Size(192, 21)
         Me.cmbSykkel.TabIndex = 28
         '
+        'btnSiste
+        '
+        Me.btnSiste.Location = New System.Drawing.Point(359, 423)
+        Me.btnSiste.Name = "btnSiste"
+        Me.btnSiste.Size = New System.Drawing.Size(75, 23)
+        Me.btnSiste.TabIndex = 30
+        Me.btnSiste.Text = "Siste"
+        Me.btnSiste.UseVisualStyleBackColor = True
+        '
+        'btnNeste
+        '
+        Me.btnNeste.Location = New System.Drawing.Point(359, 394)
+        Me.btnNeste.Name = "btnNeste"
+        Me.btnNeste.Size = New System.Drawing.Size(75, 23)
+        Me.btnNeste.TabIndex = 29
+        Me.btnNeste.Text = "Neste"
+        Me.btnNeste.UseVisualStyleBackColor = True
+        '
+        'btnFørste
+        '
+        Me.btnFørste.Location = New System.Drawing.Point(34, 422)
+        Me.btnFørste.Name = "btnFørste"
+        Me.btnFørste.Size = New System.Drawing.Size(75, 23)
+        Me.btnFørste.TabIndex = 32
+        Me.btnFørste.Text = "Første"
+        Me.btnFørste.UseVisualStyleBackColor = True
+        '
+        'btnForrige
+        '
+        Me.btnForrige.Location = New System.Drawing.Point(34, 394)
+        Me.btnForrige.Name = "btnForrige"
+        Me.btnForrige.Size = New System.Drawing.Size(75, 23)
+        Me.btnForrige.TabIndex = 31
+        Me.btnForrige.Text = "Forrige"
+        Me.btnForrige.UseVisualStyleBackColor = True
+        '
         'AdministrereSykkel
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(506, 566)
+        Me.Controls.Add(Me.btnFørste)
+        Me.Controls.Add(Me.btnForrige)
+        Me.Controls.Add(Me.btnSiste)
+        Me.Controls.Add(Me.btnNeste)
         Me.Controls.Add(Me.cmbSykkel)
         Me.Controls.Add(Me.Label12)
         Me.Controls.Add(Me.Label11)
@@ -359,4 +403,8 @@ Partial Class AdministrereSykkel
     Friend WithEvents Label11 As Label
     Friend WithEvents Label12 As Label
     Friend WithEvents cmbSykkel As ComboBox
+    Friend WithEvents btnSiste As Button
+    Friend WithEvents btnNeste As Button
+    Friend WithEvents btnFørste As Button
+    Friend WithEvents btnForrige As Button
 End Class

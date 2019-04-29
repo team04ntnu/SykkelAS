@@ -2,6 +2,7 @@
 Public Class Avdeling
     Private navn, telefon, epost, adresse, postnummer, passord As String
     Private nr As Integer
+    Public sykkeltabell As New DataTable
 
     'Konstruktør for å opprette avdeling
     Public Sub New(ByVal navn As String,
@@ -81,12 +82,11 @@ Public Class Avdeling
             databasetilkobling.databaseTilkobling()
             tilkobling.Open()
 
-            Dim sql As New MySqlCommand("SELECT sykkel_merke, sykkel_type, pris_time, pris_døgn, pris_helg, status FROM sykkel WHERE lokasjon = @navn ", tilkobling)
-            sql.Parameters.AddWithValue("@navn", nr)
+            Dim sql As New MySqlCommand("SELECT * FROM sykkel WHERE avdeling_nr = @nr ", tilkobling)
+            sql.Parameters.AddWithValue("@nr", nr)
             sql.ExecuteNonQuery()
             MsgBox("Utført")
             Dim da As New MySqlDataAdapter
-            Dim sykkeltabell As New DataTable
 
             da.SelectCommand = sql
             da.Fill(sykkeltabell)

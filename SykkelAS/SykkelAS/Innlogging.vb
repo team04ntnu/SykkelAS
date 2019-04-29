@@ -52,7 +52,8 @@ Public Class Innlogging
                 'Logger inn og oppretter et objekt dersom passord er korrekt
                 innloggetAvdeling = New Avdeling(nr, navn, telefon, epost, adresse, postnummer, passord)
 
-                Hovedmeny.Show()
+                'Hovedmeny.Show()
+                AdministrereSykkel.Show()
                 Me.Hide()
             Else
                 MsgBox("Feil avdeling eller passord")
