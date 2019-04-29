@@ -2,7 +2,6 @@
 Public Class Avdeling
     Private navn, telefon, epost, adresse, postnummer, passord As String
     Private nr As Integer
-    Public sykkeltabell As New DataTable
 
     'Konstruktør for å opprette avdeling
     Public Sub New(ByVal navn As String,
@@ -77,47 +76,30 @@ Public Class Avdeling
         Return navn
     End Function
 
-    Public Function hentSykkel() As DataTable
-        Try
-            databasetilkobling.databaseTilkobling()
-            tilkobling.Open()
-
-            Dim sql As New MySqlCommand("SELECT * FROM sykkel WHERE avdeling_nr = @nr ", tilkobling)
-            sql.Parameters.AddWithValue("@nr", nr)
-            sql.ExecuteNonQuery()
-            Dim da As New MySqlDataAdapter
-
-            da.SelectCommand = sql
-            da.Fill(sykkeltabell)
-            tilkobling.Close()
-            Return sykkeltabell
-        Catch feilmelding As MySqlException
-            MsgBox(feilmelding.Message)
-        Finally
-            tilkobling.Dispose()
-        End Try
+    Public Function HentAvdelingNr() As String
+        Return nr
     End Function
 
-    Public Function hentUtstyr() As DataTable
-        Try
-            databasetilkobling.databaseTilkobling()
-            tilkobling.Open()
+    'Public Function hentUtstyr() As DataTable
+    'Try
+    'databasetilkobling.databaseTilkobling()
+    'tilkobling.Open()
 
-            Dim sql As New MySqlCommand("SELECT utstyr_merke, utstyr_type, pris_time, pris_døgn, pris_helg, status FROM utstyr WHERE lokasjon = @avdeling_nr ", tilkobling)
-            sql.Parameters.AddWithValue("@avdeling_nr", nr)
-            sql.ExecuteNonQuery()
-            Dim da As New MySqlDataAdapter
-            Dim utstyrstabell As New DataTable
+    'Dim sql As New MySqlCommand("SELECT utstyr_merke, utstyr_type, pris_time, pris_døgn, pris_helg, status FROM utstyr WHERE lokasjon = @avdeling_nr ", tilkobling)
+    'sql.Parameters.AddWithValue("@avdeling_nr", nr)
+    'sql.ExecuteNonQuery()
+    'Dim da As New MySqlDataAdapter
+    'Dim utstyrstabell As New DataTable
 
-            da.SelectCommand = sql
-            da.Fill(utstyrstabell)
-            tilkobling.Close()
-            Return utstyrstabell
-        Catch feilmelding As MySqlException
-            MsgBox(feilmelding.Message)
-        Finally
-            tilkobling.Dispose()
-        End Try
-    End Function
+    'da.SelectCommand = sql
+    'da.Fill(utstyrstabell)
+    'tilkobling.Close()
+    'Return utstyrstabell
+    'Catch feilmelding As MySqlException
+    'MsgBox(feilmelding.Message)
+    'Finally
+    'tilkobling.Dispose()
+    'End Try
+    'End Function
 
 End Class

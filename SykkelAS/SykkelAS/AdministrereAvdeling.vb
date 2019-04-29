@@ -5,7 +5,7 @@ Public Class AdministrereAvdeling
     Private nr As Integer
     Public avdelingValg As New ArrayList()
 
-    Public Sub SlettTekstfelt()
+    Private Sub SlettTekstfelt()
         txtAvdelingNr.Text = ""
         txtAvdelingsnavn.Text = ""
         txtTelefon.Text = ""
