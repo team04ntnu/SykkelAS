@@ -51,7 +51,6 @@ Public Class Innlogging
             If txtPassord.Text = passord Then
                 'Logger inn og oppretter et objekt dersom passord er korrekt
                 innloggetAvdeling = New Avdeling(nr, navn, telefon, epost, adresse, postnummer, passord)
-
                 'Hovedmeny.Show()
                 Hovedmeny.Show()
                 Me.Hide()

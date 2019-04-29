@@ -2,16 +2,15 @@
 Public Class AdministrereSykkel
     Private maxRader, inc, nr As Integer
     Private sykkeltabell As New DataTable
+    Private sykkelrad As DataRow
 
     Private Sub hentSykkel()
         nr = Innlogging.innloggetAvdeling.HentAvdelingNr()
         Try
             databasetilkobling.databaseTilkobling()
             tilkobling.Open()
-
-            Dim sql As New MySqlCommand("SELECT * FROM sykkel WHERE avdeling_nr = @nr ", tilkobling)
+            Dim sql As New MySqlCommand("SELECT * FROM sykkel WHERE avdeling_nr = @nr", tilkobling)
             sql.Parameters.AddWithValue("@nr", nr)
-            sql.ExecuteNonQuery()
             Dim da As New MySqlDataAdapter
             da.SelectCommand = sql
             da.Fill(sykkeltabell)
@@ -64,17 +63,20 @@ Public Class AdministrereSykkel
     End Sub
 
     Private Sub naviger()
-        txtSykkelNr.Text = sykkeltabell.Rows(inc).Item(0)
-        txtSykkelMerke.Text = sykkeltabell.Rows(inc).Item(1)
-        txtSykkelType.Text = sykkeltabell.Rows(inc).Item(2)
-        txtSykkelHjul.Text = sykkeltabell.Rows(inc).Item(3)
-        txtSykkelGir.Text = sykkeltabell.Rows(inc).Item(4)
-        txtSykkelRammeNummer.Text = sykkeltabell.Rows(inc).Item(5)
-        txtPrisTime.Text = sykkeltabell.Rows(inc).Item(6)
-        txtPrisDøgn.Text = sykkeltabell.Rows(inc).Item(7)
-        txtPrisHelg.Text = sykkeltabell.Rows(inc).Item(8)
-        txtLokasjon.Text = sykkeltabell.Rows(inc).Item(9)
-        txtStatus.Text = sykkeltabell.Rows(inc).Item(10)
+        sykkelrad = sykkeltabell.Rows(inc)
+        txtSykkelNr.Text = sykkelrad(0)
+        txtSykkelMerke.Text = sykkelrad(1)
+        txtSykkelType.Text = sykkelrad(2)
+        txtSykkelRamme.Text = sykkelrad(3)
+        txtSykkelHjul.Text = sykkelrad(4)
+        txtSykkelGir.Text = sykkelrad(5)
+        txtSykkelVekt.Text = sykkelrad(6)
+        txtSykkelRammeNummer.Text = sykkelrad(7)
+        txtPrisTime.Text = sykkelrad(8)
+        txtPrisDøgn.Text = sykkelrad(9)
+        txtPrisHelg.Text = sykkelrad(10)
+        txtLokasjon.Text = sykkeltabell.Rows(inc).Item(11)
+        txtStatus.Text = sykkeltabell.Rows(inc).Item(12)
     End Sub
 
     Private Sub btnTilbake_Click(sender As Object, e As EventArgs) Handles btnTilbake.Click

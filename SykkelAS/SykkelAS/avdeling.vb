@@ -4,20 +4,20 @@ Public Class Avdeling
     Private nr As Integer
 
     'Konstruktør for å opprette avdeling
-    Public Sub New(ByVal navn As String,
+    Public Sub New(ByVal nr As Integer,
+                   ByVal navn As String,
                    ByVal telefon As String,
                    ByVal epost As String,
                    ByVal adresse As String,
                    ByVal postnummer As String,
-                   ByVal passord As String,
-                   ByVal nr As Integer)
+                   ByVal passord As String)
+        Me.nr = nr
         Me.navn = navn
         Me.telefon = telefon
         Me.epost = epost
         Me.adresse = adresse
         Me.postnummer = postnummer
         Me.passord = passord
-        Me.nr = nr
     End Sub
 
     'Metode for å opprette ny avdeling i databasen
