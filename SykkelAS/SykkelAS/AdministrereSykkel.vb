@@ -52,9 +52,9 @@ Public Class AdministrereSykkel
         inc = -1
     End Sub
 
-    Private Sub naviger()
+    Private Sub TabellTilSkjema(ByVal indeks As Integer)
         SlettTekstfelt()
-        rad = sykkeltabell.Rows(inc)
+        rad = sykkeltabell.Rows(indeks)
         txtSykkelID.Text = rad(0)
         txtSykkelMerke.Text = rad(1)
         cmbSykkelType.Text = rad(2)
@@ -72,7 +72,7 @@ Public Class AdministrereSykkel
     End Sub
 
     'Henter info fra skjema og legger i variabler
-    Private Sub hentInfo()
+    Private Sub SkjemaTilVariabel()
         If txtSykkelID.Text <> "" Then
             id = txtSykkelID.Text
         End If
@@ -104,7 +104,7 @@ Public Class AdministrereSykkel
     Private Sub btnNeste_Click(sender As Object, e As EventArgs) Handles btnNeste.Click
         If inc < maxRader - 1 Then
             inc = inc + 1
-            naviger()
+            TabellTilSkjema(inc)
         Else
             MsgBox("Siste oppføring")
         End If
@@ -113,14 +113,14 @@ Public Class AdministrereSykkel
     Private Sub btnSiste_Click(sender As Object, e As EventArgs) Handles btnSiste.Click
         If inc <> maxRader - 1 Then
             inc = maxRader - 1
-            naviger()
+            TabellTilSkjema(inc)
         End If
     End Sub
 
     Private Sub btnForrige_Click(sender As Object, e As EventArgs) Handles btnForrige.Click
         If inc > 0 Then
             inc = inc - 1
-            naviger()
+            TabellTilSkjema(inc)
         ElseIf inc = -1 Then
             MsgBox("Ingen oppføringer enda")
         Else
@@ -131,13 +131,13 @@ Public Class AdministrereSykkel
     Private Sub btnFørste_Click(sender As Object, e As EventArgs) Handles btnFørste.Click
         If inc <> 0 Then
             inc = 0
-            naviger()
+            TabellTilSkjema(inc)
         End If
     End Sub
 
     Private Sub btnOppdater_Click(sender As Object, e As EventArgs) Handles btnOppdater.Click
         'Henter prosedyre for å lese inn fra skjema
-        hentInfo()
+        SkjemaTilVariabel()
         'Oppretter et nytt objekt basert på informasjonen
         Dim oppdatertSykkel As New Sykkel(id, merke, type, ramme, hjul, gir, vekt, rammenummer,
                                           pris_time, pris_døgn, pris_helg, lokasjon, status, avdeling_nr)
@@ -151,7 +151,7 @@ Public Class AdministrereSykkel
 
     Private Sub btnOpprett_Click(sender As Object, e As EventArgs) Handles btnOpprett.Click
         'Henter prosedyre for å lese inn fra skjema
-        hentInfo()
+        SkjemaTilVariabel()
         avdeling_nr = Innlogging.innloggetAvdeling.HentAvdelingNr()
         'Oppretter et nytt objekt basert på informasjonen
         Dim nySykkel As New Sykkel(id, merke, type, ramme, hjul, gir, vekt, rammenummer,
@@ -233,22 +233,8 @@ Public Class AdministrereSykkel
                     Exit For
                 End If
             Next i
-            'Definerer rad som skal skrives til tekstfelt
-            rad = sykkeltabell.Rows(valgtIndeks)
-            txtSykkelID.Text = rad(0)
-            txtSykkelMerke.Text = rad(1)
-            cmbSykkelType.Text = rad(2)
-            txtSykkelRamme.Text = rad(3)
-            txtSykkelHjul.Text = rad(4)
-            txtSykkelGir.Text = rad(5)
-            txtSykkelVekt.Text = rad(6)
-            txtSykkelRammeNummer.Text = rad(7)
-            txtPrisTime.Text = rad(8)
-            txtPrisDøgn.Text = rad(9)
-            txtPrisHelg.Text = rad(10)
-            cmbLokasjon.Text = rad(11)
-            cmbStatus.Text = rad(12)
-            txtAvdeling.Text = rad(13)
+            'Henter prosedyre for å skrive til tekstfelt
+            TabellTilSkjema(valgtIndeks)
             'Oppdaterer posisjon på navigering
             inc = valgtIndeks
         End If

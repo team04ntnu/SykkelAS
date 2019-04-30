@@ -53,9 +53,9 @@ Public Class AdministrereUtstyr
         inc = -1
     End Sub
 
-    Private Sub naviger()
+    Private Sub TabellTilSkjema(ByVal indeks As Integer)
         SlettTekstfelt()
-        rad = utstyrtabell.Rows(inc)
+        rad = utstyrtabell.Rows(indeks)
         txtUtstyrID.Text = rad(0)
         txtUtstyrMerke.Text = rad(1)
         txtUtstyrType.Text = rad(2)
@@ -91,7 +91,7 @@ Public Class AdministrereUtstyr
     End Sub
 
     'Henter info fra skjema og legger i variabler
-    Private Sub hentInfo()
+    Private Sub SkjemaTilVariabel()
         If txtUtstyrID.Text <> "" Then
             id = txtUtstyrID.Text
         End If
@@ -138,7 +138,7 @@ Public Class AdministrereUtstyr
     Private Sub btnNeste_Click(sender As Object, e As EventArgs) Handles btnNeste.Click
         If inc < maxRader - 1 Then
             inc = inc + 1
-            naviger()
+            TabellTilSkjema(inc)
         Else
             MsgBox("Siste oppføring")
         End If
@@ -147,14 +147,14 @@ Public Class AdministrereUtstyr
     Private Sub btnSiste_Click(sender As Object, e As EventArgs) Handles btnSiste.Click
         If inc <> maxRader - 1 Then
             inc = maxRader - 1
-            naviger()
+            TabellTilSkjema(inc)
         End If
     End Sub
 
     Private Sub btnForrige_Click(sender As Object, e As EventArgs) Handles btnForrige.Click
         If inc > 0 Then
             inc = inc - 1
-            naviger()
+            TabellTilSkjema(inc)
         ElseIf inc = -1 Then
             MsgBox("Ingen oppføringer enda")
         Else
@@ -165,13 +165,13 @@ Public Class AdministrereUtstyr
     Private Sub btnFørste_Click(sender As Object, e As EventArgs) Handles btnFørste.Click
         If inc <> 0 Then
             inc = 0
-            naviger()
+            TabellTilSkjema(inc)
         End If
     End Sub
 
     Private Sub btnOppdater_Click(sender As Object, e As EventArgs) Handles btnOppdater.Click
         'Henter prosedyre for å lese inn fra skjema
-        hentInfo()
+        SkjemaTilVariabel()
         'Oppretter et nytt objekt basert på informasjonen
         Dim oppdatertUtstyr As New Utstyr(id, merke, type, pris_time, pris_døgn, pris_helg,
                                           passer_til, lokasjon, status, avdeling_nr)
@@ -185,7 +185,7 @@ Public Class AdministrereUtstyr
 
     Private Sub btnOpprett_Click(sender As Object, e As EventArgs) Handles btnOpprett.Click
         'Henter prosedyre for å lese inn fra skjema
-        hentInfo()
+        SkjemaTilVariabel()
         avdeling_nr = Innlogging.innloggetAvdeling.HentAvdelingNr()
         'Oppretter et nytt objekt basert på informasjonen
         Dim nyttUtstyr As New Utstyr(id, merke, type, pris_time, pris_døgn, pris_helg,
@@ -322,40 +322,8 @@ Public Class AdministrereUtstyr
                     Exit For
                 End If
             Next i
-            'Definerer rad som skal skrives til tekstfelt
-            rad = utstyrtabell.Rows(valgtIndeks)
-            txtUtstyrID.Text = rad(0)
-            txtUtstyrMerke.Text = rad(1)
-            txtUtstyrType.Text = rad(2)
-            txtPrisTime.Text = rad(3)
-            txtPrisDøgn.Text = rad(4)
-            txtPrisHelg.Text = rad(5)
-            cmbLokasjon.Text = rad(7)
-            cmbStatus.Text = rad(8)
-            txtAvdeling.Text = rad(9)
-            Dim kode = rad(6)
-            'Sjekker først om koden viser at utstyr passer til alle sykler
-            If kode = "TDRMB" Then
-                chkAlle.Checked = True
-            Else
-                'Deler opp koden i passer_til i individuelle bokstaver
-                Dim koder() As Char = kode.ToCharArray
-                Dim j As Integer
-                'Krysser av korrekte bokser ut i fra kodene
-                For i = 0 To koder.Length - 1
-                    If koder(j) = "T" Then
-                        chkTerreng.Checked = True
-                    ElseIf koder(j) = "D" Then
-                        chkDownhill.Checked = True
-                    ElseIf koder(j) = "R" Then
-                        chkRacer.Checked = True
-                    ElseIf koder(j) = "M" Then
-                        chkTandem.Checked = True
-                    ElseIf koder(j) = "B" Then
-                        chkBarn.Checked = True
-                    End If
-                Next i
-            End If
+            'Henter prosedyre for å skrive til tekstfelt
+            TabellTilSkjema(valgtIndeks)
             'Oppdaterer posisjon på navigering
             inc = valgtIndeks
         End If
