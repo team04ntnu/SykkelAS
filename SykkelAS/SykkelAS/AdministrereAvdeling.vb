@@ -1,6 +1,5 @@
 ﻿Imports MySql.Data.MySqlClient
 Public Class AdministrereAvdeling
-    'Private tilkobling As New MySqlConnection("Server=mysql.stud.iie.ntnu.no;Database=g_iini1010_04;Uid=g_iini1010_04;Pwd=QXXLn0wu")
     Private navn, telefon, epost, adresse, postnummer, passord As String
     Private nr As Integer
     Public avdelingValg As New ArrayList()
@@ -19,7 +18,9 @@ Public Class AdministrereAvdeling
 
     'Henter info fra tekstfelt og legger i variabler
     Private Sub hentInfo()
-        nr = txtAvdelingNr.Text
+        If txtAvdelingNr.Text <> "" Then
+            nr = txtAvdelingNr.Text
+        End If
         navn = txtAvdelingsnavn.Text
         telefon = txtTelefon.Text
         epost = txtEpost.Text

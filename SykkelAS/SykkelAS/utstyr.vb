@@ -4,25 +4,25 @@ Public Class Utstyr
     Private id, pris_time, pris_døgn, pris_helg, avdeling_nr As Integer
 
     'Konstruktør for å opprette utstyr
-    Public Sub New(ByVal merke As String,
+    Public Sub New(ByVal id As Integer,
+                   ByVal merke As String,
                    ByVal type As String,
-                   ByVal passer_til As String,
-                   ByVal lokasjon As String,
-                   ByVal status As String,
-                   ByVal id As Integer,
                    ByVal pris_time As Integer,
                    ByVal pris_døgn As Integer,
                    ByVal pris_helg As Integer,
+                   ByVal passer_til As String,
+                   ByVal lokasjon As String,
+                   ByVal status As String,
                    ByVal avdeling_nr As Integer)
+        Me.id = id
         Me.merke = merke
         Me.type = type
-        Me.passer_til = passer_til
-        Me.lokasjon = lokasjon
-        Me.status = status
-        Me.id = id
         Me.pris_time = pris_time
         Me.pris_døgn = pris_døgn
         Me.pris_helg = pris_helg
+        Me.passer_til = passer_til
+        Me.lokasjon = lokasjon
+        Me.status = status
         Me.avdeling_nr = avdeling_nr
     End Sub
 
@@ -65,8 +65,10 @@ Public Class Utstyr
 
             Dim sql As New MySqlCommand("UPDATE utstyr SET utstyr_merke = @merke, utstyr_type = @type,
                                         pris_time = @pris_time, pris_døgn = @pris_døgn, pris_helg = @pris_helg, 
-                                        passer_til = @passer_til, lokasjon = @lokasjon, status = @status, avdeling_nr = @avdeling_nr", tilkobling)
+                                        passer_til = @passer_til, lokasjon = @lokasjon, status = @status, avdeling_nr = @avdeling_nr
+                                        WHERE utstyr_id = @id", tilkobling)
             With sql.Parameters
+                .AddWithValue("@id", id)
                 .AddWithValue("@merke", merke)
                 .AddWithValue("@type", type)
                 .AddWithValue("@pris_time", pris_time)

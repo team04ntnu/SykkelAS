@@ -34,27 +34,27 @@ Partial Class AdministrereSykkel
         Me.txtSykkelRammeNummer = New System.Windows.Forms.TextBox()
         Me.txtPrisTime = New System.Windows.Forms.TextBox()
         Me.txtPrisDøgn = New System.Windows.Forms.TextBox()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.Label5 = New System.Windows.Forms.Label()
-        Me.Label6 = New System.Windows.Forms.Label()
-        Me.Label7 = New System.Windows.Forms.Label()
-        Me.Label8 = New System.Windows.Forms.Label()
-        Me.Label9 = New System.Windows.Forms.Label()
+        Me.lblSykkelID = New System.Windows.Forms.Label()
+        Me.lblSykkelMerke = New System.Windows.Forms.Label()
+        Me.lblSykkelType = New System.Windows.Forms.Label()
+        Me.lblHjul = New System.Windows.Forms.Label()
+        Me.lblGir = New System.Windows.Forms.Label()
+        Me.lblVekt = New System.Windows.Forms.Label()
+        Me.lblRammenummer = New System.Windows.Forms.Label()
+        Me.lblPrisTime = New System.Windows.Forms.Label()
+        Me.lblPrisDøgn = New System.Windows.Forms.Label()
         Me.txtPrisHelg = New System.Windows.Forms.TextBox()
-        Me.Label10 = New System.Windows.Forms.Label()
-        Me.Label11 = New System.Windows.Forms.Label()
-        Me.Label12 = New System.Windows.Forms.Label()
+        Me.lblPrisHelg = New System.Windows.Forms.Label()
+        Me.lblLokasjon = New System.Windows.Forms.Label()
+        Me.lblStatus = New System.Windows.Forms.Label()
         Me.btnSiste = New System.Windows.Forms.Button()
         Me.btnNeste = New System.Windows.Forms.Button()
         Me.btnFørste = New System.Windows.Forms.Button()
         Me.btnForrige = New System.Windows.Forms.Button()
         Me.txtSykkelRamme = New System.Windows.Forms.TextBox()
-        Me.Label13 = New System.Windows.Forms.Label()
+        Me.lblRamme = New System.Windows.Forms.Label()
         Me.txtAvdeling = New System.Windows.Forms.TextBox()
-        Me.Label14 = New System.Windows.Forms.Label()
+        Me.lblAvdeling = New System.Windows.Forms.Label()
         Me.btnSøk = New System.Windows.Forms.Button()
         Me.txtSok = New System.Windows.Forms.TextBox()
         Me.lstResultat = New System.Windows.Forms.ListBox()
@@ -71,7 +71,7 @@ Partial Class AdministrereSykkel
         Me.btnOppdater.Name = "btnOppdater"
         Me.btnOppdater.Size = New System.Drawing.Size(200, 23)
         Me.btnOppdater.TabIndex = 19
-        Me.btnOppdater.Text = "Oppdater"
+        Me.btnOppdater.Text = "Oppdater sykkel"
         Me.btnOppdater.UseVisualStyleBackColor = True
         '
         'btnOpprett
@@ -159,86 +159,86 @@ Partial Class AdministrereSykkel
         Me.txtPrisDøgn.Size = New System.Drawing.Size(200, 20)
         Me.txtPrisDøgn.TabIndex = 9
         '
-        'Label1
+        'lblSykkelID
         '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(110, 29)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(18, 13)
-        Me.Label1.TabIndex = 25
-        Me.Label1.Text = "ID"
+        Me.lblSykkelID.AutoSize = True
+        Me.lblSykkelID.Location = New System.Drawing.Point(110, 29)
+        Me.lblSykkelID.Name = "lblSykkelID"
+        Me.lblSykkelID.Size = New System.Drawing.Size(18, 13)
+        Me.lblSykkelID.TabIndex = 25
+        Me.lblSykkelID.Text = "ID"
         '
-        'Label2
+        'lblSykkelMerke
         '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(91, 55)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(37, 13)
-        Me.Label2.TabIndex = 26
-        Me.Label2.Text = "Merke"
+        Me.lblSykkelMerke.AutoSize = True
+        Me.lblSykkelMerke.Location = New System.Drawing.Point(91, 55)
+        Me.lblSykkelMerke.Name = "lblSykkelMerke"
+        Me.lblSykkelMerke.Size = New System.Drawing.Size(37, 13)
+        Me.lblSykkelMerke.TabIndex = 26
+        Me.lblSykkelMerke.Text = "Merke"
         '
-        'Label3
+        'lblSykkelType
         '
-        Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(97, 81)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(31, 13)
-        Me.Label3.TabIndex = 27
-        Me.Label3.Text = "Type"
+        Me.lblSykkelType.AutoSize = True
+        Me.lblSykkelType.Location = New System.Drawing.Point(97, 81)
+        Me.lblSykkelType.Name = "lblSykkelType"
+        Me.lblSykkelType.Size = New System.Drawing.Size(31, 13)
+        Me.lblSykkelType.TabIndex = 27
+        Me.lblSykkelType.Text = "Type"
         '
-        'Label4
+        'lblHjul
         '
-        Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(103, 133)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(25, 13)
-        Me.Label4.TabIndex = 29
-        Me.Label4.Text = "Hjul"
+        Me.lblHjul.AutoSize = True
+        Me.lblHjul.Location = New System.Drawing.Point(103, 133)
+        Me.lblHjul.Name = "lblHjul"
+        Me.lblHjul.Size = New System.Drawing.Size(25, 13)
+        Me.lblHjul.TabIndex = 29
+        Me.lblHjul.Text = "Hjul"
         '
-        'Label5
+        'lblGir
         '
-        Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(108, 159)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(20, 13)
-        Me.Label5.TabIndex = 30
-        Me.Label5.Text = "Gir"
+        Me.lblGir.AutoSize = True
+        Me.lblGir.Location = New System.Drawing.Point(108, 159)
+        Me.lblGir.Name = "lblGir"
+        Me.lblGir.Size = New System.Drawing.Size(20, 13)
+        Me.lblGir.TabIndex = 30
+        Me.lblGir.Text = "Gir"
         '
-        'Label6
+        'lblVekt
         '
-        Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(99, 185)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(29, 13)
-        Me.Label6.TabIndex = 31
-        Me.Label6.Text = "Vekt"
+        Me.lblVekt.AutoSize = True
+        Me.lblVekt.Location = New System.Drawing.Point(99, 185)
+        Me.lblVekt.Name = "lblVekt"
+        Me.lblVekt.Size = New System.Drawing.Size(29, 13)
+        Me.lblVekt.TabIndex = 31
+        Me.lblVekt.Text = "Vekt"
         '
-        'Label7
+        'lblRammenummer
         '
-        Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(48, 211)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(80, 13)
-        Me.Label7.TabIndex = 32
-        Me.Label7.Text = "Rammenummer"
+        Me.lblRammenummer.AutoSize = True
+        Me.lblRammenummer.Location = New System.Drawing.Point(48, 211)
+        Me.lblRammenummer.Name = "lblRammenummer"
+        Me.lblRammenummer.Size = New System.Drawing.Size(80, 13)
+        Me.lblRammenummer.TabIndex = 32
+        Me.lblRammenummer.Text = "Rammenummer"
         '
-        'Label8
+        'lblPrisTime
         '
-        Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(82, 237)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(46, 13)
-        Me.Label8.TabIndex = 33
-        Me.Label8.Text = "Pris time"
+        Me.lblPrisTime.AutoSize = True
+        Me.lblPrisTime.Location = New System.Drawing.Point(82, 237)
+        Me.lblPrisTime.Name = "lblPrisTime"
+        Me.lblPrisTime.Size = New System.Drawing.Size(46, 13)
+        Me.lblPrisTime.TabIndex = 33
+        Me.lblPrisTime.Text = "Pris time"
         '
-        'Label9
+        'lblPrisDøgn
         '
-        Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(77, 263)
-        Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(51, 13)
-        Me.Label9.TabIndex = 34
-        Me.Label9.Text = "Pris døgn"
+        Me.lblPrisDøgn.AutoSize = True
+        Me.lblPrisDøgn.Location = New System.Drawing.Point(77, 263)
+        Me.lblPrisDøgn.Name = "lblPrisDøgn"
+        Me.lblPrisDøgn.Size = New System.Drawing.Size(51, 13)
+        Me.lblPrisDøgn.TabIndex = 34
+        Me.lblPrisDøgn.Text = "Pris døgn"
         '
         'txtPrisHelg
         '
@@ -247,32 +247,32 @@ Partial Class AdministrereSykkel
         Me.txtPrisHelg.Size = New System.Drawing.Size(200, 20)
         Me.txtPrisHelg.TabIndex = 10
         '
-        'Label10
+        'lblPrisHelg
         '
-        Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(81, 289)
-        Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(47, 13)
-        Me.Label10.TabIndex = 35
-        Me.Label10.Text = "Pris helg"
+        Me.lblPrisHelg.AutoSize = True
+        Me.lblPrisHelg.Location = New System.Drawing.Point(81, 289)
+        Me.lblPrisHelg.Name = "lblPrisHelg"
+        Me.lblPrisHelg.Size = New System.Drawing.Size(47, 13)
+        Me.lblPrisHelg.TabIndex = 35
+        Me.lblPrisHelg.Text = "Pris helg"
         '
-        'Label11
+        'lblLokasjon
         '
-        Me.Label11.AutoSize = True
-        Me.Label11.Location = New System.Drawing.Point(78, 315)
-        Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(50, 13)
-        Me.Label11.TabIndex = 36
-        Me.Label11.Text = "Lokasjon"
+        Me.lblLokasjon.AutoSize = True
+        Me.lblLokasjon.Location = New System.Drawing.Point(78, 315)
+        Me.lblLokasjon.Name = "lblLokasjon"
+        Me.lblLokasjon.Size = New System.Drawing.Size(50, 13)
+        Me.lblLokasjon.TabIndex = 36
+        Me.lblLokasjon.Text = "Lokasjon"
         '
-        'Label12
+        'lblStatus
         '
-        Me.Label12.AutoSize = True
-        Me.Label12.Location = New System.Drawing.Point(91, 341)
-        Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(37, 13)
-        Me.Label12.TabIndex = 37
-        Me.Label12.Text = "Status"
+        Me.lblStatus.AutoSize = True
+        Me.lblStatus.Location = New System.Drawing.Point(91, 341)
+        Me.lblStatus.Name = "lblStatus"
+        Me.lblStatus.Size = New System.Drawing.Size(37, 13)
+        Me.lblStatus.TabIndex = 37
+        Me.lblStatus.Text = "Status"
         '
         'btnSiste
         '
@@ -317,14 +317,14 @@ Partial Class AdministrereSykkel
         Me.txtSykkelRamme.Size = New System.Drawing.Size(200, 20)
         Me.txtSykkelRamme.TabIndex = 3
         '
-        'Label13
+        'lblRamme
         '
-        Me.Label13.AutoSize = True
-        Me.Label13.Location = New System.Drawing.Point(85, 107)
-        Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(43, 13)
-        Me.Label13.TabIndex = 28
-        Me.Label13.Text = "Ramme"
+        Me.lblRamme.AutoSize = True
+        Me.lblRamme.Location = New System.Drawing.Point(85, 107)
+        Me.lblRamme.Name = "lblRamme"
+        Me.lblRamme.Size = New System.Drawing.Size(43, 13)
+        Me.lblRamme.TabIndex = 28
+        Me.lblRamme.Text = "Ramme"
         '
         'txtAvdeling
         '
@@ -334,14 +334,14 @@ Partial Class AdministrereSykkel
         Me.txtAvdeling.Size = New System.Drawing.Size(200, 20)
         Me.txtAvdeling.TabIndex = 13
         '
-        'Label14
+        'lblAvdeling
         '
-        Me.Label14.AutoSize = True
-        Me.Label14.Location = New System.Drawing.Point(43, 368)
-        Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(85, 13)
-        Me.Label14.TabIndex = 38
-        Me.Label14.Text = "Tilhører avdeling"
+        Me.lblAvdeling.AutoSize = True
+        Me.lblAvdeling.Location = New System.Drawing.Point(43, 368)
+        Me.lblAvdeling.Name = "lblAvdeling"
+        Me.lblAvdeling.Size = New System.Drawing.Size(85, 13)
+        Me.lblAvdeling.TabIndex = 38
+        Me.lblAvdeling.Text = "Tilhører avdeling"
         '
         'btnSøk
         '
@@ -430,27 +430,27 @@ Partial Class AdministrereSykkel
         Me.Controls.Add(Me.lstResultat)
         Me.Controls.Add(Me.txtSok)
         Me.Controls.Add(Me.btnSøk)
-        Me.Controls.Add(Me.Label14)
+        Me.Controls.Add(Me.lblAvdeling)
         Me.Controls.Add(Me.txtAvdeling)
-        Me.Controls.Add(Me.Label13)
+        Me.Controls.Add(Me.lblRamme)
         Me.Controls.Add(Me.txtSykkelRamme)
         Me.Controls.Add(Me.btnFørste)
         Me.Controls.Add(Me.btnForrige)
         Me.Controls.Add(Me.btnSiste)
         Me.Controls.Add(Me.btnNeste)
-        Me.Controls.Add(Me.Label12)
-        Me.Controls.Add(Me.Label11)
-        Me.Controls.Add(Me.Label10)
+        Me.Controls.Add(Me.lblStatus)
+        Me.Controls.Add(Me.lblLokasjon)
+        Me.Controls.Add(Me.lblPrisHelg)
         Me.Controls.Add(Me.txtPrisHelg)
-        Me.Controls.Add(Me.Label9)
-        Me.Controls.Add(Me.Label8)
-        Me.Controls.Add(Me.Label7)
-        Me.Controls.Add(Me.Label6)
-        Me.Controls.Add(Me.Label5)
-        Me.Controls.Add(Me.Label4)
-        Me.Controls.Add(Me.Label3)
-        Me.Controls.Add(Me.Label2)
-        Me.Controls.Add(Me.Label1)
+        Me.Controls.Add(Me.lblPrisDøgn)
+        Me.Controls.Add(Me.lblPrisTime)
+        Me.Controls.Add(Me.lblRammenummer)
+        Me.Controls.Add(Me.lblVekt)
+        Me.Controls.Add(Me.lblGir)
+        Me.Controls.Add(Me.lblHjul)
+        Me.Controls.Add(Me.lblSykkelType)
+        Me.Controls.Add(Me.lblSykkelMerke)
+        Me.Controls.Add(Me.lblSykkelID)
         Me.Controls.Add(Me.txtPrisDøgn)
         Me.Controls.Add(Me.txtPrisTime)
         Me.Controls.Add(Me.txtSykkelRammeNummer)
@@ -482,27 +482,27 @@ Partial Class AdministrereSykkel
     Friend WithEvents txtSykkelRammeNummer As TextBox
     Friend WithEvents txtPrisTime As TextBox
     Friend WithEvents txtPrisDøgn As TextBox
-    Friend WithEvents Label1 As Label
-    Friend WithEvents Label2 As Label
-    Friend WithEvents Label3 As Label
-    Friend WithEvents Label4 As Label
-    Friend WithEvents Label5 As Label
-    Friend WithEvents Label6 As Label
-    Friend WithEvents Label7 As Label
-    Friend WithEvents Label8 As Label
-    Friend WithEvents Label9 As Label
+    Friend WithEvents lblSykkelID As Label
+    Friend WithEvents lblSykkelMerke As Label
+    Friend WithEvents lblSykkelType As Label
+    Friend WithEvents lblHjul As Label
+    Friend WithEvents lblGir As Label
+    Friend WithEvents lblVekt As Label
+    Friend WithEvents lblRammenummer As Label
+    Friend WithEvents lblPrisTime As Label
+    Friend WithEvents lblPrisDøgn As Label
     Friend WithEvents txtPrisHelg As TextBox
-    Friend WithEvents Label10 As Label
-    Friend WithEvents Label11 As Label
-    Friend WithEvents Label12 As Label
+    Friend WithEvents lblPrisHelg As Label
+    Friend WithEvents lblLokasjon As Label
+    Friend WithEvents lblStatus As Label
     Friend WithEvents btnSiste As Button
     Friend WithEvents btnNeste As Button
     Friend WithEvents btnFørste As Button
     Friend WithEvents btnForrige As Button
     Friend WithEvents txtSykkelRamme As TextBox
-    Friend WithEvents Label13 As Label
+    Friend WithEvents lblRamme As Label
     Friend WithEvents txtAvdeling As TextBox
-    Friend WithEvents Label14 As Label
+    Friend WithEvents lblAvdeling As Label
     Friend WithEvents btnSøk As Button
     Friend WithEvents txtSok As TextBox
     Friend WithEvents lstResultat As ListBox

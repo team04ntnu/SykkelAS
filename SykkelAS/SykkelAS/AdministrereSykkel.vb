@@ -53,6 +53,7 @@ Public Class AdministrereSykkel
     End Sub
 
     Private Sub naviger()
+        SlettTekstfelt()
         rad = sykkeltabell.Rows(inc)
         txtSykkelID.Text = rad(0)
         txtSykkelMerke.Text = rad(1)
@@ -70,7 +71,7 @@ Public Class AdministrereSykkel
         txtAvdeling.Text = rad(13)
     End Sub
 
-    'Henter info fra tekstfelt og legger i variabler
+    'Henter info fra skjema og legger i variabler
     Private Sub hentInfo()
         If txtSykkelID.Text <> "" Then
             id = txtSykkelID.Text
@@ -87,7 +88,9 @@ Public Class AdministrereSykkel
         pris_helg = txtPrisHelg.Text
         lokasjon = cmbLokasjon.Text
         status = cmbStatus.Text
-        avdeling_nr = txtAvdeling.Text
+        If txtAvdeling.Text <> "" Then
+            avdeling_nr = txtAvdeling.Text
+        End If
     End Sub
 
     Private Sub AdministrereSykkel_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -103,7 +106,7 @@ Public Class AdministrereSykkel
             inc = inc + 1
             naviger()
         Else
-            MsgBox("ingen flere sykler")
+            MsgBox("Siste oppføring")
         End If
     End Sub
 
@@ -133,7 +136,7 @@ Public Class AdministrereSykkel
     End Sub
 
     Private Sub btnOppdater_Click(sender As Object, e As EventArgs) Handles btnOppdater.Click
-        'Henter prosedyre for å lese inn fra tekstfelt
+        'Henter prosedyre for å lese inn fra skjema
         hentInfo()
         'Oppretter et nytt objekt basert på informasjonen
         Dim oppdatertSykkel As New Sykkel(id, merke, type, ramme, hjul, gir, vekt, rammenummer,
@@ -142,12 +145,12 @@ Public Class AdministrereSykkel
         oppdatertSykkel.OppdaterSykkel()
         'Sletter tekstfelt etter oppdatering
         SlettTekstfelt()
-        'Henter in ny sykkeltabell
+        'Henter inn ny sykkeltabell
         hentSykkel()
     End Sub
 
     Private Sub btnOpprett_Click(sender As Object, e As EventArgs) Handles btnOpprett.Click
-        'Henter prosedyre for å lese inn fra tekstfelt
+        'Henter prosedyre for å lese inn fra skjema
         hentInfo()
         avdeling_nr = Innlogging.innloggetAvdeling.HentAvdelingNr()
         'Oppretter et nytt objekt basert på informasjonen
@@ -157,7 +160,7 @@ Public Class AdministrereSykkel
         nySykkel.OpprettSykkel()
         'Sletter tekstfelt etter oppdatering
         SlettTekstfelt()
-        'Henter in ny sykkeltabell
+        'Henter inn ny sykkeltabell
         hentSykkel()
     End Sub
 
@@ -186,8 +189,9 @@ Public Class AdministrereSykkel
         End If
     End Sub
 
-    Private Sub btnSlett_Click(sender As Object, e As EventArgs) Handles btnSlettTekstfelt.Click
+    Private Sub btnSlettTekstfelt_Click(sender As Object, e As EventArgs) Handles btnSlettTekstfelt.Click
         SlettTekstfelt()
+        inc = -1
     End Sub
 
     Private Sub btnSøk_Click(sender As Object, e As EventArgs) Handles btnSøk.Click
@@ -203,7 +207,7 @@ Public Class AdministrereSykkel
             'Bruker ToLower for å kunne søke uavhengig av stor/liten bokstav
             For i = 0 To 12
                 If CStr(rad(i)).ToLower = søk.ToLower Then
-                    Dim resultat = rad(0) & " " & rad(1)
+                    Dim resultat = rad(0) & " " & rad(1) & " " & rad(2)
                     lstResultat.Items.Add(resultat)
                 End If
             Next i
@@ -211,6 +215,7 @@ Public Class AdministrereSykkel
     End Sub
 
     Private Sub lstResultat_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lstResultat.SelectedIndexChanged
+        SlettTekstfelt()
         'Oppdaterer tekstfelt med valgt søkeresultat
         'Skjer bare hvis man klikker på en sykkel i listeboksen
         If lstResultat.SelectedItem <> "" Then
