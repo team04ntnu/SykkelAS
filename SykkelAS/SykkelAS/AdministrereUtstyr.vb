@@ -241,6 +241,13 @@ Public Class AdministrereUtstyr
         End If
     End Sub
 
+    Private Sub btnSendMail_Click(sender As Object, e As EventArgs) Handles btnSendMail.Click
+        sendMail.info = "ID: " & rad(0) & vbNewLine
+        sendMail.info = sendMail.info & "Merke: " & rad(1) & vbNewLine
+        sendMail.info = sendMail.info & "Type: " & rad(2) & vbNewLine
+        sendMail.Show()
+    End Sub
+
     Private Sub Check()
         'Dersom man krysser av for individuelle sykler, går det ikke an å krysse av for alle sykler
         If chkTerreng.Checked = True Or

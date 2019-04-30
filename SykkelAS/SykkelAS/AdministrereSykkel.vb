@@ -52,6 +52,17 @@ Public Class AdministrereSykkel
         inc = -1
     End Sub
 
+    Private Sub btnSendMail_Click(sender As Object, e As EventArgs) Handles btnSendMail.Click
+        sendMail.info = "ID: " & rad(0) & vbNewLine
+        sendMail.info = sendMail.info & "Merke: " & rad(1) & vbNewLine
+        sendMail.info = sendMail.info & "Type: " & rad(2) & vbNewLine
+        sendMail.info = sendMail.info & "Hjul: " & rad(3) & vbNewLine
+        sendMail.info = sendMail.info & "Gir: " & rad(4) & vbNewLine
+        sendMail.info = sendMail.info & "Vekt: " & rad(5) & vbNewLine
+        sendMail.info = sendMail.info & "Rammenummer: " & rad(6) & vbNewLine
+        sendMail.Show()
+    End Sub
+
     Private Sub TabellTilSkjema(ByVal indeks As Integer)
         SlettTekstfelt()
         rad = sykkeltabell.Rows(indeks)

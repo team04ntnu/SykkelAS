@@ -60,6 +60,7 @@ Partial Class AdministrereUtstyr
         Me.chkRacer = New System.Windows.Forms.CheckBox()
         Me.chkTandem = New System.Windows.Forms.CheckBox()
         Me.chkBarn = New System.Windows.Forms.CheckBox()
+        Me.btnSendMail = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'btnTilbake
@@ -398,11 +399,21 @@ Partial Class AdministrereUtstyr
         Me.chkBarn.Text = "Barnesykkel"
         Me.chkBarn.UseVisualStyleBackColor = True
         '
+        'btnSendMail
+        '
+        Me.btnSendMail.Location = New System.Drawing.Point(134, 538)
+        Me.btnSendMail.Name = "btnSendMail"
+        Me.btnSendMail.Size = New System.Drawing.Size(200, 23)
+        Me.btnSendMail.TabIndex = 78
+        Me.btnSendMail.Text = "Send til reparasjon"
+        Me.btnSendMail.UseVisualStyleBackColor = True
+        '
         'AdministrereUtstyr
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(684, 611)
+        Me.Controls.Add(Me.btnSendMail)
         Me.Controls.Add(Me.chkBarn)
         Me.Controls.Add(Me.chkTandem)
         Me.Controls.Add(Me.chkRacer)
@@ -486,4 +497,5 @@ Partial Class AdministrereUtstyr
     Friend WithEvents chkRacer As CheckBox
     Friend WithEvents chkTandem As CheckBox
     Friend WithEvents chkBarn As CheckBox
+    Friend WithEvents btnSendMail As Button
 End Class

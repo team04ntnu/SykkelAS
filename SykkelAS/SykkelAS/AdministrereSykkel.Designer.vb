@@ -63,6 +63,7 @@ Partial Class AdministrereSykkel
         Me.cmbSykkelType = New System.Windows.Forms.ComboBox()
         Me.cmbLokasjon = New System.Windows.Forms.ComboBox()
         Me.cmbStatus = New System.Windows.Forms.ComboBox()
+        Me.btnSendMail = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'btnOppdater
@@ -416,12 +417,22 @@ Partial Class AdministrereSykkel
         Me.cmbStatus.Size = New System.Drawing.Size(200, 21)
         Me.cmbStatus.TabIndex = 44
         '
+        'btnSendMail
+        '
+        Me.btnSendMail.Location = New System.Drawing.Point(134, 539)
+        Me.btnSendMail.Name = "btnSendMail"
+        Me.btnSendMail.Size = New System.Drawing.Size(200, 23)
+        Me.btnSendMail.TabIndex = 45
+        Me.btnSendMail.Text = "Send til reparasjon"
+        Me.btnSendMail.UseVisualStyleBackColor = True
+        '
         'AdministrereSykkel
         '
         Me.AllowDrop = True
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(684, 611)
+        Me.Controls.Add(Me.btnSendMail)
         Me.Controls.Add(Me.cmbStatus)
         Me.Controls.Add(Me.cmbLokasjon)
         Me.Controls.Add(Me.cmbSykkelType)
@@ -511,4 +522,5 @@ Partial Class AdministrereSykkel
     Friend WithEvents cmbSykkelType As ComboBox
     Friend WithEvents cmbLokasjon As ComboBox
     Friend WithEvents cmbStatus As ComboBox
+    Friend WithEvents btnSendMail As Button
 End Class
