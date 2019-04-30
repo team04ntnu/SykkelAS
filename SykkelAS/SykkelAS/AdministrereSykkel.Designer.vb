@@ -28,7 +28,6 @@ Partial Class AdministrereSykkel
         Me.btnTilbake = New System.Windows.Forms.Button()
         Me.txtSykkelID = New System.Windows.Forms.TextBox()
         Me.txtSykkelMerke = New System.Windows.Forms.TextBox()
-        Me.txtSykkelType = New System.Windows.Forms.TextBox()
         Me.txtSykkelHjul = New System.Windows.Forms.TextBox()
         Me.txtSykkelGir = New System.Windows.Forms.TextBox()
         Me.txtSykkelVekt = New System.Windows.Forms.TextBox()
@@ -45,12 +44,9 @@ Partial Class AdministrereSykkel
         Me.Label8 = New System.Windows.Forms.Label()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.txtPrisHelg = New System.Windows.Forms.TextBox()
-        Me.txtLokasjon = New System.Windows.Forms.TextBox()
-        Me.txtStatus = New System.Windows.Forms.TextBox()
         Me.Label10 = New System.Windows.Forms.Label()
         Me.Label11 = New System.Windows.Forms.Label()
         Me.Label12 = New System.Windows.Forms.Label()
-        Me.cmbSykkel = New System.Windows.Forms.ComboBox()
         Me.btnSiste = New System.Windows.Forms.Button()
         Me.btnNeste = New System.Windows.Forms.Button()
         Me.btnFørste = New System.Windows.Forms.Button()
@@ -64,6 +60,9 @@ Partial Class AdministrereSykkel
         Me.lstResultat = New System.Windows.Forms.ListBox()
         Me.btnSlettSykkel = New System.Windows.Forms.Button()
         Me.lblInnloggetAvdeling = New System.Windows.Forms.Label()
+        Me.cmbSykkelType = New System.Windows.Forms.ComboBox()
+        Me.cmbLokasjon = New System.Windows.Forms.ComboBox()
+        Me.cmbStatus = New System.Windows.Forms.ComboBox()
         Me.SuspendLayout()
         '
         'btnOppdater
@@ -116,13 +115,6 @@ Partial Class AdministrereSykkel
         Me.txtSykkelMerke.Name = "txtSykkelMerke"
         Me.txtSykkelMerke.Size = New System.Drawing.Size(200, 20)
         Me.txtSykkelMerke.TabIndex = 1
-        '
-        'txtSykkelType
-        '
-        Me.txtSykkelType.Location = New System.Drawing.Point(134, 78)
-        Me.txtSykkelType.Name = "txtSykkelType"
-        Me.txtSykkelType.Size = New System.Drawing.Size(200, 20)
-        Me.txtSykkelType.TabIndex = 2
         '
         'txtSykkelHjul
         '
@@ -255,20 +247,6 @@ Partial Class AdministrereSykkel
         Me.txtPrisHelg.Size = New System.Drawing.Size(200, 20)
         Me.txtPrisHelg.TabIndex = 10
         '
-        'txtLokasjon
-        '
-        Me.txtLokasjon.Location = New System.Drawing.Point(134, 312)
-        Me.txtLokasjon.Name = "txtLokasjon"
-        Me.txtLokasjon.Size = New System.Drawing.Size(200, 20)
-        Me.txtLokasjon.TabIndex = 11
-        '
-        'txtStatus
-        '
-        Me.txtStatus.Location = New System.Drawing.Point(134, 338)
-        Me.txtStatus.Name = "txtStatus"
-        Me.txtStatus.Size = New System.Drawing.Size(200, 20)
-        Me.txtStatus.TabIndex = 12
-        '
         'Label10
         '
         Me.Label10.AutoSize = True
@@ -295,14 +273,6 @@ Partial Class AdministrereSykkel
         Me.Label12.Size = New System.Drawing.Size(37, 13)
         Me.Label12.TabIndex = 37
         Me.Label12.Text = "Status"
-        '
-        'cmbSykkel
-        '
-        Me.cmbSykkel.FormattingEnabled = True
-        Me.cmbSykkel.Location = New System.Drawing.Point(134, 395)
-        Me.cmbSykkel.Name = "cmbSykkel"
-        Me.cmbSykkel.Size = New System.Drawing.Size(200, 21)
-        Me.cmbSykkel.TabIndex = 14
         '
         'btnSiste
         '
@@ -416,12 +386,45 @@ Partial Class AdministrereSykkel
         Me.lblInnloggetAvdeling.TabIndex = 41
         Me.lblInnloggetAvdeling.Text = "Innlogget på avdeling"
         '
+        'cmbSykkelType
+        '
+        Me.cmbSykkelType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbSykkelType.FormattingEnabled = True
+        Me.cmbSykkelType.Items.AddRange(New Object() {"Terreng", "Downhill", "Racer", "Tandem", "Barn"})
+        Me.cmbSykkelType.Location = New System.Drawing.Point(134, 78)
+        Me.cmbSykkelType.Name = "cmbSykkelType"
+        Me.cmbSykkelType.Size = New System.Drawing.Size(200, 21)
+        Me.cmbSykkelType.TabIndex = 42
+        '
+        'cmbLokasjon
+        '
+        Me.cmbLokasjon.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbLokasjon.FormattingEnabled = True
+        Me.cmbLokasjon.Items.AddRange(New Object() {"Hos kunde"})
+        Me.cmbLokasjon.Location = New System.Drawing.Point(134, 312)
+        Me.cmbLokasjon.Name = "cmbLokasjon"
+        Me.cmbLokasjon.Size = New System.Drawing.Size(200, 21)
+        Me.cmbLokasjon.TabIndex = 43
+        '
+        'cmbStatus
+        '
+        Me.cmbStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbStatus.FormattingEnabled = True
+        Me.cmbStatus.Items.AddRange(New Object() {"Ledig", "Utleid", "Stjålet", "Service"})
+        Me.cmbStatus.Location = New System.Drawing.Point(134, 338)
+        Me.cmbStatus.Name = "cmbStatus"
+        Me.cmbStatus.Size = New System.Drawing.Size(200, 21)
+        Me.cmbStatus.TabIndex = 44
+        '
         'AdministrereSykkel
         '
         Me.AllowDrop = True
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(684, 611)
+        Me.Controls.Add(Me.cmbStatus)
+        Me.Controls.Add(Me.cmbLokasjon)
+        Me.Controls.Add(Me.cmbSykkelType)
         Me.Controls.Add(Me.lblInnloggetAvdeling)
         Me.Controls.Add(Me.btnSlettSykkel)
         Me.Controls.Add(Me.lstResultat)
@@ -435,12 +438,9 @@ Partial Class AdministrereSykkel
         Me.Controls.Add(Me.btnForrige)
         Me.Controls.Add(Me.btnSiste)
         Me.Controls.Add(Me.btnNeste)
-        Me.Controls.Add(Me.cmbSykkel)
         Me.Controls.Add(Me.Label12)
         Me.Controls.Add(Me.Label11)
         Me.Controls.Add(Me.Label10)
-        Me.Controls.Add(Me.txtStatus)
-        Me.Controls.Add(Me.txtLokasjon)
         Me.Controls.Add(Me.txtPrisHelg)
         Me.Controls.Add(Me.Label9)
         Me.Controls.Add(Me.Label8)
@@ -457,7 +457,6 @@ Partial Class AdministrereSykkel
         Me.Controls.Add(Me.txtSykkelVekt)
         Me.Controls.Add(Me.txtSykkelGir)
         Me.Controls.Add(Me.txtSykkelHjul)
-        Me.Controls.Add(Me.txtSykkelType)
         Me.Controls.Add(Me.txtSykkelMerke)
         Me.Controls.Add(Me.txtSykkelID)
         Me.Controls.Add(Me.btnTilbake)
@@ -477,7 +476,6 @@ Partial Class AdministrereSykkel
     Friend WithEvents btnTilbake As Button
     Friend WithEvents txtSykkelID As TextBox
     Friend WithEvents txtSykkelMerke As TextBox
-    Friend WithEvents txtSykkelType As TextBox
     Friend WithEvents txtSykkelHjul As TextBox
     Friend WithEvents txtSykkelGir As TextBox
     Friend WithEvents txtSykkelVekt As TextBox
@@ -494,12 +492,9 @@ Partial Class AdministrereSykkel
     Friend WithEvents Label8 As Label
     Friend WithEvents Label9 As Label
     Friend WithEvents txtPrisHelg As TextBox
-    Friend WithEvents txtLokasjon As TextBox
-    Friend WithEvents txtStatus As TextBox
     Friend WithEvents Label10 As Label
     Friend WithEvents Label11 As Label
     Friend WithEvents Label12 As Label
-    Friend WithEvents cmbSykkel As ComboBox
     Friend WithEvents btnSiste As Button
     Friend WithEvents btnNeste As Button
     Friend WithEvents btnFørste As Button
@@ -513,4 +508,7 @@ Partial Class AdministrereSykkel
     Friend WithEvents lstResultat As ListBox
     Friend WithEvents btnSlettSykkel As Button
     Friend WithEvents lblInnloggetAvdeling As Label
+    Friend WithEvents cmbSykkelType As ComboBox
+    Friend WithEvents cmbLokasjon As ComboBox
+    Friend WithEvents cmbStatus As ComboBox
 End Class

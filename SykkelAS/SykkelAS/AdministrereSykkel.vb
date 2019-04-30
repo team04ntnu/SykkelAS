@@ -14,7 +14,7 @@ Public Class AdministrereSykkel
     Private Sub SlettTekstfelt()
         txtSykkelID.Text = ""
         txtSykkelMerke.Text = ""
-        txtSykkelType.Text = ""
+        cmbSykkelType.Text = ""
         txtSykkelRamme.Text = ""
         txtSykkelHjul.Text = ""
         txtSykkelGir.Text = ""
@@ -23,8 +23,8 @@ Public Class AdministrereSykkel
         txtPrisTime.Text = ""
         txtPrisDøgn.Text = ""
         txtPrisHelg.Text = ""
-        txtLokasjon.Text = ""
-        txtStatus.Text = ""
+        cmbLokasjon.Text = ""
+        cmbStatus.Text = ""
         txtAvdeling.Text = ""
     End Sub
 
@@ -56,7 +56,7 @@ Public Class AdministrereSykkel
         rad = sykkeltabell.Rows(inc)
         txtSykkelID.Text = rad(0)
         txtSykkelMerke.Text = rad(1)
-        txtSykkelType.Text = rad(2)
+        cmbSykkelType.Text = rad(2)
         txtSykkelRamme.Text = rad(3)
         txtSykkelHjul.Text = rad(4)
         txtSykkelGir.Text = rad(5)
@@ -65,8 +65,8 @@ Public Class AdministrereSykkel
         txtPrisTime.Text = rad(8)
         txtPrisDøgn.Text = rad(9)
         txtPrisHelg.Text = rad(10)
-        txtLokasjon.Text = rad(11)
-        txtStatus.Text = rad(12)
+        cmbLokasjon.Text = rad(11)
+        cmbStatus.Text = rad(12)
         txtAvdeling.Text = rad(13)
     End Sub
 
@@ -76,7 +76,7 @@ Public Class AdministrereSykkel
             id = txtSykkelID.Text
         End If
         merke = txtSykkelMerke.Text
-        type = txtSykkelType.Text
+        type = cmbSykkelType.Text
         ramme = txtSykkelRamme.Text
         hjul = txtSykkelHjul.Text
         gir = txtSykkelGir.Text
@@ -85,13 +85,17 @@ Public Class AdministrereSykkel
         pris_time = txtPrisTime.Text
         pris_døgn = txtPrisDøgn.Text
         pris_helg = txtPrisHelg.Text
-        lokasjon = txtLokasjon.Text
-        status = txtStatus.Text
+        lokasjon = cmbLokasjon.Text
+        status = cmbStatus.Text
         avdeling_nr = txtAvdeling.Text
     End Sub
 
     Private Sub AdministrereSykkel_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         hentSykkel()
+        'Oppdaterer liste for å velge mulige lokasjoner
+        For Each avdeling In AdministrereAvdeling.avdelingValg
+            cmbLokasjon.Items.Add(avdeling)
+        Next
     End Sub
 
     Private Sub btnNeste_Click(sender As Object, e As EventArgs) Handles btnNeste.Click
@@ -228,7 +232,7 @@ Public Class AdministrereSykkel
             rad = sykkeltabell.Rows(valgtIndeks)
             txtSykkelID.Text = rad(0)
             txtSykkelMerke.Text = rad(1)
-            txtSykkelType.Text = rad(2)
+            cmbSykkelType.Text = rad(2)
             txtSykkelRamme.Text = rad(3)
             txtSykkelHjul.Text = rad(4)
             txtSykkelGir.Text = rad(5)
@@ -237,8 +241,8 @@ Public Class AdministrereSykkel
             txtPrisTime.Text = rad(8)
             txtPrisDøgn.Text = rad(9)
             txtPrisHelg.Text = rad(10)
-            txtLokasjon.Text = rad(11)
-            txtStatus.Text = rad(12)
+            cmbLokasjon.Text = rad(11)
+            cmbStatus.Text = rad(12)
             txtAvdeling.Text = rad(13)
         End If
     End Sub
