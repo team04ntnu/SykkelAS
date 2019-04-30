@@ -20,8 +20,7 @@ Public Class AdministrereSykkel
         txtPrisHelg.Text = ""
         txtLokasjon.Text = ""
         txtStatus.Text = ""
-        'Resetter navigering
-        inc = -1
+        txtAvdeling.Text = ""
     End Sub
 
     Private Sub hentSykkel()
@@ -43,6 +42,9 @@ Public Class AdministrereSykkel
         Finally
             tilkobling.Dispose()
         End Try
+        maxRader = sykkeltabell.Rows.Count
+        'Resetter navigering
+        inc = -1
     End Sub
 
     Private Sub naviger()
@@ -65,7 +67,6 @@ Public Class AdministrereSykkel
 
     'Henter info fra tekstfelt og legger i variabler
     Private Sub hentInfo()
-        id = txtSykkelID.Text
         merke = txtSykkelMerke.Text
         type = txtSykkelType.Text
         ramme = txtSykkelRamme.Text
@@ -78,13 +79,10 @@ Public Class AdministrereSykkel
         pris_helg = txtPrisHelg.Text
         lokasjon = txtLokasjon.Text
         status = txtStatus.Text
-        avdeling_nr = txtAvdeling.Text
     End Sub
 
     Private Sub AdministrereSykkel_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         hentSykkel()
-        maxRader = sykkeltabell.Rows.Count
-        inc = -1
     End Sub
 
     Private Sub btnNeste_Click(sender As Object, e As EventArgs) Handles btnNeste.Click
@@ -127,27 +125,55 @@ Public Class AdministrereSykkel
         'Oppretter et nytt objekt basert på informasjonen
         Dim oppdatertSykkel As New Sykkel(id, merke, type, ramme, hjul, gir, vekt, rammenummer,
                                           pris_time, pris_døgn, pris_helg, lokasjon, status, avdeling_nr)
-        'Henter metode for å oppdatere avdeling i database
+        'Henter metode for å oppdatere sykkel i database
         oppdatertSykkel.OppdaterSykkel()
-        'Sletter tekstfelt etter at avdeling er oppdatert
+        'Sletter tekstfelt etter oppdatering
         SlettTekstfelt()
+        'Henter in ny sykkeltabell
         hentSykkel()
     End Sub
 
     Private Sub btnOpprett_Click(sender As Object, e As EventArgs) Handles btnOpprett.Click
         'Henter prosedyre for å lese inn fra tekstfelt
         hentInfo()
+        avdeling_nr = Innlogging.innloggetAvdeling.HentAvdelingNr()
         'Oppretter et nytt objekt basert på informasjonen
         Dim nySykkel As New Sykkel(id, merke, type, ramme, hjul, gir, vekt, rammenummer,
                                    pris_time, pris_døgn, pris_helg, lokasjon, status, avdeling_nr)
-        'Henter metode for å opprette avdeling i database
+        'Henter metode for å opprette sykkel i database
         nySykkel.OpprettSykkel()
-        'Sletter tekstfelt etter at avdeling er opprettet
+        'Sletter tekstfelt etter oppdatering
         SlettTekstfelt()
+        'Henter in ny sykkeltabell
         hentSykkel()
     End Sub
 
-    Private Sub btnSlett_Click(sender As Object, e As EventArgs) Handles btnSlett.Click
+    Private Sub btnSlettSykkel_Click(sender As Object, e As EventArgs) Handles btnSlettSykkel.Click
+        'Sletter valgt sykkel fra database
+        If MsgBox("Er du sikker på at du vil slette sykkelen?",
+                  MsgBoxStyle.YesNo, "OBS!") = MsgBoxResult.Yes Then
+            id = txtSykkelID.Text
+            Try
+                databasetilkobling.databaseTilkobling()
+                tilkobling.Open()
+                Dim sql As New MySqlCommand("DELETE FROM sykkel WHERE sykkel_id = @id", tilkobling)
+                sql.Parameters.AddWithValue("@id", id)
+                sql.ExecuteNonQuery()
+                MsgBox("Sykkel slettet")
+                tilkobling.Close()
+            Catch feilmelding As MySqlException
+                MsgBox(feilmelding.Message)
+            Finally
+                tilkobling.Dispose()
+            End Try
+            'Sletter tekstfelt etter oppdatering
+            SlettTekstfelt()
+            'Henter in ny sykkeltabell
+            hentSykkel()
+        End If
+    End Sub
+
+    Private Sub btnSlett_Click(sender As Object, e As EventArgs) Handles btnSlettTekstfelt.Click
         SlettTekstfelt()
     End Sub
 
