@@ -6,6 +6,11 @@ Public Class AdministrereSykkel
     Private sykkeltabell As New DataTable
     Private rad As DataRow
 
+    Private Sub AdminstrereSykkel_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated
+        'Viser innlogget avdeling
+        lblInnloggetAvdeling.Text = "Innlogget på avdeling " & Innlogging.innloggetAvdeling.HentAvdelingNavn
+    End Sub
+
     Private Sub SlettTekstfelt()
         txtSykkelID.Text = ""
         txtSykkelMerke.Text = ""
@@ -187,8 +192,9 @@ Public Class AdministrereSykkel
         For Each rad In sykkeltabell.Rows
             'Andre loop går gjennom hver celle i hver enkelt rad
             'Stopper på 12 for å ikke søke på avdeling_nr
+            'Bruker ToLower for å kunne søke uavhengig av stor/liten bokstav
             For i = 0 To 12
-                If CStr(rad(i)) = søk Then
+                If CStr(rad(i)).ToLower = søk.ToLower Then
                     Dim resultat = rad(0) & " " & rad(1)
                     lstResultat.Items.Add(resultat)
                 End If

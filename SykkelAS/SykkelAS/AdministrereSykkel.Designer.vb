@@ -63,6 +63,7 @@ Partial Class AdministrereSykkel
         Me.txtSok = New System.Windows.Forms.TextBox()
         Me.lstResultat = New System.Windows.Forms.ListBox()
         Me.btnSlettSykkel = New System.Windows.Forms.Button()
+        Me.lblInnloggetAvdeling = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'btnOppdater
@@ -94,7 +95,7 @@ Partial Class AdministrereSykkel
         '
         'btnTilbake
         '
-        Me.btnTilbake.Location = New System.Drawing.Point(652, 526)
+        Me.btnTilbake.Location = New System.Drawing.Point(505, 576)
         Me.btnTilbake.Name = "btnTilbake"
         Me.btnTilbake.Size = New System.Drawing.Size(167, 23)
         Me.btnTilbake.TabIndex = 39
@@ -405,12 +406,23 @@ Partial Class AdministrereSykkel
         Me.btnSlettSykkel.Text = "Slett sykkel"
         Me.btnSlettSykkel.UseVisualStyleBackColor = True
         '
+        'lblInnloggetAvdeling
+        '
+        Me.lblInnloggetAvdeling.AutoSize = True
+        Me.lblInnloggetAvdeling.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!)
+        Me.lblInnloggetAvdeling.Location = New System.Drawing.Point(12, 585)
+        Me.lblInnloggetAvdeling.Name = "lblInnloggetAvdeling"
+        Me.lblInnloggetAvdeling.Size = New System.Drawing.Size(143, 17)
+        Me.lblInnloggetAvdeling.TabIndex = 41
+        Me.lblInnloggetAvdeling.Text = "Innlogget på avdeling"
+        '
         'AdministrereSykkel
         '
         Me.AllowDrop = True
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(831, 561)
+        Me.ClientSize = New System.Drawing.Size(684, 611)
+        Me.Controls.Add(Me.lblInnloggetAvdeling)
         Me.Controls.Add(Me.btnSlettSykkel)
         Me.Controls.Add(Me.lstResultat)
         Me.Controls.Add(Me.txtSok)
@@ -500,4 +512,5 @@ Partial Class AdministrereSykkel
     Friend WithEvents txtSok As TextBox
     Friend WithEvents lstResultat As ListBox
     Friend WithEvents btnSlettSykkel As Button
+    Friend WithEvents lblInnloggetAvdeling As Label
 End Class
