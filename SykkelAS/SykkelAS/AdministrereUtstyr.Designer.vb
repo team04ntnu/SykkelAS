@@ -49,7 +49,7 @@ Partial Class AdministrereUtstyr
         Me.btnFørste = New System.Windows.Forms.Button()
         Me.btnSiste = New System.Windows.Forms.Button()
         Me.btnSlettUtstyr = New System.Windows.Forms.Button()
-        Me.btnSlettTekstfelt = New System.Windows.Forms.Button()
+        Me.btnTømSkjema = New System.Windows.Forms.Button()
         Me.txtSok = New System.Windows.Forms.TextBox()
         Me.btnSøk = New System.Windows.Forms.Button()
         Me.lstResultat = New System.Windows.Forms.ListBox()
@@ -68,7 +68,7 @@ Partial Class AdministrereUtstyr
         Me.btnTilbake.Location = New System.Drawing.Point(505, 576)
         Me.btnTilbake.Name = "btnTilbake"
         Me.btnTilbake.Size = New System.Drawing.Size(167, 23)
-        Me.btnTilbake.TabIndex = 4
+        Me.btnTilbake.TabIndex = 38
         Me.btnTilbake.Text = "Hovedmeny"
         Me.btnTilbake.UseVisualStyleBackColor = True
         '
@@ -79,7 +79,7 @@ Partial Class AdministrereUtstyr
         Me.lblInnloggetAvdeling.Location = New System.Drawing.Point(12, 585)
         Me.lblInnloggetAvdeling.Name = "lblInnloggetAvdeling"
         Me.lblInnloggetAvdeling.Size = New System.Drawing.Size(143, 17)
-        Me.lblInnloggetAvdeling.TabIndex = 42
+        Me.lblInnloggetAvdeling.TabIndex = 37
         Me.lblInnloggetAvdeling.Text = "Innlogget på avdeling"
         '
         'txtUtstyrID
@@ -88,7 +88,7 @@ Partial Class AdministrereUtstyr
         Me.txtUtstyrID.Name = "txtUtstyrID"
         Me.txtUtstyrID.ReadOnly = True
         Me.txtUtstyrID.Size = New System.Drawing.Size(200, 20)
-        Me.txtUtstyrID.TabIndex = 43
+        Me.txtUtstyrID.TabIndex = 0
         '
         'lblUtstyrID
         '
@@ -96,7 +96,7 @@ Partial Class AdministrereUtstyr
         Me.lblUtstyrID.Location = New System.Drawing.Point(110, 29)
         Me.lblUtstyrID.Name = "lblUtstyrID"
         Me.lblUtstyrID.Size = New System.Drawing.Size(18, 13)
-        Me.lblUtstyrID.TabIndex = 44
+        Me.lblUtstyrID.TabIndex = 27
         Me.lblUtstyrID.Text = "ID"
         '
         'txtUtstyrMerke
@@ -104,7 +104,7 @@ Partial Class AdministrereUtstyr
         Me.txtUtstyrMerke.Location = New System.Drawing.Point(134, 52)
         Me.txtUtstyrMerke.Name = "txtUtstyrMerke"
         Me.txtUtstyrMerke.Size = New System.Drawing.Size(200, 20)
-        Me.txtUtstyrMerke.TabIndex = 45
+        Me.txtUtstyrMerke.TabIndex = 1
         '
         'lblUtstyrMerke
         '
@@ -112,7 +112,7 @@ Partial Class AdministrereUtstyr
         Me.lblUtstyrMerke.Location = New System.Drawing.Point(91, 55)
         Me.lblUtstyrMerke.Name = "lblUtstyrMerke"
         Me.lblUtstyrMerke.Size = New System.Drawing.Size(37, 13)
-        Me.lblUtstyrMerke.TabIndex = 46
+        Me.lblUtstyrMerke.TabIndex = 28
         Me.lblUtstyrMerke.Text = "Merke"
         '
         'txtUtstyrType
@@ -120,7 +120,7 @@ Partial Class AdministrereUtstyr
         Me.txtUtstyrType.Location = New System.Drawing.Point(134, 79)
         Me.txtUtstyrType.Name = "txtUtstyrType"
         Me.txtUtstyrType.Size = New System.Drawing.Size(200, 20)
-        Me.txtUtstyrType.TabIndex = 47
+        Me.txtUtstyrType.TabIndex = 2
         '
         'lblUtstyrType
         '
@@ -128,7 +128,7 @@ Partial Class AdministrereUtstyr
         Me.lblUtstyrType.Location = New System.Drawing.Point(97, 82)
         Me.lblUtstyrType.Name = "lblUtstyrType"
         Me.lblUtstyrType.Size = New System.Drawing.Size(31, 13)
-        Me.lblUtstyrType.TabIndex = 48
+        Me.lblUtstyrType.TabIndex = 29
         Me.lblUtstyrType.Text = "Type"
         '
         'txtPrisTime
@@ -136,7 +136,7 @@ Partial Class AdministrereUtstyr
         Me.txtPrisTime.Location = New System.Drawing.Point(134, 105)
         Me.txtPrisTime.Name = "txtPrisTime"
         Me.txtPrisTime.Size = New System.Drawing.Size(200, 20)
-        Me.txtPrisTime.TabIndex = 49
+        Me.txtPrisTime.TabIndex = 3
         '
         'lblPrisTime
         '
@@ -144,7 +144,7 @@ Partial Class AdministrereUtstyr
         Me.lblPrisTime.Location = New System.Drawing.Point(82, 108)
         Me.lblPrisTime.Name = "lblPrisTime"
         Me.lblPrisTime.Size = New System.Drawing.Size(46, 13)
-        Me.lblPrisTime.TabIndex = 50
+        Me.lblPrisTime.TabIndex = 30
         Me.lblPrisTime.Text = "Pris time"
         '
         'txtPrisDøgn
@@ -152,7 +152,7 @@ Partial Class AdministrereUtstyr
         Me.txtPrisDøgn.Location = New System.Drawing.Point(134, 131)
         Me.txtPrisDøgn.Name = "txtPrisDøgn"
         Me.txtPrisDøgn.Size = New System.Drawing.Size(200, 20)
-        Me.txtPrisDøgn.TabIndex = 51
+        Me.txtPrisDøgn.TabIndex = 4
         '
         'lblPrisDøgn
         '
@@ -160,7 +160,7 @@ Partial Class AdministrereUtstyr
         Me.lblPrisDøgn.Location = New System.Drawing.Point(77, 134)
         Me.lblPrisDøgn.Name = "lblPrisDøgn"
         Me.lblPrisDøgn.Size = New System.Drawing.Size(51, 13)
-        Me.lblPrisDøgn.TabIndex = 52
+        Me.lblPrisDøgn.TabIndex = 31
         Me.lblPrisDøgn.Text = "Pris døgn"
         '
         'txtPrisHelg
@@ -168,7 +168,7 @@ Partial Class AdministrereUtstyr
         Me.txtPrisHelg.Location = New System.Drawing.Point(134, 157)
         Me.txtPrisHelg.Name = "txtPrisHelg"
         Me.txtPrisHelg.Size = New System.Drawing.Size(200, 20)
-        Me.txtPrisHelg.TabIndex = 53
+        Me.txtPrisHelg.TabIndex = 5
         '
         'lblPrisHelg
         '
@@ -176,7 +176,7 @@ Partial Class AdministrereUtstyr
         Me.lblPrisHelg.Location = New System.Drawing.Point(81, 160)
         Me.lblPrisHelg.Name = "lblPrisHelg"
         Me.lblPrisHelg.Size = New System.Drawing.Size(47, 13)
-        Me.lblPrisHelg.TabIndex = 54
+        Me.lblPrisHelg.TabIndex = 32
         Me.lblPrisHelg.Text = "Pris helg"
         '
         'cmbLokasjon
@@ -187,7 +187,7 @@ Partial Class AdministrereUtstyr
         Me.cmbLokasjon.Location = New System.Drawing.Point(134, 183)
         Me.cmbLokasjon.Name = "cmbLokasjon"
         Me.cmbLokasjon.Size = New System.Drawing.Size(200, 21)
-        Me.cmbLokasjon.TabIndex = 55
+        Me.cmbLokasjon.TabIndex = 6
         '
         'lblLokasjon
         '
@@ -195,7 +195,7 @@ Partial Class AdministrereUtstyr
         Me.lblLokasjon.Location = New System.Drawing.Point(78, 186)
         Me.lblLokasjon.Name = "lblLokasjon"
         Me.lblLokasjon.Size = New System.Drawing.Size(50, 13)
-        Me.lblLokasjon.TabIndex = 56
+        Me.lblLokasjon.TabIndex = 33
         Me.lblLokasjon.Text = "Lokasjon"
         '
         'cmbStatus
@@ -206,7 +206,7 @@ Partial Class AdministrereUtstyr
         Me.cmbStatus.Location = New System.Drawing.Point(134, 210)
         Me.cmbStatus.Name = "cmbStatus"
         Me.cmbStatus.Size = New System.Drawing.Size(200, 21)
-        Me.cmbStatus.TabIndex = 57
+        Me.cmbStatus.TabIndex = 7
         '
         'lblStatus
         '
@@ -214,7 +214,7 @@ Partial Class AdministrereUtstyr
         Me.lblStatus.Location = New System.Drawing.Point(91, 213)
         Me.lblStatus.Name = "lblStatus"
         Me.lblStatus.Size = New System.Drawing.Size(37, 13)
-        Me.lblStatus.TabIndex = 58
+        Me.lblStatus.TabIndex = 34
         Me.lblStatus.Text = "Status"
         '
         'txtAvdeling
@@ -223,7 +223,7 @@ Partial Class AdministrereUtstyr
         Me.txtAvdeling.Name = "txtAvdeling"
         Me.txtAvdeling.ReadOnly = True
         Me.txtAvdeling.Size = New System.Drawing.Size(200, 20)
-        Me.txtAvdeling.TabIndex = 59
+        Me.txtAvdeling.TabIndex = 8
         '
         'lblAvdeling
         '
@@ -231,104 +231,104 @@ Partial Class AdministrereUtstyr
         Me.lblAvdeling.Location = New System.Drawing.Point(43, 240)
         Me.lblAvdeling.Name = "lblAvdeling"
         Me.lblAvdeling.Size = New System.Drawing.Size(85, 13)
-        Me.lblAvdeling.TabIndex = 60
+        Me.lblAvdeling.TabIndex = 35
         Me.lblAvdeling.Text = "Tilhører avdeling"
         '
         'btnOppdater
         '
-        Me.btnOppdater.Location = New System.Drawing.Point(134, 451)
+        Me.btnOppdater.Location = New System.Drawing.Point(134, 440)
         Me.btnOppdater.Name = "btnOppdater"
         Me.btnOppdater.Size = New System.Drawing.Size(200, 23)
-        Me.btnOppdater.TabIndex = 61
+        Me.btnOppdater.TabIndex = 20
         Me.btnOppdater.Text = "Oppdater utstyr"
         Me.btnOppdater.UseVisualStyleBackColor = True
         '
         'btnOpprett
         '
-        Me.btnOpprett.Location = New System.Drawing.Point(134, 422)
+        Me.btnOpprett.Location = New System.Drawing.Point(133, 411)
         Me.btnOpprett.Name = "btnOpprett"
         Me.btnOpprett.Size = New System.Drawing.Size(200, 23)
-        Me.btnOpprett.TabIndex = 62
+        Me.btnOpprett.TabIndex = 19
         Me.btnOpprett.Text = "Opprett nytt utstyr"
         Me.btnOpprett.UseVisualStyleBackColor = True
         '
         'btnForrige
         '
-        Me.btnForrige.Location = New System.Drawing.Point(53, 422)
+        Me.btnForrige.Location = New System.Drawing.Point(53, 411)
         Me.btnForrige.Name = "btnForrige"
         Me.btnForrige.Size = New System.Drawing.Size(75, 23)
-        Me.btnForrige.TabIndex = 63
+        Me.btnForrige.TabIndex = 15
         Me.btnForrige.Text = "Forrige"
         Me.btnForrige.UseVisualStyleBackColor = True
         '
         'btnNeste
         '
-        Me.btnNeste.Location = New System.Drawing.Point(340, 422)
+        Me.btnNeste.Location = New System.Drawing.Point(340, 411)
         Me.btnNeste.Name = "btnNeste"
         Me.btnNeste.Size = New System.Drawing.Size(75, 23)
-        Me.btnNeste.TabIndex = 64
+        Me.btnNeste.TabIndex = 16
         Me.btnNeste.Text = "Neste"
         Me.btnNeste.UseVisualStyleBackColor = True
         '
         'btnFørste
         '
-        Me.btnFørste.Location = New System.Drawing.Point(53, 451)
+        Me.btnFørste.Location = New System.Drawing.Point(53, 440)
         Me.btnFørste.Name = "btnFørste"
         Me.btnFørste.Size = New System.Drawing.Size(75, 23)
-        Me.btnFørste.TabIndex = 65
+        Me.btnFørste.TabIndex = 17
         Me.btnFørste.Text = "Første"
         Me.btnFørste.UseVisualStyleBackColor = True
         '
         'btnSiste
         '
-        Me.btnSiste.Location = New System.Drawing.Point(340, 451)
+        Me.btnSiste.Location = New System.Drawing.Point(340, 440)
         Me.btnSiste.Name = "btnSiste"
         Me.btnSiste.Size = New System.Drawing.Size(75, 23)
-        Me.btnSiste.TabIndex = 66
+        Me.btnSiste.TabIndex = 18
         Me.btnSiste.Text = "Siste"
         Me.btnSiste.UseVisualStyleBackColor = True
         '
         'btnSlettUtstyr
         '
-        Me.btnSlettUtstyr.Location = New System.Drawing.Point(134, 480)
+        Me.btnSlettUtstyr.Location = New System.Drawing.Point(133, 469)
         Me.btnSlettUtstyr.Name = "btnSlettUtstyr"
         Me.btnSlettUtstyr.Size = New System.Drawing.Size(200, 23)
-        Me.btnSlettUtstyr.TabIndex = 67
+        Me.btnSlettUtstyr.TabIndex = 21
         Me.btnSlettUtstyr.Text = "Slett utstyr"
         Me.btnSlettUtstyr.UseVisualStyleBackColor = True
         '
-        'btnSlettTekstfelt
+        'btnTømSkjema
         '
-        Me.btnSlettTekstfelt.Location = New System.Drawing.Point(134, 509)
-        Me.btnSlettTekstfelt.Name = "btnSlettTekstfelt"
-        Me.btnSlettTekstfelt.Size = New System.Drawing.Size(200, 23)
-        Me.btnSlettTekstfelt.TabIndex = 68
-        Me.btnSlettTekstfelt.Text = "Slett tekstfelt"
-        Me.btnSlettTekstfelt.UseVisualStyleBackColor = True
+        Me.btnTømSkjema.Location = New System.Drawing.Point(134, 498)
+        Me.btnTømSkjema.Name = "btnTømSkjema"
+        Me.btnTømSkjema.Size = New System.Drawing.Size(200, 23)
+        Me.btnTømSkjema.TabIndex = 22
+        Me.btnTømSkjema.Text = "Tøm skjema"
+        Me.btnTømSkjema.UseVisualStyleBackColor = True
         '
         'txtSok
         '
-        Me.txtSok.Location = New System.Drawing.Point(410, 26)
+        Me.txtSok.Location = New System.Drawing.Point(480, 26)
         Me.txtSok.Name = "txtSok"
         Me.txtSok.Size = New System.Drawing.Size(192, 20)
-        Me.txtSok.TabIndex = 69
+        Me.txtSok.TabIndex = 24
         '
         'btnSøk
         '
-        Me.btnSøk.Location = New System.Drawing.Point(410, 50)
+        Me.btnSøk.Location = New System.Drawing.Point(480, 52)
         Me.btnSøk.Name = "btnSøk"
         Me.btnSøk.Size = New System.Drawing.Size(192, 23)
-        Me.btnSøk.TabIndex = 70
+        Me.btnSøk.TabIndex = 25
         Me.btnSøk.Text = "Søk"
         Me.btnSøk.UseVisualStyleBackColor = True
         '
         'lstResultat
         '
         Me.lstResultat.FormattingEnabled = True
-        Me.lstResultat.Location = New System.Drawing.Point(410, 79)
+        Me.lstResultat.Location = New System.Drawing.Point(480, 81)
         Me.lstResultat.Name = "lstResultat"
         Me.lstResultat.Size = New System.Drawing.Size(192, 134)
-        Me.lstResultat.TabIndex = 71
+        Me.lstResultat.TabIndex = 26
         '
         'lblPasserTil
         '
@@ -336,7 +336,7 @@ Partial Class AdministrereUtstyr
         Me.lblPasserTil.Location = New System.Drawing.Point(77, 269)
         Me.lblPasserTil.Name = "lblPasserTil"
         Me.lblPasserTil.Size = New System.Drawing.Size(49, 13)
-        Me.lblPasserTil.TabIndex = 72
+        Me.lblPasserTil.TabIndex = 36
         Me.lblPasserTil.Text = "Passer til"
         '
         'chkAlle
@@ -345,7 +345,7 @@ Partial Class AdministrereUtstyr
         Me.chkAlle.Location = New System.Drawing.Point(133, 269)
         Me.chkAlle.Name = "chkAlle"
         Me.chkAlle.Size = New System.Drawing.Size(73, 17)
-        Me.chkAlle.TabIndex = 73
+        Me.chkAlle.TabIndex = 9
         Me.chkAlle.Text = "Alle sykler"
         Me.chkAlle.UseVisualStyleBackColor = True
         '
@@ -355,7 +355,7 @@ Partial Class AdministrereUtstyr
         Me.chkTerreng.Location = New System.Drawing.Point(133, 293)
         Me.chkTerreng.Name = "chkTerreng"
         Me.chkTerreng.Size = New System.Drawing.Size(63, 17)
-        Me.chkTerreng.TabIndex = 74
+        Me.chkTerreng.TabIndex = 10
         Me.chkTerreng.Text = "Terreng"
         Me.chkTerreng.UseVisualStyleBackColor = True
         '
@@ -365,7 +365,7 @@ Partial Class AdministrereUtstyr
         Me.chkDownhill.Location = New System.Drawing.Point(133, 316)
         Me.chkDownhill.Name = "chkDownhill"
         Me.chkDownhill.Size = New System.Drawing.Size(66, 17)
-        Me.chkDownhill.TabIndex = 74
+        Me.chkDownhill.TabIndex = 11
         Me.chkDownhill.Text = "Downhill"
         Me.chkDownhill.UseVisualStyleBackColor = True
         '
@@ -375,7 +375,7 @@ Partial Class AdministrereUtstyr
         Me.chkRacer.Location = New System.Drawing.Point(133, 340)
         Me.chkRacer.Name = "chkRacer"
         Me.chkRacer.Size = New System.Drawing.Size(55, 17)
-        Me.chkRacer.TabIndex = 75
+        Me.chkRacer.TabIndex = 12
         Me.chkRacer.Text = "Racer"
         Me.chkRacer.UseVisualStyleBackColor = True
         '
@@ -385,7 +385,7 @@ Partial Class AdministrereUtstyr
         Me.chkTandem.Location = New System.Drawing.Point(133, 364)
         Me.chkTandem.Name = "chkTandem"
         Me.chkTandem.Size = New System.Drawing.Size(65, 17)
-        Me.chkTandem.TabIndex = 76
+        Me.chkTandem.TabIndex = 13
         Me.chkTandem.Text = "Tandem"
         Me.chkTandem.UseVisualStyleBackColor = True
         '
@@ -395,16 +395,16 @@ Partial Class AdministrereUtstyr
         Me.chkBarn.Location = New System.Drawing.Point(133, 388)
         Me.chkBarn.Name = "chkBarn"
         Me.chkBarn.Size = New System.Drawing.Size(84, 17)
-        Me.chkBarn.TabIndex = 77
+        Me.chkBarn.TabIndex = 14
         Me.chkBarn.Text = "Barnesykkel"
         Me.chkBarn.UseVisualStyleBackColor = True
         '
         'btnSendMail
         '
-        Me.btnSendMail.Location = New System.Drawing.Point(134, 538)
+        Me.btnSendMail.Location = New System.Drawing.Point(134, 527)
         Me.btnSendMail.Name = "btnSendMail"
         Me.btnSendMail.Size = New System.Drawing.Size(200, 23)
-        Me.btnSendMail.TabIndex = 78
+        Me.btnSendMail.TabIndex = 23
         Me.btnSendMail.Text = "Send til reparasjon"
         Me.btnSendMail.UseVisualStyleBackColor = True
         '
@@ -424,7 +424,7 @@ Partial Class AdministrereUtstyr
         Me.Controls.Add(Me.lstResultat)
         Me.Controls.Add(Me.btnSøk)
         Me.Controls.Add(Me.txtSok)
-        Me.Controls.Add(Me.btnSlettTekstfelt)
+        Me.Controls.Add(Me.btnTømSkjema)
         Me.Controls.Add(Me.btnSlettUtstyr)
         Me.Controls.Add(Me.btnSiste)
         Me.Controls.Add(Me.btnFørste)
@@ -486,7 +486,7 @@ Partial Class AdministrereUtstyr
     Friend WithEvents btnFørste As Button
     Friend WithEvents btnSiste As Button
     Friend WithEvents btnSlettUtstyr As Button
-    Friend WithEvents btnSlettTekstfelt As Button
+    Friend WithEvents btnTømSkjema As Button
     Friend WithEvents txtSok As TextBox
     Friend WithEvents btnSøk As Button
     Friend WithEvents lstResultat As ListBox

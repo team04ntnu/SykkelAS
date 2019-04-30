@@ -11,7 +11,7 @@ Public Class AdministrereUtstyr
         lblInnloggetAvdeling.Text = "Innlogget på avdeling " & Innlogging.innloggetAvdeling.HentAvdelingNavn
     End Sub
 
-    Private Sub SlettTekstfelt()
+    Private Sub TømSkjema()
         txtUtstyrID.Text = ""
         txtUtstyrMerke.Text = ""
         txtUtstyrType.Text = ""
@@ -53,8 +53,9 @@ Public Class AdministrereUtstyr
         inc = -1
     End Sub
 
+    'Henter info fra tabell og legger i skjema
     Private Sub TabellTilSkjema(ByVal indeks As Integer)
-        SlettTekstfelt()
+        TømSkjema()
         rad = utstyrtabell.Rows(indeks)
         txtUtstyrID.Text = rad(0)
         txtUtstyrMerke.Text = rad(1)
@@ -178,7 +179,7 @@ Public Class AdministrereUtstyr
         'Henter metode for å oppdatere utstyr i database
         oppdatertUtstyr.OppdaterUtstyr()
         'Sletter tekstfelt etter oppdatering
-        SlettTekstfelt()
+        TømSkjema()
         'Henter inn ny utstyrtabell
         hentUtstyr()
     End Sub
@@ -193,7 +194,7 @@ Public Class AdministrereUtstyr
         'Henter metode for å opprette utstyr i database
         nyttUtstyr.OpprettUtstyr()
         'Sletter tekstfelt etter oppdatering
-        SlettTekstfelt()
+        TømSkjema()
         'Henter inn ny utstyrtabell
         hentUtstyr()
     End Sub
@@ -217,8 +218,8 @@ Public Class AdministrereUtstyr
                 tilkobling.Dispose()
             End Try
             'Sletter tekstfelt etter oppdatering
-            SlettTekstfelt()
-            'Henter in ny sykkeltabell
+            TømSkjema()
+            'Henter in ny utstyrtabell
             hentUtstyr()
         End If
     End Sub
@@ -285,15 +286,15 @@ Public Class AdministrereUtstyr
         Check()
     End Sub
 
-    Private Sub btnSlettTekstfelt_Click(sender As Object, e As EventArgs) Handles btnSlettTekstfelt.Click
-        SlettTekstfelt()
+    Private Sub btnTømSkjema_Click(sender As Object, e As EventArgs) Handles btnTømSkjema.Click
+        TømSkjema()
         inc = -1
     End Sub
 
     Private Sub btnSøk_Click(sender As Object, e As EventArgs) Handles btnSøk.Click
         'Sletter tidligere søkeresultat
         lstResultat.Items.Clear()
-        'Søker gjennom sykkeltabell
+        'Søker gjennom utstyrtabell
         Dim søk As String
         søk = txtSok.Text
         'Første loop går gjennom hver rad i tabellen
@@ -311,7 +312,7 @@ Public Class AdministrereUtstyr
     End Sub
 
     Private Sub lstResultat_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lstResultat.SelectedIndexChanged
-        SlettTekstfelt()
+        TømSkjema()
         'Oppdaterer tekstfelt med valgt søkeresultat
         'Skjer bare hvis man klikker på utstyr i listeboksen
         If lstResultat.SelectedItem <> "" Then

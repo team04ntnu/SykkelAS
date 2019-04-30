@@ -4,20 +4,20 @@ Public Class Kunde
     Private nr As Integer
 
     'Konstruktør for å opprette avdeling
-    Public Sub New(ByVal fornavn As String,
+    Public Sub New(ByVal nr As Integer,
+                   ByVal fornavn As String,
                    ByVal etternavn As String,
-                   ByVal adresse As String,
-                   ByVal postnummer As String,
                    ByVal telefon As String,
                    ByVal epost As String,
-                   ByVal nr As Integer)
+                   ByVal adresse As String,
+                   ByVal postnummer As String)
+        Me.nr = nr
         Me.fornavn = fornavn
         Me.etternavn = etternavn
-        Me.adresse = adresse
-        Me.postnummer = postnummer
         Me.telefon = telefon
         Me.epost = epost
-        Me.nr = nr
+        Me.adresse = adresse
+        Me.postnummer = postnummer
     End Sub
 
     'Metode for å opprette ny kunde i databasen
@@ -53,8 +53,10 @@ Public Class Kunde
             tilkobling.Open()
 
             Dim sql As New MySqlCommand("UPDATE kunde SET fornavn = @fornavn, etternavn = @etternavn, adresse = @adresse,
-                                        postnummer = @postnummer, telefon = @telefon, epost = @epost", tilkobling)
+                                        postnummer = @postnummer, telefon = @telefon, epost = @epost
+                                        WHERE kunde_nr = @nr", tilkobling)
             With sql.Parameters
+                .AddWithValue("@nr", nr)
                 .AddWithValue("@fornavn", fornavn)
                 .AddWithValue("@etternavn", etternavn)
                 .AddWithValue("@adresse", adresse)

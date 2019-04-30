@@ -4,7 +4,7 @@ Public Class AdministrereAvdeling
     Private nr As Integer
     Public avdelingValg As New ArrayList()
 
-    Private Sub SlettTekstfelt()
+    Private Sub TømSkjema()
         txtAvdelingNr.Text = ""
         txtAvdelingsnavn.Text = ""
         txtTelefon.Text = ""
@@ -67,7 +67,7 @@ Public Class AdministrereAvdeling
         Try
             databasetilkobling.databaseTilkobling()
             tilkobling.Open()
-            Dim sql As New MySqlCommand("SELECT * FROM avdeling a INNER JOIN sted s ON a.postnummer = s.postnummer 
+            Dim sql As New MySqlCommand("SELECT a.*, s.poststed FROM avdeling a INNER JOIN sted s ON a.postnummer = s.postnummer 
                                         WHERE avdeling_navn = @navn", tilkobling)
             sql.Parameters.AddWithValue("@navn", navn)
             Dim da As New MySqlDataAdapter
@@ -109,7 +109,7 @@ Public Class AdministrereAvdeling
             cmbAvdeling.Items.Add(avdeling)
         Next
         'Sletter tekstfelt etter at avdeling er oppdatert
-        SlettTekstfelt()
+        TømSkjema()
     End Sub
 
     Private Sub btnOpprett_Click(sender As Object, e As EventArgs) Handles btnOpprett.Click
@@ -127,12 +127,12 @@ Public Class AdministrereAvdeling
             cmbAvdeling.Items.Add(avdeling)
         Next
         'Sletter tekstfelt etter at avdeling er opprettet
-        SlettTekstfelt()
+        TømSkjema()
     End Sub
 
-    Private Sub btnSlett_Click(sender As Object, e As EventArgs) Handles btnSlett.Click
+    Private Sub btnTømSkjema_Click(sender As Object, e As EventArgs) Handles btnTømSkjema.Click
         'Knapp for å slette tekstfelt
-        SlettTekstfelt()
+        TømSkjema()
     End Sub
 
     Private Sub btnLoggUt_Click(sender As Object, e As EventArgs) Handles btnLoggUt.Click

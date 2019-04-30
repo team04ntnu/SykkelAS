@@ -42,17 +42,17 @@ Partial Class AdministrereAvdeling
         Me.lblAvdelingNr = New System.Windows.Forms.Label()
         Me.btnOpprett = New System.Windows.Forms.Button()
         Me.btnOppdater = New System.Windows.Forms.Button()
-        Me.btnSlett = New System.Windows.Forms.Button()
+        Me.btnTømSkjema = New System.Windows.Forms.Button()
         Me.cmbAvdeling = New System.Windows.Forms.ComboBox()
         Me.btnLoggUt = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'txtAvdelingsnavn
         '
-        Me.txtAvdelingsnavn.Location = New System.Drawing.Point(107, 32)
+        Me.txtAvdelingsnavn.Location = New System.Drawing.Point(107, 58)
         Me.txtAvdelingsnavn.Name = "txtAvdelingsnavn"
         Me.txtAvdelingsnavn.Size = New System.Drawing.Size(200, 20)
-        Me.txtAvdelingsnavn.TabIndex = 0
+        Me.txtAvdelingsnavn.TabIndex = 2
         '
         'lblAvdelingsnavn
         '
@@ -60,7 +60,7 @@ Partial Class AdministrereAvdeling
         Me.lblAvdelingsnavn.Location = New System.Drawing.Point(25, 35)
         Me.lblAvdelingsnavn.Name = "lblAvdelingsnavn"
         Me.lblAvdelingsnavn.Size = New System.Drawing.Size(80, 13)
-        Me.lblAvdelingsnavn.TabIndex = 2
+        Me.lblAvdelingsnavn.TabIndex = 15
         Me.lblAvdelingsnavn.Text = "Avdelingsnavn:"
         '
         'txtAdresse
@@ -68,7 +68,7 @@ Partial Class AdministrereAvdeling
         Me.txtAdresse.Location = New System.Drawing.Point(107, 110)
         Me.txtAdresse.Name = "txtAdresse"
         Me.txtAdresse.Size = New System.Drawing.Size(200, 20)
-        Me.txtAdresse.TabIndex = 3
+        Me.txtAdresse.TabIndex = 4
         '
         'lblAdresse
         '
@@ -76,7 +76,7 @@ Partial Class AdministrereAvdeling
         Me.lblAdresse.Location = New System.Drawing.Point(57, 113)
         Me.lblAdresse.Name = "lblAdresse"
         Me.lblAdresse.Size = New System.Drawing.Size(48, 13)
-        Me.lblAdresse.TabIndex = 4
+        Me.lblAdresse.TabIndex = 18
         Me.lblAdresse.Text = "Adresse:"
         '
         'lblPostnummer
@@ -85,7 +85,7 @@ Partial Class AdministrereAvdeling
         Me.lblPostnummer.Location = New System.Drawing.Point(37, 139)
         Me.lblPostnummer.Name = "lblPostnummer"
         Me.lblPostnummer.Size = New System.Drawing.Size(68, 13)
-        Me.lblPostnummer.TabIndex = 5
+        Me.lblPostnummer.TabIndex = 19
         Me.lblPostnummer.Text = "Postnummer:"
         '
         'txtPostnummer
@@ -94,7 +94,7 @@ Partial Class AdministrereAvdeling
         Me.txtPostnummer.MaxLength = 4
         Me.txtPostnummer.Name = "txtPostnummer"
         Me.txtPostnummer.Size = New System.Drawing.Size(200, 20)
-        Me.txtPostnummer.TabIndex = 6
+        Me.txtPostnummer.TabIndex = 5
         '
         'txtSted
         '
@@ -102,7 +102,7 @@ Partial Class AdministrereAvdeling
         Me.txtSted.Name = "txtSted"
         Me.txtSted.ReadOnly = True
         Me.txtSted.Size = New System.Drawing.Size(200, 20)
-        Me.txtSted.TabIndex = 7
+        Me.txtSted.TabIndex = 6
         '
         'lblSted
         '
@@ -110,40 +110,40 @@ Partial Class AdministrereAvdeling
         Me.lblSted.Location = New System.Drawing.Point(73, 165)
         Me.lblSted.Name = "lblSted"
         Me.lblSted.Size = New System.Drawing.Size(32, 13)
-        Me.lblSted.TabIndex = 5
+        Me.lblSted.TabIndex = 20
         Me.lblSted.Text = "Sted:"
         '
         'txtEpost
         '
-        Me.txtEpost.Location = New System.Drawing.Point(107, 58)
+        Me.txtEpost.Location = New System.Drawing.Point(107, 84)
         Me.txtEpost.Name = "txtEpost"
         Me.txtEpost.Size = New System.Drawing.Size(200, 20)
-        Me.txtEpost.TabIndex = 8
+        Me.txtEpost.TabIndex = 3
         '
         'lblEpost
         '
         Me.lblEpost.AutoSize = True
-        Me.lblEpost.Location = New System.Drawing.Point(68, 61)
+        Me.lblEpost.Location = New System.Drawing.Point(64, 87)
         Me.lblEpost.Name = "lblEpost"
         Me.lblEpost.Size = New System.Drawing.Size(37, 13)
-        Me.lblEpost.TabIndex = 9
+        Me.lblEpost.TabIndex = 17
         Me.lblEpost.Text = "Epost:"
         '
         'txtTelefon
         '
-        Me.txtTelefon.Location = New System.Drawing.Point(107, 84)
+        Me.txtTelefon.Location = New System.Drawing.Point(107, 32)
         Me.txtTelefon.MaxLength = 8
         Me.txtTelefon.Name = "txtTelefon"
         Me.txtTelefon.Size = New System.Drawing.Size(200, 20)
-        Me.txtTelefon.TabIndex = 10
+        Me.txtTelefon.TabIndex = 1
         '
         'lblTelefon
         '
         Me.lblTelefon.AutoSize = True
-        Me.lblTelefon.Location = New System.Drawing.Point(59, 87)
+        Me.lblTelefon.Location = New System.Drawing.Point(55, 61)
         Me.lblTelefon.Name = "lblTelefon"
         Me.lblTelefon.Size = New System.Drawing.Size(46, 13)
-        Me.lblTelefon.TabIndex = 11
+        Me.lblTelefon.TabIndex = 16
         Me.lblTelefon.Text = "Telefon:"
         '
         'txtPassord
@@ -153,7 +153,7 @@ Partial Class AdministrereAvdeling
         Me.txtPassord.Name = "txtPassord"
         Me.txtPassord.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
         Me.txtPassord.Size = New System.Drawing.Size(200, 20)
-        Me.txtPassord.TabIndex = 12
+        Me.txtPassord.TabIndex = 7
         '
         'txtBekreftPassord
         '
@@ -162,7 +162,7 @@ Partial Class AdministrereAvdeling
         Me.txtBekreftPassord.Name = "txtBekreftPassord"
         Me.txtBekreftPassord.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
         Me.txtBekreftPassord.Size = New System.Drawing.Size(200, 20)
-        Me.txtBekreftPassord.TabIndex = 13
+        Me.txtBekreftPassord.TabIndex = 8
         '
         'lblPassord
         '
@@ -170,7 +170,7 @@ Partial Class AdministrereAvdeling
         Me.lblPassord.Location = New System.Drawing.Point(57, 191)
         Me.lblPassord.Name = "lblPassord"
         Me.lblPassord.Size = New System.Drawing.Size(48, 13)
-        Me.lblPassord.TabIndex = 14
+        Me.lblPassord.TabIndex = 21
         Me.lblPassord.Text = "Passord:"
         '
         'lblBekreftPassord
@@ -179,7 +179,7 @@ Partial Class AdministrereAvdeling
         Me.lblBekreftPassord.Location = New System.Drawing.Point(21, 217)
         Me.lblBekreftPassord.Name = "lblBekreftPassord"
         Me.lblBekreftPassord.Size = New System.Drawing.Size(84, 13)
-        Me.lblBekreftPassord.TabIndex = 15
+        Me.lblBekreftPassord.TabIndex = 22
         Me.lblBekreftPassord.Text = "Bekreft passord:"
         '
         'txtAvdelingNr
@@ -188,7 +188,7 @@ Partial Class AdministrereAvdeling
         Me.txtAvdelingNr.Name = "txtAvdelingNr"
         Me.txtAvdelingNr.ReadOnly = True
         Me.txtAvdelingNr.Size = New System.Drawing.Size(200, 20)
-        Me.txtAvdelingNr.TabIndex = 16
+        Me.txtAvdelingNr.TabIndex = 0
         '
         'lblAvdelingNr
         '
@@ -196,7 +196,7 @@ Partial Class AdministrereAvdeling
         Me.lblAvdelingNr.Location = New System.Drawing.Point(12, 9)
         Me.lblAvdelingNr.Name = "lblAvdelingNr"
         Me.lblAvdelingNr.Size = New System.Drawing.Size(93, 13)
-        Me.lblAvdelingNr.TabIndex = 18
+        Me.lblAvdelingNr.TabIndex = 14
         Me.lblAvdelingNr.Text = "Avdelingsnummer:"
         '
         'btnOpprett
@@ -204,7 +204,7 @@ Partial Class AdministrereAvdeling
         Me.btnOpprett.Location = New System.Drawing.Point(15, 308)
         Me.btnOpprett.Name = "btnOpprett"
         Me.btnOpprett.Size = New System.Drawing.Size(292, 23)
-        Me.btnOpprett.TabIndex = 21
+        Me.btnOpprett.TabIndex = 11
         Me.btnOpprett.Text = "Opprett ny avdeling"
         Me.btnOpprett.UseVisualStyleBackColor = True
         '
@@ -213,18 +213,18 @@ Partial Class AdministrereAvdeling
         Me.btnOppdater.Location = New System.Drawing.Point(15, 279)
         Me.btnOppdater.Name = "btnOppdater"
         Me.btnOppdater.Size = New System.Drawing.Size(292, 23)
-        Me.btnOppdater.TabIndex = 22
+        Me.btnOppdater.TabIndex = 10
         Me.btnOppdater.Text = "Oppdater"
         Me.btnOppdater.UseVisualStyleBackColor = True
         '
-        'btnSlett
+        'btnTømSkjema
         '
-        Me.btnSlett.Location = New System.Drawing.Point(15, 337)
-        Me.btnSlett.Name = "btnSlett"
-        Me.btnSlett.Size = New System.Drawing.Size(292, 23)
-        Me.btnSlett.TabIndex = 23
-        Me.btnSlett.Text = "Slett tekstfelt"
-        Me.btnSlett.UseVisualStyleBackColor = True
+        Me.btnTømSkjema.Location = New System.Drawing.Point(15, 337)
+        Me.btnTømSkjema.Name = "btnTømSkjema"
+        Me.btnTømSkjema.Size = New System.Drawing.Size(292, 23)
+        Me.btnTømSkjema.TabIndex = 12
+        Me.btnTømSkjema.Text = "Tøm skjema"
+        Me.btnTømSkjema.UseVisualStyleBackColor = True
         '
         'cmbAvdeling
         '
@@ -232,14 +232,14 @@ Partial Class AdministrereAvdeling
         Me.cmbAvdeling.Location = New System.Drawing.Point(15, 252)
         Me.cmbAvdeling.Name = "cmbAvdeling"
         Me.cmbAvdeling.Size = New System.Drawing.Size(292, 21)
-        Me.cmbAvdeling.TabIndex = 24
+        Me.cmbAvdeling.TabIndex = 9
         '
         'btnLoggUt
         '
         Me.btnLoggUt.Location = New System.Drawing.Point(15, 426)
         Me.btnLoggUt.Name = "btnLoggUt"
         Me.btnLoggUt.Size = New System.Drawing.Size(292, 23)
-        Me.btnLoggUt.TabIndex = 25
+        Me.btnLoggUt.TabIndex = 13
         Me.btnLoggUt.Text = "Logg ut"
         Me.btnLoggUt.UseVisualStyleBackColor = True
         '
@@ -250,7 +250,7 @@ Partial Class AdministrereAvdeling
         Me.ClientSize = New System.Drawing.Size(384, 461)
         Me.Controls.Add(Me.btnLoggUt)
         Me.Controls.Add(Me.cmbAvdeling)
-        Me.Controls.Add(Me.btnSlett)
+        Me.Controls.Add(Me.btnTømSkjema)
         Me.Controls.Add(Me.btnOppdater)
         Me.Controls.Add(Me.btnOpprett)
         Me.Controls.Add(Me.txtAvdelingNr)
@@ -298,7 +298,7 @@ Partial Class AdministrereAvdeling
     Friend WithEvents lblAvdelingNr As Label
     Friend WithEvents btnOpprett As Button
     Friend WithEvents btnOppdater As Button
-    Friend WithEvents btnSlett As Button
+    Friend WithEvents btnTømSkjema As Button
     Friend WithEvents cmbAvdeling As ComboBox
     Friend WithEvents btnLoggUt As Button
 End Class

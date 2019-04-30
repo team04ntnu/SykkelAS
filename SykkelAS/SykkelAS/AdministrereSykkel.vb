@@ -11,7 +11,7 @@ Public Class AdministrereSykkel
         lblInnloggetAvdeling.Text = "Innlogget på avdeling " & Innlogging.innloggetAvdeling.HentAvdelingNavn
     End Sub
 
-    Private Sub SlettTekstfelt()
+    Private Sub TømSkjema()
         txtSykkelID.Text = ""
         txtSykkelMerke.Text = ""
         cmbSykkelType.SelectedIndex = -1
@@ -63,8 +63,9 @@ Public Class AdministrereSykkel
         sendMail.Show()
     End Sub
 
+    'Henter info fra tabell og legger i skjema
     Private Sub TabellTilSkjema(ByVal indeks As Integer)
-        SlettTekstfelt()
+        TømSkjema()
         rad = sykkeltabell.Rows(indeks)
         txtSykkelID.Text = rad(0)
         txtSykkelMerke.Text = rad(1)
@@ -153,9 +154,9 @@ Public Class AdministrereSykkel
         Dim oppdatertSykkel As New Sykkel(id, merke, type, ramme, hjul, gir, vekt, rammenummer,
                                           pris_time, pris_døgn, pris_helg, lokasjon, status, avdeling_nr)
         'Henter metode for å oppdatere sykkel i database
-        oppdatertSykkel.OppdaterSykkel()
+        oppdatertSykkel.OppdaterKunde()
         'Sletter tekstfelt etter oppdatering
-        SlettTekstfelt()
+        TømSkjema()
         'Henter inn ny sykkeltabell
         hentSykkel()
     End Sub
@@ -168,9 +169,9 @@ Public Class AdministrereSykkel
         Dim nySykkel As New Sykkel(id, merke, type, ramme, hjul, gir, vekt, rammenummer,
                                    pris_time, pris_døgn, pris_helg, lokasjon, status, avdeling_nr)
         'Henter metode for å opprette sykkel i database
-        nySykkel.OpprettSykkel()
+        nySykkel.OpprettKunde()
         'Sletter tekstfelt etter oppdatering
-        SlettTekstfelt()
+        TømSkjema()
         'Henter inn ny sykkeltabell
         hentSykkel()
     End Sub
@@ -194,14 +195,14 @@ Public Class AdministrereSykkel
                 tilkobling.Dispose()
             End Try
             'Sletter tekstfelt etter oppdatering
-            SlettTekstfelt()
+            TømSkjema()
             'Henter in ny sykkeltabell
             hentSykkel()
         End If
     End Sub
 
-    Private Sub btnSlettTekstfelt_Click(sender As Object, e As EventArgs) Handles btnSlettTekstfelt.Click
-        SlettTekstfelt()
+    Private Sub btnTømSkjema_Click(sender As Object, e As EventArgs) Handles btnTømSkjema.Click
+        TømSkjema()
         inc = -1
     End Sub
 
@@ -226,7 +227,7 @@ Public Class AdministrereSykkel
     End Sub
 
     Private Sub lstResultat_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lstResultat.SelectedIndexChanged
-        SlettTekstfelt()
+        TømSkjema()
         'Oppdaterer tekstfelt med valgt søkeresultat
         'Skjer bare hvis man klikker på en sykkel i listeboksen
         If lstResultat.SelectedItem <> "" Then

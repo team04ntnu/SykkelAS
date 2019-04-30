@@ -35,7 +35,7 @@ Public Class Sykkel
     End Sub
 
     'Metode for å opprette ny sykkel i databasen
-    Public Sub OpprettSykkel()
+    Public Sub OpprettKunde()
         Try
             databasetilkobling.databaseTilkobling()
             tilkobling.Open()
@@ -70,7 +70,7 @@ Public Class Sykkel
     End Sub
 
     'Metode for å oppdatere eksisterende sykkel i databasen
-    Public Sub OppdaterSykkel()
+    Public Sub OppdaterKunde()
         Try
             databasetilkobling.databaseTilkobling()
             tilkobling.Open()

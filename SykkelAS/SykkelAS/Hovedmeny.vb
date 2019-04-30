@@ -23,4 +23,9 @@
         AdministrereUtstyr.Show()
         Me.Hide()
     End Sub
+
+    Private Sub btnLeieavtaler_Click(sender As Object, e As EventArgs) Handles btnLeieavtaler.Click
+        Leieavtaler.Show()
+        Me.Hide()
+    End Sub
 End Class
