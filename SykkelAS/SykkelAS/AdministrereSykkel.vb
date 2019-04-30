@@ -72,6 +72,9 @@ Public Class AdministrereSykkel
 
     'Henter info fra tekstfelt og legger i variabler
     Private Sub hentInfo()
+        If txtSykkelID.Text <> "" Then
+            id = txtSykkelID.Text
+        End If
         merke = txtSykkelMerke.Text
         type = txtSykkelType.Text
         ramme = txtSykkelRamme.Text
@@ -84,6 +87,7 @@ Public Class AdministrereSykkel
         pris_helg = txtPrisHelg.Text
         lokasjon = txtLokasjon.Text
         status = txtStatus.Text
+        avdeling_nr = txtAvdeling.Text
     End Sub
 
     Private Sub AdministrereSykkel_Load(sender As Object, e As EventArgs) Handles MyBase.Load
