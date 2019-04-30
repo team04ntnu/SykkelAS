@@ -14,7 +14,7 @@ Public Class AdministrereSykkel
     Private Sub SlettTekstfelt()
         txtSykkelID.Text = ""
         txtSykkelMerke.Text = ""
-        cmbSykkelType.Text = ""
+        cmbSykkelType.SelectedIndex = -1
         txtSykkelRamme.Text = ""
         txtSykkelHjul.Text = ""
         txtSykkelGir.Text = ""
@@ -23,8 +23,8 @@ Public Class AdministrereSykkel
         txtPrisTime.Text = ""
         txtPrisDøgn.Text = ""
         txtPrisHelg.Text = ""
-        cmbLokasjon.Text = ""
-        cmbStatus.Text = ""
+        cmbLokasjon.SelectedIndex = -1
+        cmbStatus.SelectedIndex = -1
         txtAvdeling.Text = ""
     End Sub
 

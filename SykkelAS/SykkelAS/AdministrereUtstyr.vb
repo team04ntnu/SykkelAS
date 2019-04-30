@@ -18,8 +18,8 @@ Public Class AdministrereUtstyr
         txtPrisTime.Text = ""
         txtPrisDøgn.Text = ""
         txtPrisHelg.Text = ""
-        cmbLokasjon.Text = ""
-        cmbStatus.Text = ""
+        cmbLokasjon.SelectedIndex = -1
+        cmbStatus.SelectedIndex = -1
         txtAvdeling.Text = ""
         chkAlle.Checked = False
         chkTerreng.Checked = False
