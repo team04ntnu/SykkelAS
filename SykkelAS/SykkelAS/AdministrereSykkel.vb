@@ -244,6 +244,8 @@ Public Class AdministrereSykkel
             cmbLokasjon.Text = rad(11)
             cmbStatus.Text = rad(12)
             txtAvdeling.Text = rad(13)
+            'Oppdaterer posisjon på navigering
+            inc = valgtIndeks
         End If
     End Sub
 
