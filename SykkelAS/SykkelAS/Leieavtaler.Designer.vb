@@ -48,6 +48,7 @@ Partial Class Leieavtaler
         Me.lblKunde = New System.Windows.Forms.Label()
         Me.lstUtstyr = New System.Windows.Forms.ListBox()
         Me.lblUtstyr = New System.Windows.Forms.Label()
+        Me.btnTømSkjema = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'btnTilbake
@@ -61,14 +62,14 @@ Partial Class Leieavtaler
         '
         'dtpFraDato
         '
-        Me.dtpFraDato.Location = New System.Drawing.Point(12, 92)
+        Me.dtpFraDato.Location = New System.Drawing.Point(15, 77)
         Me.dtpFraDato.Name = "dtpFraDato"
         Me.dtpFraDato.Size = New System.Drawing.Size(200, 20)
         Me.dtpFraDato.TabIndex = 43
         '
         'dtpTilDato
         '
-        Me.dtpTilDato.Location = New System.Drawing.Point(12, 180)
+        Me.dtpTilDato.Location = New System.Drawing.Point(12, 194)
         Me.dtpTilDato.Name = "dtpTilDato"
         Me.dtpTilDato.Size = New System.Drawing.Size(200, 20)
         Me.dtpTilDato.TabIndex = 44
@@ -115,7 +116,7 @@ Partial Class Leieavtaler
         'lblFra
         '
         Me.lblFra.AutoSize = True
-        Me.lblFra.Location = New System.Drawing.Point(12, 76)
+        Me.lblFra.Location = New System.Drawing.Point(12, 60)
         Me.lblFra.Name = "lblFra"
         Me.lblFra.Size = New System.Drawing.Size(42, 13)
         Me.lblFra.TabIndex = 51
@@ -124,7 +125,7 @@ Partial Class Leieavtaler
         'lblTil
         '
         Me.lblTil.AutoSize = True
-        Me.lblTil.Location = New System.Drawing.Point(12, 164)
+        Me.lblTil.Location = New System.Drawing.Point(12, 177)
         Me.lblTil.Name = "lblTil"
         Me.lblTil.Size = New System.Drawing.Size(37, 13)
         Me.lblTil.TabIndex = 52
@@ -201,7 +202,7 @@ Partial Class Leieavtaler
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(12, 256)
+        Me.Button1.Location = New System.Drawing.Point(42, 355)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(134, 23)
         Me.Button1.TabIndex = 63
@@ -212,7 +213,7 @@ Partial Class Leieavtaler
         '
         Me.dtpTilTid.CustomFormat = "HH"
         Me.dtpTilTid.Format = System.Windows.Forms.DateTimePickerFormat.Custom
-        Me.dtpTilTid.Location = New System.Drawing.Point(162, 206)
+        Me.dtpTilTid.Location = New System.Drawing.Point(162, 220)
         Me.dtpTilTid.Name = "dtpTilTid"
         Me.dtpTilTid.ShowUpDown = True
         Me.dtpTilTid.Size = New System.Drawing.Size(50, 20)
@@ -224,7 +225,7 @@ Partial Class Leieavtaler
         Me.dtpFraTid.CustomFormat = "HH"
         Me.dtpFraTid.Format = System.Windows.Forms.DateTimePickerFormat.Custom
         Me.dtpFraTid.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.dtpFraTid.Location = New System.Drawing.Point(162, 118)
+        Me.dtpFraTid.Location = New System.Drawing.Point(165, 103)
         Me.dtpFraTid.Name = "dtpFraTid"
         Me.dtpFraTid.ShowUpDown = True
         Me.dtpFraTid.Size = New System.Drawing.Size(50, 20)
@@ -234,7 +235,7 @@ Partial Class Leieavtaler
         'lblFraTid
         '
         Me.lblFraTid.AutoSize = True
-        Me.lblFraTid.Location = New System.Drawing.Point(140, 124)
+        Me.lblFraTid.Location = New System.Drawing.Point(143, 110)
         Me.lblFraTid.Name = "lblFraTid"
         Me.lblFraTid.Size = New System.Drawing.Size(16, 13)
         Me.lblFraTid.TabIndex = 64
@@ -243,7 +244,7 @@ Partial Class Leieavtaler
         'lblTilTid
         '
         Me.lblTilTid.AutoSize = True
-        Me.lblTilTid.Location = New System.Drawing.Point(140, 212)
+        Me.lblTilTid.Location = New System.Drawing.Point(143, 226)
         Me.lblTilTid.Name = "lblTilTid"
         Me.lblTilTid.Size = New System.Drawing.Size(16, 13)
         Me.lblTilTid.TabIndex = 65
@@ -283,11 +284,21 @@ Partial Class Leieavtaler
         Me.lblUtstyr.TabIndex = 68
         Me.lblUtstyr.Text = "Utstyr"
         '
+        'btnTømSkjema
+        '
+        Me.btnTømSkjema.Location = New System.Drawing.Point(221, 294)
+        Me.btnTømSkjema.Name = "btnTømSkjema"
+        Me.btnTømSkjema.Size = New System.Drawing.Size(126, 23)
+        Me.btnTømSkjema.TabIndex = 73
+        Me.btnTømSkjema.Text = "Tøm skjema"
+        Me.btnTømSkjema.UseVisualStyleBackColor = True
+        '
         'Leieavtaler
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(984, 611)
+        Me.Controls.Add(Me.btnTømSkjema)
         Me.Controls.Add(Me.lblUtstyr)
         Me.Controls.Add(Me.lblKunde)
         Me.Controls.Add(Me.lstKunde)
@@ -347,4 +358,5 @@ Partial Class Leieavtaler
     Friend WithEvents lblKunde As Label
     Friend WithEvents lstUtstyr As ListBox
     Friend WithEvents lblUtstyr As Label
+    Friend WithEvents btnTømSkjema As Button
 End Class
