@@ -142,6 +142,12 @@
     <Compile Include="sendMail.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Statistikk.Designer.vb">
+      <DependentUpon>Statistikk.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Statistikk.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Sykkel.vb" />
     <Compile Include="Utstyr.vb" />
   </ItemGroup>

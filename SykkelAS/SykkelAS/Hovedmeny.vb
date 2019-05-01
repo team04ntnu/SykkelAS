@@ -28,4 +28,9 @@
         Leieavtaler.Show()
         Me.Hide()
     End Sub
+
+    Private Sub btnSeStatistikk_Click(sender As Object, e As EventArgs) Handles btnSeStatistikk.Click
+        Me.Hide()
+        Statistikk.Show()
+    End Sub
 End Class

@@ -28,6 +28,7 @@ Partial Class Hovedmeny
         Me.btnSykkel = New System.Windows.Forms.Button()
         Me.btnUtstyr = New System.Windows.Forms.Button()
         Me.btnLeieavtaler = New System.Windows.Forms.Button()
+        Me.btnSeStatistikk = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'lblInnloggetAvdeling
@@ -85,11 +86,21 @@ Partial Class Hovedmeny
         Me.btnLeieavtaler.Text = "Leieavtaler"
         Me.btnLeieavtaler.UseVisualStyleBackColor = True
         '
+        'btnSeStatistikk
+        '
+        Me.btnSeStatistikk.Location = New System.Drawing.Point(281, 40)
+        Me.btnSeStatistikk.Name = "btnSeStatistikk"
+        Me.btnSeStatistikk.Size = New System.Drawing.Size(200, 23)
+        Me.btnSeStatistikk.TabIndex = 6
+        Me.btnSeStatistikk.Text = "Se Statistikk"
+        Me.btnSeStatistikk.UseVisualStyleBackColor = True
+        '
         'Hovedmeny
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(984, 461)
+        Me.Controls.Add(Me.btnSeStatistikk)
         Me.Controls.Add(Me.btnLeieavtaler)
         Me.Controls.Add(Me.btnUtstyr)
         Me.Controls.Add(Me.btnSykkel)
@@ -109,4 +120,5 @@ Partial Class Hovedmeny
     Friend WithEvents btnSykkel As Button
     Friend WithEvents btnUtstyr As Button
     Friend WithEvents btnLeieavtaler As Button
+    Friend WithEvents btnSeStatistikk As Button
 End Class
