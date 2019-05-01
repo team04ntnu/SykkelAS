@@ -37,13 +37,17 @@ Partial Class Leieavtaler
         Me.lblVelgSykkel = New System.Windows.Forms.Label()
         Me.lblVelgUtstyr = New System.Windows.Forms.Label()
         Me.cmbKunde = New System.Windows.Forms.ComboBox()
-        Me.lstLeieavtale = New System.Windows.Forms.ListBox()
-        Me.lblLeieavtale = New System.Windows.Forms.Label()
+        Me.lstSykkel = New System.Windows.Forms.ListBox()
+        Me.lblSykkel = New System.Windows.Forms.Label()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.dtpTilTid = New System.Windows.Forms.DateTimePicker()
         Me.dtpFraTid = New System.Windows.Forms.DateTimePicker()
         Me.lblFraTid = New System.Windows.Forms.Label()
         Me.lblTilTid = New System.Windows.Forms.Label()
+        Me.lstKunde = New System.Windows.Forms.ListBox()
+        Me.lblKunde = New System.Windows.Forms.Label()
+        Me.lstUtstyr = New System.Windows.Forms.ListBox()
+        Me.lblUtstyr = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'btnTilbake
@@ -129,7 +133,7 @@ Partial Class Leieavtaler
         'cmbSykkel
         '
         Me.cmbSykkel.FormattingEnabled = True
-        Me.cmbSykkel.Location = New System.Drawing.Point(649, 67)
+        Me.cmbSykkel.Location = New System.Drawing.Point(649, 76)
         Me.cmbSykkel.Name = "cmbSykkel"
         Me.cmbSykkel.Size = New System.Drawing.Size(323, 21)
         Me.cmbSykkel.TabIndex = 54
@@ -137,7 +141,7 @@ Partial Class Leieavtaler
         'cmbUtstyr
         '
         Me.cmbUtstyr.FormattingEnabled = True
-        Me.cmbUtstyr.Location = New System.Drawing.Point(649, 107)
+        Me.cmbUtstyr.Location = New System.Drawing.Point(649, 193)
         Me.cmbUtstyr.Name = "cmbUtstyr"
         Me.cmbUtstyr.Size = New System.Drawing.Size(323, 21)
         Me.cmbUtstyr.TabIndex = 55
@@ -154,7 +158,7 @@ Partial Class Leieavtaler
         'lblVelgSykkel
         '
         Me.lblVelgSykkel.AutoSize = True
-        Me.lblVelgSykkel.Location = New System.Drawing.Point(647, 51)
+        Me.lblVelgSykkel.Location = New System.Drawing.Point(647, 60)
         Me.lblVelgSykkel.Name = "lblVelgSykkel"
         Me.lblVelgSykkel.Size = New System.Drawing.Size(61, 13)
         Me.lblVelgSykkel.TabIndex = 57
@@ -163,7 +167,7 @@ Partial Class Leieavtaler
         'lblVelgUtstyr
         '
         Me.lblVelgUtstyr.AutoSize = True
-        Me.lblVelgUtstyr.Location = New System.Drawing.Point(647, 92)
+        Me.lblVelgUtstyr.Location = New System.Drawing.Point(647, 177)
         Me.lblVelgUtstyr.Name = "lblVelgUtstyr"
         Me.lblVelgUtstyr.Size = New System.Drawing.Size(56, 13)
         Me.lblVelgUtstyr.TabIndex = 58
@@ -178,22 +182,22 @@ Partial Class Leieavtaler
         Me.cmbKunde.Size = New System.Drawing.Size(322, 21)
         Me.cmbKunde.TabIndex = 60
         '
-        'lstLeieavtale
+        'lstSykkel
         '
-        Me.lstLeieavtale.FormattingEnabled = True
-        Me.lstLeieavtale.Location = New System.Drawing.Point(218, 27)
-        Me.lstLeieavtale.Name = "lstLeieavtale"
-        Me.lstLeieavtale.Size = New System.Drawing.Size(423, 199)
-        Me.lstLeieavtale.TabIndex = 61
+        Me.lstSykkel.FormattingEnabled = True
+        Me.lstSykkel.Location = New System.Drawing.Point(221, 76)
+        Me.lstSykkel.Name = "lstSykkel"
+        Me.lstSykkel.Size = New System.Drawing.Size(423, 95)
+        Me.lstSykkel.TabIndex = 61
         '
-        'lblLeieavtale
+        'lblSykkel
         '
-        Me.lblLeieavtale.AutoSize = True
-        Me.lblLeieavtale.Location = New System.Drawing.Point(215, 9)
-        Me.lblLeieavtale.Name = "lblLeieavtale"
-        Me.lblLeieavtale.Size = New System.Drawing.Size(56, 13)
-        Me.lblLeieavtale.TabIndex = 62
-        Me.lblLeieavtale.Text = "Leieavtale"
+        Me.lblSykkel.AutoSize = True
+        Me.lblSykkel.Location = New System.Drawing.Point(219, 60)
+        Me.lblSykkel.Name = "lblSykkel"
+        Me.lblSykkel.Size = New System.Drawing.Size(39, 13)
+        Me.lblSykkel.TabIndex = 62
+        Me.lblSykkel.Text = "Sykkel"
         '
         'Button1
         '
@@ -245,16 +249,54 @@ Partial Class Leieavtaler
         Me.lblTilTid.TabIndex = 65
         Me.lblTilTid.Text = "Kl"
         '
+        'lstKunde
+        '
+        Me.lstKunde.FormattingEnabled = True
+        Me.lstKunde.Location = New System.Drawing.Point(221, 27)
+        Me.lstKunde.Name = "lstKunde"
+        Me.lstKunde.Size = New System.Drawing.Size(423, 30)
+        Me.lstKunde.TabIndex = 66
+        '
+        'lblKunde
+        '
+        Me.lblKunde.AutoSize = True
+        Me.lblKunde.Location = New System.Drawing.Point(219, 9)
+        Me.lblKunde.Name = "lblKunde"
+        Me.lblKunde.Size = New System.Drawing.Size(38, 13)
+        Me.lblKunde.TabIndex = 67
+        Me.lblKunde.Text = "Kunde"
+        '
+        'lstUtstyr
+        '
+        Me.lstUtstyr.FormattingEnabled = True
+        Me.lstUtstyr.Location = New System.Drawing.Point(221, 193)
+        Me.lstUtstyr.Name = "lstUtstyr"
+        Me.lstUtstyr.Size = New System.Drawing.Size(423, 95)
+        Me.lstUtstyr.TabIndex = 61
+        '
+        'lblUtstyr
+        '
+        Me.lblUtstyr.AutoSize = True
+        Me.lblUtstyr.Location = New System.Drawing.Point(218, 177)
+        Me.lblUtstyr.Name = "lblUtstyr"
+        Me.lblUtstyr.Size = New System.Drawing.Size(34, 13)
+        Me.lblUtstyr.TabIndex = 68
+        Me.lblUtstyr.Text = "Utstyr"
+        '
         'Leieavtaler
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(984, 611)
+        Me.Controls.Add(Me.lblUtstyr)
+        Me.Controls.Add(Me.lblKunde)
+        Me.Controls.Add(Me.lstKunde)
         Me.Controls.Add(Me.lblTilTid)
         Me.Controls.Add(Me.lblFraTid)
         Me.Controls.Add(Me.Button1)
-        Me.Controls.Add(Me.lblLeieavtale)
-        Me.Controls.Add(Me.lstLeieavtale)
+        Me.Controls.Add(Me.lblSykkel)
+        Me.Controls.Add(Me.lstUtstyr)
+        Me.Controls.Add(Me.lstSykkel)
         Me.Controls.Add(Me.cmbKunde)
         Me.Controls.Add(Me.lblVelgUtstyr)
         Me.Controls.Add(Me.lblVelgSykkel)
@@ -294,11 +336,15 @@ Partial Class Leieavtaler
     Friend WithEvents lblVelgSykkel As Label
     Friend WithEvents lblVelgUtstyr As Label
     Friend WithEvents cmbKunde As ComboBox
-    Friend WithEvents lstLeieavtale As ListBox
-    Friend WithEvents lblLeieavtale As Label
+    Friend WithEvents lstSykkel As ListBox
+    Friend WithEvents lblSykkel As Label
     Friend WithEvents Button1 As Button
     Friend WithEvents dtpTilTid As DateTimePicker
     Friend WithEvents dtpFraTid As DateTimePicker
     Friend WithEvents lblFraTid As Label
     Friend WithEvents lblTilTid As Label
+    Friend WithEvents lstKunde As ListBox
+    Friend WithEvents lblKunde As Label
+    Friend WithEvents lstUtstyr As ListBox
+    Friend WithEvents lblUtstyr As Label
 End Class
