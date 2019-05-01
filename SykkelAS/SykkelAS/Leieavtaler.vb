@@ -7,7 +7,6 @@
         fraDag = dtpFraDato.Value
         fraTime = dtpFraTid.Value
         fra = fraDag.ToString("yyyy-MM-dd") & " " & fraTime.ToString("HH") & ":00:00"
-        MsgBox(fraTime)
         MsgBox(fra)
     End Sub
 

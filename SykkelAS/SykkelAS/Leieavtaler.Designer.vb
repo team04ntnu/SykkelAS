@@ -213,6 +213,7 @@ Partial Class Leieavtaler
         Me.dtpTilTid.ShowUpDown = True
         Me.dtpTilTid.Size = New System.Drawing.Size(50, 20)
         Me.dtpTilTid.TabIndex = 46
+        Me.dtpTilTid.Value = New Date(2019, 5, 1, 10, 0, 0, 0)
         '
         'dtpFraTid
         '
@@ -224,7 +225,7 @@ Partial Class Leieavtaler
         Me.dtpFraTid.ShowUpDown = True
         Me.dtpFraTid.Size = New System.Drawing.Size(50, 20)
         Me.dtpFraTid.TabIndex = 45
-        Me.dtpFraTid.Value = New Date(2019, 5, 1, 16, 0, 0, 0)
+        Me.dtpFraTid.Value = New Date(2019, 5, 1, 10, 0, 0, 0)
         '
         'lblFraTid
         '
