@@ -202,7 +202,7 @@ Partial Class AdministrereUtstyr
         '
         Me.cmbStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbStatus.FormattingEnabled = True
-        Me.cmbStatus.Items.AddRange(New Object() {"Ledig", "Utleid", "Stjålet", "Service"})
+        Me.cmbStatus.Items.AddRange(New Object() {"Tilgjengelig", "Utlevert", "Stjålet", "Service"})
         Me.cmbStatus.Location = New System.Drawing.Point(134, 210)
         Me.cmbStatus.Name = "cmbStatus"
         Me.cmbStatus.Size = New System.Drawing.Size(200, 21)

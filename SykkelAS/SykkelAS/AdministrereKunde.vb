@@ -3,7 +3,7 @@ Public Class AdministrereKunde
     Private fornavn, etternavn, adresse, telefon, epost, postnummer As String
     Private innlogget, nr As Integer
     Private maxRader, inc As Integer
-    Private kundetabell As New DataTable
+    Public kundetabell As New DataTable
     Private rad As DataRow
 
     Private Sub AdminstrereKunde_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated
@@ -22,7 +22,7 @@ Public Class AdministrereKunde
         txtSted.Text = ""
     End Sub
 
-    Private Sub hentKunde()
+    Public Sub hentKunde()
         kundetabell.Clear()
         Try
             databasetilkobling.databaseTilkobling()
@@ -174,12 +174,12 @@ Public Class AdministrereKunde
             'Andre loop går gjennom hver celle i hver enkelt rad
             'Bruker ToLower for å kunne søke uavhengig av stor/liten bokstav
             For i = 0 To kundetabell.Columns.Count - 1
-                If CStr(rad(i)).ToLower = søk.ToLower Then
+                If CStr(rad(i)).ToLower.IndexOf(søk.ToLower()) > -1 Then
                     Dim resultat = rad(0) & " " & rad(2) & ", " & rad(1)
                     lstResultat.Items.Add(resultat)
                 End If
             Next i
-        Next rad
+        Next
     End Sub
 
     Private Sub lstResultat_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lstResultat.SelectedIndexChanged

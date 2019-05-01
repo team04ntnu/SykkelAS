@@ -3,7 +3,7 @@ Public Class AdministrereUtstyr
     Private merke, type, passer_til, lokasjon, status As String
     Private innlogget, id, pris_time, pris_døgn, pris_helg, avdeling_nr As Integer
     Private maxRader, inc As Integer
-    Private utstyrtabell As New DataTable
+    Public utstyrtabell As New DataTable
     Private rad As DataRow
 
     Private Sub AdminstrereSykkel_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated
@@ -29,7 +29,7 @@ Public Class AdministrereUtstyr
         chkBarn.Checked = False
     End Sub
 
-    Private Sub hentUtstyr()
+    Public Sub hentUtstyr()
         'Henter avdelingsnummer til innlogget avdeling
         innlogget = Innlogging.innloggetAvdeling.HentAvdelingNr()
         utstyrtabell.Clear()
@@ -303,12 +303,12 @@ Public Class AdministrereUtstyr
             'Stopper på 12 for å ikke søke på avdeling_nr
             'Bruker ToLower for å kunne søke uavhengig av stor/liten bokstav
             For i = 0 To 8
-                If CStr(rad(i)).ToLower = søk.ToLower Then
+                If CStr(rad(i)).ToLower.IndexOf(søk.ToLower()) > -1 Then
                     Dim resultat = rad(0) & " " & rad(1) & " " & rad(2)
                     lstResultat.Items.Add(resultat)
                 End If
             Next i
-        Next rad
+        Next
     End Sub
 
     Private Sub lstResultat_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lstResultat.SelectedIndexChanged

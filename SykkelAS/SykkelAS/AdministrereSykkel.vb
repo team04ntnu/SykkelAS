@@ -3,7 +3,7 @@ Public Class AdministrereSykkel
     Private merke, type, ramme, hjul, gir, vekt, rammenummer, lokasjon, status As String
     Private innlogget, id, pris_time, pris_døgn, pris_helg, avdeling_nr As Integer
     Private maxRader, inc As Integer
-    Private sykkeltabell As New DataTable
+    Public sykkeltabell As New DataTable
     Private rad As DataRow
 
     Private Sub AdminstrereSykkel_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated
@@ -28,7 +28,7 @@ Public Class AdministrereSykkel
         txtAvdeling.Text = ""
     End Sub
 
-    Private Sub hentSykkel()
+    Public Sub hentSykkel()
         'Henter avdelingsnummer til innlogget avdeling
         innlogget = Innlogging.innloggetAvdeling.HentAvdelingNr()
         sykkeltabell.Clear()
@@ -218,12 +218,12 @@ Public Class AdministrereSykkel
             'Stopper på 12 for å ikke søke på avdeling_nr
             'Bruker ToLower for å kunne søke uavhengig av stor/liten bokstav
             For i = 0 To 12
-                If CStr(rad(i)).ToLower = søk.ToLower Then
+                If CStr(rad(i)).ToLower.IndexOf(søk.ToLower()) > -1 Then
                     Dim resultat = rad(0) & " " & rad(1) & " " & rad(2)
                     lstResultat.Items.Add(resultat)
                 End If
             Next i
-        Next rad
+        Next
     End Sub
 
     Private Sub lstResultat_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lstResultat.SelectedIndexChanged
