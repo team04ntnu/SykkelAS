@@ -1,26 +1,32 @@
 ﻿Public Class Leieavtaler
-    Private fraDag, fraTime, til As Date
-    Private fra As String
+    Private fraDag, fraTime, tilDag, tilTime As Date
+    Private fra, til As String
     Private kunde_nr, sykkel_id, utstyr_id
     Private SykkelKode As New List(Of String)
     Private UtstyrKode As New List(Of String)
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        'KUN FOR TESTING, SKAL FJERNES'
-        fraDag = dtpFraDato.Value
-        fraTime = dtpFraTid.Value
-        fra = fraDag.ToString("yyyy-MM-dd") & " " & fraTime.ToString("HH") & ":00:00"
-        MsgBox(fra)
-
-        For i = 0 To SykkelKode.Count - 1
-            MsgBox(SykkelKode(i))
-        Next
-    End Sub
-
     Private Sub Leieavtaler_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         AdministrereKunde.hentKunde()
         AdministrereUtstyr.hentUtstyr()
-        AdministrereSykkel.hentSykkel()
+    End Sub
+
+    Private Sub btnTid_Click(sender As Object, e As EventArgs) Handles btnTid.Click
+        fraDag = dtpFraDato.Value
+        fraTime = dtpFraTid.Value
+        fra = fraDag.ToString("yyyy-MM-dd") & " " & fraTime.ToString("HH") & ":00:00"
+        tilDag = dtpTilDato.Value
+        tilTime = dtpTilDato.Value
+        til = tilDag.ToString("yyyy-MM-dd") & " " & tilTime.ToString("HH") & ":00:00"
+        With lstTidspunkt.Items
+            .Add("Fra:")
+            .Add(fraDag.ToString("dddd dd. MMMM") & " kl. " & fraTime.ToString("HH") & ":00")
+            .Add("Til:")
+            .Add(tilDag.ToString("dddd dd. MMMM") & " kl. " & tilTime.ToString("HH") & ":00")
+        End With
+        'Henter inn tabell over ledige sykler basert på valgt dato
+        Dim spørring = ""
+
+        AdministrereSykkel.hentSykkel(spørring)
     End Sub
 
     Private Sub cmbKunde_TextChanged(sender As Object, e As EventArgs) Handles cmbKunde.TextChanged

@@ -5,6 +5,7 @@ Public Class AdministrereSykkel
     Private maxRader, inc As Integer
     Public sykkeltabell As New DataTable
     Private rad As DataRow
+    Private spørring As String = "SELECT * FROM sykkel WHERE avdeling_nr = @innlogget"
 
     Private Sub AdminstrereSykkel_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated
         'Viser innlogget avdeling
@@ -28,7 +29,7 @@ Public Class AdministrereSykkel
         txtAvdeling.Text = ""
     End Sub
 
-    Public Sub hentSykkel()
+    Public Sub hentSykkel(ByVal spørring As String)
         'Henter avdelingsnummer til innlogget avdeling
         innlogget = Innlogging.innloggetAvdeling.HentAvdelingNr()
         sykkeltabell.Clear()
@@ -36,7 +37,7 @@ Public Class AdministrereSykkel
             databasetilkobling.databaseTilkobling()
             tilkobling.Open()
             'Henter kun sykler som tilhører avdelingen
-            Dim sql As New MySqlCommand("SELECT * FROM sykkel WHERE avdeling_nr = @innlogget", tilkobling)
+            Dim sql As New MySqlCommand(spørring, tilkobling)
             sql.Parameters.AddWithValue("@innlogget", innlogget)
             Dim da As New MySqlDataAdapter
             da.SelectCommand = sql
@@ -106,7 +107,7 @@ Public Class AdministrereSykkel
     End Sub
 
     Private Sub AdministrereSykkel_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        hentSykkel()
+        hentSykkel(spørring)
         'Oppdaterer liste for å velge mulige lokasjoner
         For Each avdeling In AdministrereAvdeling.avdelingValg
             cmbLokasjon.Items.Add(avdeling)
@@ -158,7 +159,7 @@ Public Class AdministrereSykkel
         'Sletter tekstfelt etter oppdatering
         TømSkjema()
         'Henter inn ny sykkeltabell
-        hentSykkel()
+        hentSykkel(spørring)
     End Sub
 
     Private Sub btnOpprett_Click(sender As Object, e As EventArgs) Handles btnOpprett.Click
@@ -173,7 +174,7 @@ Public Class AdministrereSykkel
         'Sletter tekstfelt etter oppdatering
         TømSkjema()
         'Henter inn ny sykkeltabell
-        hentSykkel()
+        hentSykkel(spørring)
     End Sub
 
     Private Sub btnSlettSykkel_Click(sender As Object, e As EventArgs) Handles btnSlettSykkel.Click
@@ -197,7 +198,7 @@ Public Class AdministrereSykkel
             'Sletter tekstfelt etter oppdatering
             TømSkjema()
             'Henter in ny sykkeltabell
-            hentSykkel()
+            hentSykkel(spørring)
         End If
     End Sub
 
