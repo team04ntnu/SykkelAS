@@ -1,8 +1,9 @@
 ﻿Public Class Leieavtaler
     Private fraDag, fraTime, til As Date
     Private fra As String
-    Private kunde_nr, sykkel_id, utstyr_id As String
-    Private valgtSykkelType As New ArrayList()
+    Private kunde_nr, sykkel_id, utstyr_id
+    Private SykkelKode As New List(Of String)
+    Private UtstyrKode As New List(Of String)
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         'KUN FOR TESTING, SKAL FJERNES'
@@ -11,8 +12,8 @@
         fra = fraDag.ToString("yyyy-MM-dd") & " " & fraTime.ToString("HH") & ":00:00"
         MsgBox(fra)
 
-        For i = 0 To valgtSykkelType.Count - 1
-            MsgBox(valgtSykkelType(i))
+        For i = 0 To SykkelKode.Count - 1
+            MsgBox(SykkelKode(i))
         Next
     End Sub
 
@@ -50,16 +51,15 @@
 
     Private Sub cmbKunde_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbKunde.SelectedIndexChanged
         Dim rad As DataRow
-        Dim valgt As String = cmbKunde.Text
         'Henter nr til valgt kunde (tallet helt til venstre i resultatet)
-        kunde_nr = valgt.Split(" ")(0)
+        Dim valgt As String = cmbKunde.Text.Split(" ")(0)
         'Setter startindeks til -1 
         Dim valgtIndeks = -1
         'Henter ut riktig indeks i tabell
         Dim i As Integer
         For i = 0 To AdministrereKunde.kundetabell.Rows.Count - 1
             'Sjekker første kolonne i hver rad etter id til valgt kunde
-            If AdministrereKunde.kundetabell.Rows(i).Item(0) = kunde_nr Then
+            If AdministrereKunde.kundetabell.Rows(i).Item(0) = valgt Then
                 valgtIndeks = i
                 Exit For
             End If
@@ -101,16 +101,15 @@
 
     Private Sub cmbSykkel_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbSykkel.SelectedIndexChanged
         Dim rad As DataRow
-        Dim valgt As String = cmbSykkel.Text
         'Henter nr til valgt sykkel (tallet helt til venstre i resultatet)
-        sykkel_id = valgt.Split(" ")(0)
+        Dim valgt As String = cmbSykkel.Text.Split(" ")(0)
         'Setter startindeks til -1 
         Dim valgtIndeks = -1
         'Henter ut riktig indeks i tabell
         Dim i As Integer
         For i = 0 To AdministrereSykkel.sykkeltabell.Rows.Count - 1
             'Sjekker første kolonne i hver rad etter id til valgt sykkel
-            If AdministrereSykkel.sykkeltabell.Rows(i).Item(0) = sykkel_id Then
+            If AdministrereSykkel.sykkeltabell.Rows(i).Item(0) = valgt Then
                 valgtIndeks = i
                 Exit For
             End If
@@ -122,15 +121,15 @@
             lstSykkel.Items.Add(valgtSykkel)
             'Legger til koder i arraylist for valgte sykler
             If rad(2) = "Terreng" Then
-                valgtSykkelType.Add("T")
+                SykkelKode.Add("T")
             ElseIf rad(2) = "Downhill" Then
-                valgtSykkelType.Add("D")
+                SykkelKode.Add("D")
             ElseIf rad(2) = "Racer" Then
-                valgtSykkelType.Add("R")
+                SykkelKode.Add("R")
             ElseIf rad(2) = "Tandem" Then
-                valgtSykkelType.Add("M")
+                SykkelKode.Add("M")
             ElseIf rad(2) = "Barn" Then
-                valgtSykkelType.Add("B")
+                SykkelKode.Add("B")
             End If
         Else
             MsgBox("Du kan ikke legge til samme sykkel på nytt")
@@ -165,16 +164,15 @@
 
     Private Sub cmbUtstyr_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbUtstyr.SelectedIndexChanged
         Dim rad As DataRow
-        Dim valgt As String = cmbUtstyr.Text
         'Henter nr til valgt utstyr (tallet helt til venstre i resultatet)
-        utstyr_id = valgt.Split(" ")(0)
+        Dim valgt As String = cmbUtstyr.Text.Split(" ")(0)
         'Setter startindeks til -1 
         Dim valgtIndeks = -1
         'Henter ut riktig indeks i tabell
         Dim i As Integer
         For i = 0 To AdministrereUtstyr.utstyrtabell.Rows.Count - 1
             'Sjekker første kolonne i hver rad etter id til valgt sykkel
-            If AdministrereUtstyr.utstyrtabell.Rows(i).Item(0) = utstyr_id Then
+            If AdministrereUtstyr.utstyrtabell.Rows(i).Item(0) = valgt Then
                 valgtIndeks = i
                 Exit For
             End If
@@ -182,34 +180,35 @@
         rad = AdministrereUtstyr.utstyrtabell.Rows(valgtIndeks)
         Dim valgtUtstyr = rad(0) & " " & rad(1) & " " & rad(2)
 
-        'Sjekker om et er valgt sykkel
+        'Sjekker om det er lagt til sykkel
         If lstSykkel.Items.Count <> 0 Then
-            'Sjekker om utstyret passer til valgt sykkel
-            Dim kode = rad(6)
-            Dim koder() As Char = kode.ToCharArray
-            For i = 0 To valgtSykkelType.Count - 1
-                If koder.Contains(valgtSykkelType(i)) Then
-                    'Sjekker om samme utstyr allerede er lagt til
-                    If lstUtstyr.FindString(rad(0)) = -1 Then
-                        lstUtstyr.Items.Add(valgtUtstyr)
-                    Else
-                        MsgBox("Du kan ikke legge til samme utstyr på nytt")
-                    End If
+            'Sjekker om utstyr allerede er lagt til
+            If lstUtstyr.FindString(rad(0)) = -1 Then
+                'Sjekker om utstyr passer til valgt sykkel
+                Dim koder() As Char = rad(6).ToCharArray
+                For Each kode In koder
+                    UtstyrKode.Add(kode)
+                Next
+                'Sammenligner lister og sjekker om koder finnes i begge
+                Dim treff = UtstyrKode.Intersect(SykkelKode).ToArray()
+                If treff.Length > 0 Then
+                    lstUtstyr.Items.Add(valgtUtstyr)
                 Else
-                    MsgBox("Utstyret passer ikke til valgt sykkel")
+                    MsgBox("Utstyr passer ikke til valgt sykkel")
                 End If
-            Next i
+            Else
+                MsgBox("Du kan ikke legge til samme utstyr på nytt")
+            End If
         Else
-            MsgBox("Du må velge sykkel før du kan velge utstyr")
+            MsgBox("Du må legge til minst én sykkel før du kan velge utstyr")
         End If
-
     End Sub
 
     Private Sub btnTømSkjema_Click(sender As Object, e As EventArgs) Handles btnTømSkjema.Click
         lstKunde.Items.Clear()
         lstSykkel.Items.Clear()
         lstUtstyr.Items.Clear()
-        valgtSykkelType.Clear()
+        SykkelKode.Clear()
     End Sub
 
     Private Sub btnTilbake_Click(sender As Object, e As EventArgs) Handles btnTilbake.Click
