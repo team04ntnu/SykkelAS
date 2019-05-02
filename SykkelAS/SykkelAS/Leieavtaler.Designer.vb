@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class Leieavtaler
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class Leieavtaler
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.btnTilbake = New System.Windows.Forms.Button()
         Me.dtpFraDato = New System.Windows.Forms.DateTimePicker()
@@ -39,7 +39,6 @@ Partial Class Leieavtaler
         Me.cmbKunde = New System.Windows.Forms.ComboBox()
         Me.lstSykkel = New System.Windows.Forms.ListBox()
         Me.lblSykkel = New System.Windows.Forms.Label()
-        Me.Button1 = New System.Windows.Forms.Button()
         Me.dtpTilTid = New System.Windows.Forms.DateTimePicker()
         Me.dtpFraTid = New System.Windows.Forms.DateTimePicker()
         Me.lblFraTid = New System.Windows.Forms.Label()
@@ -182,6 +181,7 @@ Partial Class Leieavtaler
         'cmbKunde
         '
         Me.cmbKunde.FormattingEnabled = True
+        Me.cmbKunde.ImeMode = System.Windows.Forms.ImeMode.NoControl
         Me.cmbKunde.Location = New System.Drawing.Point(12, 219)
         Me.cmbKunde.Name = "cmbKunde"
         Me.cmbKunde.RightToLeft = System.Windows.Forms.RightToLeft.No
@@ -204,15 +204,6 @@ Partial Class Leieavtaler
         Me.lblSykkel.Size = New System.Drawing.Size(39, 13)
         Me.lblSykkel.TabIndex = 62
         Me.lblSykkel.Text = "Sykkel"
-        '
-        'Button1
-        '
-        Me.Button1.Location = New System.Drawing.Point(117, 482)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(134, 23)
-        Me.Button1.TabIndex = 63
-        Me.Button1.Text = "Button1"
-        Me.Button1.UseVisualStyleBackColor = True
         '
         'dtpTilTid
         '
@@ -328,6 +319,7 @@ Partial Class Leieavtaler
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.AutoValidate = System.Windows.Forms.AutoValidate.Disable
         Me.ClientSize = New System.Drawing.Size(984, 611)
         Me.Controls.Add(Me.lblTidspunkt)
         Me.Controls.Add(Me.btnTid)
@@ -338,7 +330,6 @@ Partial Class Leieavtaler
         Me.Controls.Add(Me.lstKunde)
         Me.Controls.Add(Me.lblTilTid)
         Me.Controls.Add(Me.lblFraTid)
-        Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.lblSykkel)
         Me.Controls.Add(Me.lstUtstyr)
         Me.Controls.Add(Me.lstSykkel)
@@ -383,7 +374,6 @@ Partial Class Leieavtaler
     Friend WithEvents cmbKunde As ComboBox
     Friend WithEvents lstSykkel As ListBox
     Friend WithEvents lblSykkel As Label
-    Friend WithEvents Button1 As Button
     Friend WithEvents dtpTilTid As DateTimePicker
     Friend WithEvents dtpFraTid As DateTimePicker
     Friend WithEvents lblFraTid As Label

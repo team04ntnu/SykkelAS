@@ -1,6 +1,7 @@
-﻿Public Class Leieavtaler
+﻿Imports MySql.Data.MySqlClient
+Public Class Leieavtaler
     Private fraDag, fraTime, tilDag, tilTime As Date
-    Private fra, til As String
+    Private innlogget, fra, til As String
     Private kunde_nr, sykkel_id, utstyr_id
     Private SykkelKode As New List(Of String)
     Private UtstyrKode As New List(Of String)
@@ -24,14 +25,15 @@
             .Add(tilDag.ToString("dddd dd. MMMM") & " kl. " & tilTime.ToString("HH") & ":00")
         End With
         'Henter inn tabell over ledige sykler basert på valgt dato
-        Dim spørring = ""
-
+        Dim spørring = "SELECT * FROM sykkel WHERE avdeling_nr = @innlogget AND sykkel_id NOT IN
+                       (SELECT sykkel_id FROM utleid_sykkel WHERE leieavtale_nr = 
+                       (SELECT leieavtale_nr FROM leieavtale WHERE '" &
+                       fra & "' < tidspunkt_til AND '" &
+                       til & "' > tidspunkt_fra))"
         AdministrereSykkel.hentSykkel(spørring)
     End Sub
 
     Private Sub cmbKunde_TextChanged(sender As Object, e As EventArgs) Handles cmbKunde.TextChanged
-        'Sletter tidligere søkeresultat
-        cmbKunde.Items.Clear()
         'Søker gjennom tabell
         Dim søk As String
         søk = cmbKunde.Text
@@ -80,8 +82,6 @@
     End Sub
 
     Private Sub cmbSykkel_TextChanged(sender As Object, e As EventArgs) Handles cmbSykkel.TextChanged
-        'Sletter tidligere søkeresultat
-        cmbSykkel.Items.Clear()
         'Søker gjennom tabell
         Dim søk As String
         søk = cmbSykkel.Text
@@ -143,8 +143,6 @@
     End Sub
 
     Private Sub cmbUtstyr_TextChanged(sender As Object, e As EventArgs) Handles cmbUtstyr.TextChanged
-        'Sletter tidligere søkeresultat
-        cmbUtstyr.Items.Clear()
         'Søker gjennom tabell
         Dim søk As String
         søk = cmbUtstyr.Text
@@ -211,6 +209,7 @@
     End Sub
 
     Private Sub btnTømSkjema_Click(sender As Object, e As EventArgs) Handles btnTømSkjema.Click
+        lstTidspunkt.Items.Clear()
         lstKunde.Items.Clear()
         lstSykkel.Items.Clear()
         lstUtstyr.Items.Clear()
