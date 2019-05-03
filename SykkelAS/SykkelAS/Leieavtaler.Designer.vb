@@ -65,8 +65,9 @@ Partial Class Leieavtaler
         Me.txtValgtRabatt = New System.Windows.Forms.TextBox()
         Me.lblInnloggetAvdeling = New System.Windows.Forms.Label()
         Me.txtLeieavtaleNr = New System.Windows.Forms.TextBox()
-        Me.ListBox1 = New System.Windows.Forms.ListBox()
+        Me.lstLeieavtaler = New System.Windows.Forms.ListBox()
         Me.btnHent = New System.Windows.Forms.Button()
+        Me.btnAvbestill = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'btnTilbake
@@ -80,6 +81,7 @@ Partial Class Leieavtaler
         '
         'dtpFraDato
         '
+        Me.dtpFraDato.CustomFormat = ""
         Me.dtpFraDato.Location = New System.Drawing.Point(77, 57)
         Me.dtpFraDato.Name = "dtpFraDato"
         Me.dtpFraDato.Size = New System.Drawing.Size(189, 20)
@@ -451,13 +453,13 @@ Partial Class Leieavtaler
         Me.txtLeieavtaleNr.Size = New System.Drawing.Size(100, 20)
         Me.txtLeieavtaleNr.TabIndex = 94
         '
-        'ListBox1
+        'lstLeieavtaler
         '
-        Me.ListBox1.FormattingEnabled = True
-        Me.ListBox1.Location = New System.Drawing.Point(777, 57)
-        Me.ListBox1.Name = "ListBox1"
-        Me.ListBox1.Size = New System.Drawing.Size(350, 355)
-        Me.ListBox1.TabIndex = 95
+        Me.lstLeieavtaler.FormattingEnabled = True
+        Me.lstLeieavtaler.Location = New System.Drawing.Point(777, 57)
+        Me.lstLeieavtaler.Name = "lstLeieavtaler"
+        Me.lstLeieavtaler.Size = New System.Drawing.Size(350, 355)
+        Me.lstLeieavtaler.TabIndex = 95
         '
         'btnHent
         '
@@ -468,14 +470,24 @@ Partial Class Leieavtaler
         Me.btnHent.Text = "Hent aktive leieavtaler"
         Me.btnHent.UseVisualStyleBackColor = True
         '
+        'btnAvbestill
+        '
+        Me.btnAvbestill.Location = New System.Drawing.Point(394, 541)
+        Me.btnAvbestill.Name = "btnAvbestill"
+        Me.btnAvbestill.Size = New System.Drawing.Size(350, 23)
+        Me.btnAvbestill.TabIndex = 97
+        Me.btnAvbestill.Text = "Avbestill"
+        Me.btnAvbestill.UseVisualStyleBackColor = True
+        '
         'Leieavtaler
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoValidate = System.Windows.Forms.AutoValidate.Disable
         Me.ClientSize = New System.Drawing.Size(1170, 611)
+        Me.Controls.Add(Me.btnAvbestill)
         Me.Controls.Add(Me.btnHent)
-        Me.Controls.Add(Me.ListBox1)
+        Me.Controls.Add(Me.lstLeieavtaler)
         Me.Controls.Add(Me.txtLeieavtaleNr)
         Me.Controls.Add(Me.lblInnloggetAvdeling)
         Me.Controls.Add(Me.txtValgtRabatt)
@@ -569,6 +581,7 @@ Partial Class Leieavtaler
     Friend WithEvents txtValgtRabatt As TextBox
     Friend WithEvents lblInnloggetAvdeling As Label
     Friend WithEvents txtLeieavtaleNr As TextBox
-    Friend WithEvents ListBox1 As ListBox
+    Friend WithEvents lstLeieavtaler As ListBox
     Friend WithEvents btnHent As Button
+    Friend WithEvents btnAvbestill As Button
 End Class
