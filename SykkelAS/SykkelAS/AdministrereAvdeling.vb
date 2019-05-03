@@ -139,5 +139,4 @@ Public Class AdministrereAvdeling
         Innlogging.Show()
         Me.Hide()
     End Sub
-
 End Class

@@ -4,9 +4,17 @@ Public Class Leieavtaler
     Private kunde_nr, sykkel_id, utstyr_id, innlogget, søk, valgt, fra, til, prisgrunnlag As String
     Private dager, timer, rabatt, prisFørRabatt, prisEtterRabatt As Integer
     Private valgtIndeks As Integer = -1
+    Private valgtKundeNr As Integer
+    Private valgtSykkelID As New List(Of Integer)
+    Private valgtUtstyrID As New List(Of Integer)
     Private SykkelKode As New List(Of String)
     Private UtstyrKode As New List(Of String)
     Private rad As DataRow
+
+    Private Sub Leieavtaler_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated
+        'Viser innlogget avdeling
+        lblInnloggetAvdeling.Text = "Innlogget på avdeling " & Innlogging.innloggetAvdeling.HentAvdelingNavn
+    End Sub
 
     Private Sub Leieavtaler_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'Legger til avdelingsvalg for innlevering og utlevering
@@ -14,6 +22,21 @@ Public Class Leieavtaler
             cmbUtlevering.Items.Add(avdeling)
             cmbInnlevering.Items.Add(avdeling)
         Next
+        innlogget = Innlogging.innloggetAvdeling.HentAvdelingNr
+    End Sub
+
+    Private Sub TømSkjema()
+        lstTidspunkt.Items.Clear()
+        lstKunde.Items.Clear()
+        lstSykkel.Items.Clear()
+        lstUtstyr.Items.Clear()
+        SykkelKode.Clear()
+        txtRabatt.Text = ""
+        txtPrisFør.Text = ""
+        txtPrisEtter.Text = ""
+        prisFørRabatt = 0
+        valgtSykkelID.Clear()
+        valgtUtstyrID.Clear()
     End Sub
 
     Private Sub OppdaterPris()
@@ -97,14 +120,14 @@ Public Class Leieavtaler
             AdministrereKunde.hentKunde()
             'Henter inn tabell over ledige sykler basert på valgt dato
             spørring = "SELECT * FROM sykkel WHERE avdeling_nr = @innlogget AND sykkel_id NOT IN
-                       (SELECT sykkel_id FROM utleid_sykkel WHERE leieavtale_nr = 
+                       (SELECT sykkel_id FROM utleid_sykkel WHERE leieavtale_nr IN 
                        (SELECT leieavtale_nr FROM leieavtale WHERE '" &
                            fra & "' < tidspunkt_til AND '" &
                            til & "' > tidspunkt_fra))"
             AdministrereSykkel.hentSykkel(spørring)
             'Henter inn tabell over ledig utstyr basert på valgt dato
             spørring = "SELECT * FROM utstyr WHERE avdeling_nr = @innlogget AND utstyr_id NOT IN
-                       (SELECT utstyr_id FROM utleid_utstyr WHERE leieavtale_nr = 
+                       (SELECT utstyr_id FROM utleid_utstyr WHERE leieavtale_nr IN 
                        (SELECT leieavtale_nr FROM leieavtale WHERE '" &
                            fra & "' < tidspunkt_til AND '" &
                            til & "' > tidspunkt_fra))"
@@ -160,6 +183,7 @@ Public Class Leieavtaler
             End If
         Next
         rad = AdministrereKunde.kundetabell.Rows(valgtIndeks)
+        valgtKundeNr = rad(0)
         Dim valgtKunde = rad(0) & " " & rad(2) & ", " & rad(1) & " (Tlf: " & rad(4) & ")"
         If lstKunde.Items.Count = 0 Then
             lstKunde.Items.Add(valgtKunde)
@@ -202,6 +226,7 @@ Public Class Leieavtaler
             End If
         Next
         rad = AdministrereSykkel.sykkeltabell.Rows(valgtIndeks)
+        valgtSykkelID.Add(rad(0))
         Dim valgtSykkel = rad(0) & " " & rad(1) & " " & rad(2)
         'Sjekker om samme sykkel allerede er lagt til
         If lstSykkel.FindString(rad(0)) = -1 Then
@@ -259,8 +284,8 @@ Public Class Leieavtaler
             End If
         Next
         rad = AdministrereUtstyr.utstyrtabell.Rows(valgtIndeks)
+        valgtUtstyrID.Add(rad(0))
         Dim valgtUtstyr = rad(0) & " " & rad(1) & " " & rad(2)
-
         'Sjekker om det er lagt til sykkel
         If lstSykkel.Items.Count <> 0 Then
             'Sjekker om utstyr allerede er lagt til
@@ -296,23 +321,71 @@ Public Class Leieavtaler
         cmbInnlevering.Text <> "" Then
             utfylt = True
         End If
+
+        'Registrerer leieavtale i database dersom validering er ok
         If utfylt = True Then
-            MsgBox("ok")
+
+            Try
+                databasetilkobling.databaseTilkobling()
+                tilkobling.Open()
+
+                'Oppretter leieavtalen
+                Dim sql As New MySqlCommand("INSERT INTO leieavtale (lokasjon_utlevering, lokasjon_innlevering, pris, 
+                                            tidspunkt_fra, tidspunkt_til, status, kunde_nr, avdeling_nr) 
+                                            VALUES (@lokasjon_utlevering, @lokasjon_innlevering, @pris, 
+                                            @tidspunkt_fra, @tidspunkt_til, @status, @kunde_nr, @avdeling_nr)", tilkobling)
+                With sql.Parameters
+                    .AddWithValue("@lokasjon_utlevering", cmbUtlevering.Text)
+                    .AddWithValue("@lokasjon_innlevering", cmbInnlevering.Text)
+                    .AddWithValue("@pris", prisEtterRabatt)
+                    .AddWithValue("@tidspunkt_fra", fra)
+                    .AddWithValue("@tidspunkt_til", til)
+                    .AddWithValue("@status", "Aktiv")
+                    .AddWithValue("@kunde_nr", valgtKundeNr)
+                    .AddWithValue("@avdeling_nr", innlogget)
+                End With
+                sql.ExecuteNonQuery()
+
+                'Henter leieavtale_nr på sist opprettede leieavtale
+                Dim sql2 As New MySqlCommand("SELECT MAX(leieavtale_nr) FROM leieavtale", tilkobling)
+                Dim leieavtale_nr As Integer = sql2.ExecuteScalar()
+
+                'Kobler valgte sykler til leieavtalen
+                For i = 0 To valgtSykkelID.Count - 1
+                    Dim sql3 As New MySqlCommand("INSERT INTO utleid_sykkel VALUES (@leieavtale_nr, @sykkel_id)", tilkobling)
+                    With sql3.Parameters
+                        .AddWithValue("@leieavtale_nr", leieavtale_nr)
+                        .AddWithValue("@sykkel_id", valgtSykkelID(i))
+                    End With
+                    sql3.ExecuteNonQuery()
+                Next
+
+                'Kobler valgt utstyr til leieavtalen
+                For i = 0 To valgtUtstyrID.Count - 1
+                    Dim sql4 As New MySqlCommand("INSERT INTO utleid_utstyr VALUES (@leieavtale_nr, @utstyr_id)", tilkobling)
+                    With sql4.Parameters
+                        .AddWithValue("@leieavtale_nr", leieavtale_nr)
+                        .AddWithValue("@utstyr_id", valgtSykkelID(i))
+                    End With
+                    sql4.ExecuteNonQuery()
+                Next
+
+                MsgBox("Avtale registrert")
+                tilkobling.Close()
+                TømSkjema()
+            Catch feilmelding As MySqlException
+                MsgBox(feilmelding.Message)
+            Finally
+                tilkobling.Dispose()
+            End Try
+
         Else
             MsgBox("Skjema er ikke korrekt utfylt")
         End If
     End Sub
 
     Private Sub btnTømSkjema_Click(sender As Object, e As EventArgs) Handles btnTømSkjema.Click
-        lstTidspunkt.Items.Clear()
-        lstKunde.Items.Clear()
-        lstSykkel.Items.Clear()
-        lstUtstyr.Items.Clear()
-        SykkelKode.Clear()
-        txtRabatt.Text = ""
-        txtPrisFør.Text = ""
-        txtPrisEtter.Text = ""
-        prisFørRabatt = 0
+        TømSkjema()
     End Sub
 
     Private Sub btnTilbake_Click(sender As Object, e As EventArgs) Handles btnTilbake.Click
