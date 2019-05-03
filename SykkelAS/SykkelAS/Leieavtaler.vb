@@ -93,7 +93,7 @@ Public Class Leieavtaler
     End Sub
 
     Private Sub btnTid_Click(sender As Object, e As EventArgs) Handles btnTid.Click
-        lstTidspunkt.Items.Clear()
+        'Henter ut tidspunkt og konverterer til sql-format
         fraDag = dtpFraDato.Value
         fraTime = dtpFraTime.Value
         fra = fraDag.ToString("yyyy-MM-dd") & " " & fraTime.ToString("HH") & ":00:00"
@@ -113,6 +113,13 @@ Public Class Leieavtaler
 
         'Velger tidspunkt hvis valideringen er ok
         If valider = True Then
+            'Fjerner tidligere tidspunkt
+            lstTidspunkt.Items.Clear()
+            'Fjerner sykler og utstyr hvis tidspunkt endres
+            valgtSykkelID.Clear()
+            lstSykkel.Items.Clear()
+            valgtUtstyrID.Clear()
+            lstUtstyr.Items.Clear()
             With lstTidspunkt.Items
                 .Add("Fra:")
                 .Add(fraDag.ToString("dddd dd. MMMM") & " kl. " & fraTime.ToString("HH") & ":00")
@@ -395,7 +402,7 @@ Public Class Leieavtaler
             databasetilkobling.databaseTilkobling()
             tilkobling.Open()
             Dim sql As New MySqlCommand("SELECT l.*, fornavn, etternavn, telefon FROM leieavtale l INNER JOIN kunde k
-                                        ON l.kunde_nr = k.kunde_nr", tilkobling)
+                                        ON l.kunde_nr = k.kunde_nr WHERE status = 'Aktiv'", tilkobling)
             sql.Parameters.AddWithValue("@innlogget", innlogget)
             Dim da As New MySqlDataAdapter
             da.SelectCommand = sql
