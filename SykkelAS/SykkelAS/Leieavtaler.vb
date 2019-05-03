@@ -1,10 +1,12 @@
 ﻿Imports MySql.Data.MySqlClient
 Public Class Leieavtaler
     Private fraDag, fraTime, tilDag, tilTime As Date
-    Private innlogget, fra, til As String
-    Private kunde_nr, sykkel_id, utstyr_id
+    Private innlogget, søk, valgt, fra, til As String
+    Private kunde_nr, sykkel_id, utstyr_id As String
+    Private valgtIndeks As Integer = -1
     Private SykkelKode As New List(Of String)
     Private UtstyrKode As New List(Of String)
+    Private rad As DataRow
 
     Private Sub Leieavtaler_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         AdministrereKunde.hentKunde()
@@ -34,8 +36,9 @@ Public Class Leieavtaler
     End Sub
 
     Private Sub cmbKunde_TextChanged(sender As Object, e As EventArgs) Handles cmbKunde.TextChanged
+        'Fjerner tidligere søkeresultat
+        cmbKunde.Items.Clear()
         'Søker gjennom tabell
-        Dim søk As String
         søk = cmbKunde.Text
         'Første loop går gjennom hver rad i tabellen
         For Each rad In AdministrereKunde.kundetabell.Rows
@@ -45,33 +48,26 @@ Public Class Leieavtaler
                 If CStr(rad(i)).ToLower.IndexOf(søk.ToLower()) > -1 Then
                     Dim resultat = rad(0) & " " & rad(2) & ", " & rad(1) & " (Tlf: " & rad(4) & ")"
                     'Gjør at resultat ikke blir lagt til flere ganger
-                    Dim antall As Integer = cmbKunde.Items.Count
-                    If antall = 0 Then
-                        cmbKunde.Items.Add(resultat)
-                    ElseIf cmbKunde.Items(antall - 1).IndexOf(rad(0)) = -1 Then
+                    If Not cmbKunde.Items.Contains(resultat) Then
                         cmbKunde.Items.Add(resultat)
                     End If
                 End If
-            Next i
+            Next
         Next
         cmbKunde.SelectionStart = cmbKunde.Text.Length + 1
     End Sub
 
-    Private Sub cmbKunde_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbKunde.SelectedIndexChanged
-        Dim rad As DataRow
+    Private Sub cmbKunde_SelectionChangeCommitted(sender As Object, e As EventArgs) Handles cmbKunde.SelectionChangeCommitted
         'Henter nr til valgt kunde (tallet helt til venstre i resultatet)
-        Dim valgt As String = cmbKunde.Text.Split(" ")(0)
-        'Setter startindeks til -1 
-        Dim valgtIndeks = -1
+        valgt = cmbKunde.SelectedItem.ToString.Split(" ")(0)
         'Henter ut riktig indeks i tabell
-        Dim i As Integer
         For i = 0 To AdministrereKunde.kundetabell.Rows.Count - 1
             'Sjekker første kolonne i hver rad etter id til valgt kunde
             If AdministrereKunde.kundetabell.Rows(i).Item(0) = valgt Then
                 valgtIndeks = i
                 Exit For
             End If
-        Next i
+        Next
         rad = AdministrereKunde.kundetabell.Rows(valgtIndeks)
         Dim valgtKunde = rad(0) & " " & rad(2) & ", " & rad(1) & " (Tlf: " & rad(4) & ")"
         If lstKunde.Items.Count = 0 Then
@@ -82,8 +78,9 @@ Public Class Leieavtaler
     End Sub
 
     Private Sub cmbSykkel_TextChanged(sender As Object, e As EventArgs) Handles cmbSykkel.TextChanged
+        'Fjerner tidligere søkeresultat
+        cmbSykkel.Items.Clear()
         'Søker gjennom tabell
-        Dim søk As String
         søk = cmbSykkel.Text
         'Første loop går gjennom hver rad i tabellen
         For Each rad In AdministrereSykkel.sykkeltabell.Rows
@@ -93,33 +90,26 @@ Public Class Leieavtaler
                 If CStr(rad(i)).ToLower.IndexOf(søk.ToLower()) > -1 Then
                     Dim resultat = rad(0) & " " & rad(1) & " " & rad(2)
                     'Gjør at resultat ikke blir lagt til flere ganger
-                    Dim antall As Integer = cmbSykkel.Items.Count
-                    If antall = 0 Then
-                        cmbSykkel.Items.Add(resultat)
-                    ElseIf cmbSykkel.Items(antall - 1).IndexOf(rad(0)) = -1 Then
+                    If Not cmbSykkel.Items.Contains(resultat) Then
                         cmbSykkel.Items.Add(resultat)
                     End If
                 End If
-            Next i
+            Next
         Next
         cmbSykkel.SelectionStart = cmbSykkel.Text.Length + 1
     End Sub
 
-    Private Sub cmbSykkel_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbSykkel.SelectedIndexChanged
-        Dim rad As DataRow
+    Private Sub cmbSykkel_SelectionChangeCommitted(sender As Object, e As EventArgs) Handles cmbSykkel.SelectionChangeCommitted
         'Henter nr til valgt sykkel (tallet helt til venstre i resultatet)
-        Dim valgt As String = cmbSykkel.Text.Split(" ")(0)
-        'Setter startindeks til -1 
-        Dim valgtIndeks = -1
+        valgt = cmbSykkel.SelectedItem.ToString.Split(" ")(0)
         'Henter ut riktig indeks i tabell
-        Dim i As Integer
         For i = 0 To AdministrereSykkel.sykkeltabell.Rows.Count - 1
             'Sjekker første kolonne i hver rad etter id til valgt sykkel
             If AdministrereSykkel.sykkeltabell.Rows(i).Item(0) = valgt Then
                 valgtIndeks = i
                 Exit For
             End If
-        Next i
+        Next
         rad = AdministrereSykkel.sykkeltabell.Rows(valgtIndeks)
         Dim valgtSykkel = rad(0) & " " & rad(1) & " " & rad(2)
         'Sjekker om samme sykkel allerede er lagt til
@@ -143,6 +133,8 @@ Public Class Leieavtaler
     End Sub
 
     Private Sub cmbUtstyr_TextChanged(sender As Object, e As EventArgs) Handles cmbUtstyr.TextChanged
+        'Fjerner tidligere søkeresultat
+        cmbUtstyr.Items.Clear()
         'Søker gjennom tabell
         Dim søk As String
         søk = cmbUtstyr.Text
@@ -154,33 +146,26 @@ Public Class Leieavtaler
                 If CStr(rad(i)).ToLower.IndexOf(søk.ToLower()) > -1 Then
                     Dim resultat = rad(0) & " " & rad(1) & " " & rad(2)
                     'Gjør at resultat ikke blir lagt til flere ganger
-                    Dim antall As Integer = cmbUtstyr.Items.Count
-                    If antall = 0 Then
-                        cmbUtstyr.Items.Add(resultat)
-                    ElseIf cmbUtstyr.Items(antall - 1).IndexOf(rad(0)) = -1 Then
+                    If Not cmbUtstyr.Items.Contains(resultat) Then
                         cmbUtstyr.Items.Add(resultat)
                     End If
                 End If
-            Next i
+            Next
         Next
         cmbUtstyr.SelectionStart = cmbUtstyr.Text.Length + 1
     End Sub
 
-    Private Sub cmbUtstyr_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbUtstyr.SelectedIndexChanged
-        Dim rad As DataRow
+    Private Sub cmbUtstyr_SelectionChangeCommitted(sender As Object, e As EventArgs) Handles cmbUtstyr.SelectionChangeCommitted
         'Henter nr til valgt utstyr (tallet helt til venstre i resultatet)
-        Dim valgt As String = cmbUtstyr.Text.Split(" ")(0)
-        'Setter startindeks til -1 
-        Dim valgtIndeks = -1
+        Dim valgt = cmbUtstyr.SelectedItem.ToString.Split(" ")(0)
         'Henter ut riktig indeks i tabell
-        Dim i As Integer
         For i = 0 To AdministrereUtstyr.utstyrtabell.Rows.Count - 1
             'Sjekker første kolonne i hver rad etter id til valgt sykkel
             If AdministrereUtstyr.utstyrtabell.Rows(i).Item(0) = valgt Then
                 valgtIndeks = i
                 Exit For
             End If
-        Next i
+        Next
         rad = AdministrereUtstyr.utstyrtabell.Rows(valgtIndeks)
         Dim valgtUtstyr = rad(0) & " " & rad(1) & " " & rad(2)
 
