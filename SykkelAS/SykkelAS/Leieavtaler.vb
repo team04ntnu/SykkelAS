@@ -1,38 +1,100 @@
 ﻿Imports MySql.Data.MySqlClient
 Public Class Leieavtaler
     Private fraDag, fraTime, tilDag, tilTime As Date
-    Private innlogget, søk, valgt, fra, til As String
-    Private kunde_nr, sykkel_id, utstyr_id As String
+    Private kunde_nr, sykkel_id, utstyr_id, innlogget, søk, valgt, fra, til, prisgrunnlag As String
+    Private dager, timer, prisFørRabatt As Integer
     Private valgtIndeks As Integer = -1
     Private SykkelKode As New List(Of String)
     Private UtstyrKode As New List(Of String)
     Private rad As DataRow
 
     Private Sub Leieavtaler_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        AdministrereKunde.hentKunde()
-        AdministrereUtstyr.hentUtstyr()
+        'Legger til avdelingsvalg for innlevering og utlevering
+        For Each avdeling In AdministrereAvdeling.avdelingValg
+            cmbUtlevering.Items.Add(avdeling)
+            cmbInnlevering.Items.Add(avdeling)
+        Next
+    End Sub
+
+    Private Sub OppdaterPris()
+        'Oppdaterer pris
+        If prisgrunnlag = "helg" Then
+            prisFørRabatt += rad("pris_helg")
+        End If
+        If prisgrunnlag = "dag" Then
+            prisFørRabatt += rad("pris_dag") * dager
+        End If
+        If prisgrunnlag = "time" Then
+            'Bytter til prisgrunnlag dag hvis timepris overskrider dagpris
+            If rad("pris_time") * timer > rad("pris_dag") Then
+                prisgrunnlag = "dag"
+                lblPrisgrunnlag.Text = "Prisgrunnlag: " & prisgrunnlag
+                prisFørRabatt = rad("pris_dag")
+            Else
+                prisFørRabatt += rad("pris_time") * timer
+            End If
+        End If
+        txtPrisFør.Text = prisFørRabatt
     End Sub
 
     Private Sub btnTid_Click(sender As Object, e As EventArgs) Handles btnTid.Click
         fraDag = dtpFraDato.Value
-        fraTime = dtpFraTid.Value
+        fraTime = dtpFraTime.Value
         fra = fraDag.ToString("yyyy-MM-dd") & " " & fraTime.ToString("HH") & ":00:00"
         tilDag = dtpTilDato.Value
-        tilTime = dtpTilDato.Value
+        tilTime = dtpTilTime.Value
         til = tilDag.ToString("yyyy-MM-dd") & " " & tilTime.ToString("HH") & ":00:00"
-        With lstTidspunkt.Items
-            .Add("Fra:")
-            .Add(fraDag.ToString("dddd dd. MMMM") & " kl. " & fraTime.ToString("HH") & ":00")
-            .Add("Til:")
-            .Add(tilDag.ToString("dddd dd. MMMM") & " kl. " & tilTime.ToString("HH") & ":00")
-        End With
-        'Henter inn tabell over ledige sykler basert på valgt dato
-        Dim spørring = "SELECT * FROM sykkel WHERE avdeling_nr = @innlogget AND sykkel_id NOT IN
+        'Validerer valgt tidspunkt
+        Dim valider As Boolean = True
+        If fra = til Then
+            valider = False
+            MsgBox("Tidspunktene kan ikke være like")
+        End If
+        If fra > til Then
+            valider = False
+            MsgBox("Tidspunkt til må være etter fra")
+        End If
+
+        'Velger tidspunkt hvis valideringen er ok
+        If valider = True Then
+            With lstTidspunkt.Items
+                .Add("Fra:")
+                .Add(fraDag.ToString("dddd dd. MMMM") & " kl. " & fraTime.ToString("HH") & ":00")
+                .Add("Til:")
+                .Add(tilDag.ToString("dddd dd. MMMM") & " kl. " & tilTime.ToString("HH") & ":00")
+            End With
+            Dim spørring As String
+            'Henter kundetabell
+            AdministrereKunde.hentKunde()
+            'Henter inn tabell over ledige sykler basert på valgt dato
+            spørring = "SELECT * FROM sykkel WHERE avdeling_nr = @innlogget AND sykkel_id NOT IN
                        (SELECT sykkel_id FROM utleid_sykkel WHERE leieavtale_nr = 
                        (SELECT leieavtale_nr FROM leieavtale WHERE '" &
-                       fra & "' < tidspunkt_til AND '" &
-                       til & "' > tidspunkt_fra))"
-        AdministrereSykkel.hentSykkel(spørring)
+                           fra & "' < tidspunkt_til AND '" &
+                           til & "' > tidspunkt_fra))"
+            AdministrereSykkel.hentSykkel(spørring)
+            'Henter inn tabell over ledig utstyr basert på valgt dato
+            spørring = "SELECT * FROM utstyr WHERE avdeling_nr = @innlogget AND utstyr_id NOT IN
+                       (SELECT utstyr_id FROM utleid_utstyr WHERE leieavtale_nr = 
+                       (SELECT leieavtale_nr FROM leieavtale WHERE '" &
+                           fra & "' < tidspunkt_til AND '" &
+                           til & "' > tidspunkt_fra))"
+            AdministrereUtstyr.hentUtstyr(spørring)
+
+            'Finner prisgrunnlag ut ifra tidspunkt
+            dager = DateDiff(DateInterval.Day, fraDag, tilDag)
+            timer = DateDiff(DateInterval.Hour, fraTime, tilTime)
+            If fraDag.ToString("dddd") = "fredag" And
+                    tilDag.ToString("dddd") = "søndag" And
+                    dager = 2 Then
+                prisgrunnlag = "helg"
+            ElseIf dager = 0 Then
+                prisgrunnlag = "time"
+            Else
+                prisgrunnlag = "dag"
+            End If
+            lblPrisgrunnlag.Text = "Prisgrunnlag: " & prisgrunnlag
+        End If
     End Sub
 
     Private Sub cmbKunde_TextChanged(sender As Object, e As EventArgs) Handles cmbKunde.TextChanged
@@ -127,8 +189,9 @@ Public Class Leieavtaler
             ElseIf rad(2) = "Barn" Then
                 SykkelKode.Add("B")
             End If
+            OppdaterPris()
         Else
-            MsgBox("Du kan ikke legge til samme sykkel på nytt")
+                MsgBox("Du kan ikke legge til samme sykkel på nytt")
         End If
     End Sub
 
@@ -182,6 +245,7 @@ Public Class Leieavtaler
                 Dim treff = UtstyrKode.Intersect(SykkelKode).ToArray()
                 If treff.Length > 0 Then
                     lstUtstyr.Items.Add(valgtUtstyr)
+                    OppdaterPris()
                 Else
                     MsgBox("Utstyr passer ikke til valgt sykkel")
                 End If
@@ -193,12 +257,29 @@ Public Class Leieavtaler
         End If
     End Sub
 
+    Private Sub btnRegistrer_Click(sender As Object, e As EventArgs) Handles btnRegistrer.Click
+        'Sjekker at hele skjemaet er fylt ut
+        Dim utfylt As Boolean
+        If lstTidspunkt.Items.Count > 0 And
+        lstKunde.Items.Count > 0 And
+        lstSykkel.Items.Count > 0 Then
+            utfylt = True
+        End If
+        If utfylt = True Then
+            MsgBox("ok")
+        End If
+    End Sub
+
     Private Sub btnTømSkjema_Click(sender As Object, e As EventArgs) Handles btnTømSkjema.Click
         lstTidspunkt.Items.Clear()
         lstKunde.Items.Clear()
         lstSykkel.Items.Clear()
         lstUtstyr.Items.Clear()
         SykkelKode.Clear()
+        txtRabatt.Text = ""
+        txtPrisFør.Text = ""
+        txtPrisEtter.Text = ""
+        prisFørRabatt = 0
     End Sub
 
     Private Sub btnTilbake_Click(sender As Object, e As EventArgs) Handles btnTilbake.Click

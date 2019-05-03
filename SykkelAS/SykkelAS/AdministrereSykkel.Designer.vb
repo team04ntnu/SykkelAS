@@ -33,7 +33,7 @@ Partial Class AdministrereSykkel
         Me.txtSykkelVekt = New System.Windows.Forms.TextBox()
         Me.txtSykkelRammeNummer = New System.Windows.Forms.TextBox()
         Me.txtPrisTime = New System.Windows.Forms.TextBox()
-        Me.txtPrisDøgn = New System.Windows.Forms.TextBox()
+        Me.txtPrisDag = New System.Windows.Forms.TextBox()
         Me.lblSykkelID = New System.Windows.Forms.Label()
         Me.lblSykkelMerke = New System.Windows.Forms.Label()
         Me.lblSykkelType = New System.Windows.Forms.Label()
@@ -42,7 +42,7 @@ Partial Class AdministrereSykkel
         Me.lblVekt = New System.Windows.Forms.Label()
         Me.lblRammenummer = New System.Windows.Forms.Label()
         Me.lblPrisTime = New System.Windows.Forms.Label()
-        Me.lblPrisDøgn = New System.Windows.Forms.Label()
+        Me.lblPrisDag = New System.Windows.Forms.Label()
         Me.txtPrisHelg = New System.Windows.Forms.TextBox()
         Me.lblPrisHelg = New System.Windows.Forms.Label()
         Me.lblLokasjon = New System.Windows.Forms.Label()
@@ -153,12 +153,12 @@ Partial Class AdministrereSykkel
         Me.txtPrisTime.Size = New System.Drawing.Size(200, 20)
         Me.txtPrisTime.TabIndex = 8
         '
-        'txtPrisDøgn
+        'txtPrisDag
         '
-        Me.txtPrisDøgn.Location = New System.Drawing.Point(134, 260)
-        Me.txtPrisDøgn.Name = "txtPrisDøgn"
-        Me.txtPrisDøgn.Size = New System.Drawing.Size(200, 20)
-        Me.txtPrisDøgn.TabIndex = 9
+        Me.txtPrisDag.Location = New System.Drawing.Point(134, 260)
+        Me.txtPrisDag.Name = "txtPrisDag"
+        Me.txtPrisDag.Size = New System.Drawing.Size(200, 20)
+        Me.txtPrisDag.TabIndex = 9
         '
         'lblSykkelID
         '
@@ -232,14 +232,14 @@ Partial Class AdministrereSykkel
         Me.lblPrisTime.TabIndex = 34
         Me.lblPrisTime.Text = "Pris time"
         '
-        'lblPrisDøgn
+        'lblPrisDag
         '
-        Me.lblPrisDøgn.AutoSize = True
-        Me.lblPrisDøgn.Location = New System.Drawing.Point(77, 263)
-        Me.lblPrisDøgn.Name = "lblPrisDøgn"
-        Me.lblPrisDøgn.Size = New System.Drawing.Size(51, 13)
-        Me.lblPrisDøgn.TabIndex = 35
-        Me.lblPrisDøgn.Text = "Pris døgn"
+        Me.lblPrisDag.AutoSize = True
+        Me.lblPrisDag.Location = New System.Drawing.Point(83, 263)
+        Me.lblPrisDag.Name = "lblPrisDag"
+        Me.lblPrisDag.Size = New System.Drawing.Size(45, 13)
+        Me.lblPrisDag.TabIndex = 35
+        Me.lblPrisDag.Text = "Pris dag"
         '
         'txtPrisHelg
         '
@@ -453,7 +453,7 @@ Partial Class AdministrereSykkel
         Me.Controls.Add(Me.lblLokasjon)
         Me.Controls.Add(Me.lblPrisHelg)
         Me.Controls.Add(Me.txtPrisHelg)
-        Me.Controls.Add(Me.lblPrisDøgn)
+        Me.Controls.Add(Me.lblPrisDag)
         Me.Controls.Add(Me.lblPrisTime)
         Me.Controls.Add(Me.lblRammenummer)
         Me.Controls.Add(Me.lblVekt)
@@ -462,7 +462,7 @@ Partial Class AdministrereSykkel
         Me.Controls.Add(Me.lblSykkelType)
         Me.Controls.Add(Me.lblSykkelMerke)
         Me.Controls.Add(Me.lblSykkelID)
-        Me.Controls.Add(Me.txtPrisDøgn)
+        Me.Controls.Add(Me.txtPrisDag)
         Me.Controls.Add(Me.txtPrisTime)
         Me.Controls.Add(Me.txtSykkelRammeNummer)
         Me.Controls.Add(Me.txtSykkelVekt)
@@ -492,7 +492,7 @@ Partial Class AdministrereSykkel
     Friend WithEvents txtSykkelVekt As TextBox
     Friend WithEvents txtSykkelRammeNummer As TextBox
     Friend WithEvents txtPrisTime As TextBox
-    Friend WithEvents txtPrisDøgn As TextBox
+    Friend WithEvents txtPrisDag As TextBox
     Friend WithEvents lblSykkelID As Label
     Friend WithEvents lblSykkelMerke As Label
     Friend WithEvents lblSykkelType As Label
@@ -501,7 +501,7 @@ Partial Class AdministrereSykkel
     Friend WithEvents lblVekt As Label
     Friend WithEvents lblRammenummer As Label
     Friend WithEvents lblPrisTime As Label
-    Friend WithEvents lblPrisDøgn As Label
+    Friend WithEvents lblPrisDag As Label
     Friend WithEvents txtPrisHelg As TextBox
     Friend WithEvents lblPrisHelg As Label
     Friend WithEvents lblLokasjon As Label

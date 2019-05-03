@@ -1,10 +1,11 @@
 ﻿Imports MySql.Data.MySqlClient
 Public Class AdministrereUtstyr
     Private merke, type, passer_til, lokasjon, status As String
-    Private innlogget, id, pris_time, pris_døgn, pris_helg, avdeling_nr As Integer
+    Private innlogget, id, pris_time, pris_dag, pris_helg, avdeling_nr As Integer
     Private maxRader, inc As Integer
     Public utstyrtabell As New DataTable
     Private rad As DataRow
+    Private spørring As String = "SELECT * FROM utstyr WHERE avdeling_nr = @innlogget"
 
     Private Sub AdminstrereSykkel_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated
         'Viser innlogget avdeling
@@ -16,7 +17,7 @@ Public Class AdministrereUtstyr
         txtUtstyrMerke.Text = ""
         txtUtstyrType.Text = ""
         txtPrisTime.Text = ""
-        txtPrisDøgn.Text = ""
+        txtPrisDag.Text = ""
         txtPrisHelg.Text = ""
         cmbLokasjon.SelectedIndex = -1
         cmbStatus.SelectedIndex = -1
@@ -29,7 +30,7 @@ Public Class AdministrereUtstyr
         chkBarn.Checked = False
     End Sub
 
-    Public Sub hentUtstyr()
+    Public Sub hentUtstyr(ByVal spørring As String)
         'Henter avdelingsnummer til innlogget avdeling
         innlogget = Innlogging.innloggetAvdeling.HentAvdelingNr()
         utstyrtabell.Clear()
@@ -37,7 +38,7 @@ Public Class AdministrereUtstyr
             databasetilkobling.databaseTilkobling()
             tilkobling.Open()
             'Henter kun utstyr som tilhører avdelingen
-            Dim sql As New MySqlCommand("SELECT * FROM utstyr WHERE avdeling_nr = @innlogget", tilkobling)
+            Dim sql As New MySqlCommand(spørring, tilkobling)
             sql.Parameters.AddWithValue("@innlogget", innlogget)
             Dim da As New MySqlDataAdapter
             da.SelectCommand = sql
@@ -61,7 +62,7 @@ Public Class AdministrereUtstyr
         txtUtstyrMerke.Text = rad(1)
         txtUtstyrType.Text = rad(2)
         txtPrisTime.Text = rad(3)
-        txtPrisDøgn.Text = rad(4)
+        txtPrisDag.Text = rad(4)
         txtPrisHelg.Text = rad(5)
         cmbLokasjon.Text = rad(7)
         cmbStatus.Text = rad(8)
@@ -99,7 +100,7 @@ Public Class AdministrereUtstyr
         merke = txtUtstyrMerke.Text
         type = txtUtstyrType.Text
         pris_time = txtPrisTime.Text
-        pris_døgn = txtPrisDøgn.Text
+        pris_dag = txtPrisDag.Text
         pris_helg = txtPrisHelg.Text
         lokasjon = cmbLokasjon.Text
         status = cmbStatus.Text
@@ -129,7 +130,7 @@ Public Class AdministrereUtstyr
     End Sub
 
     Private Sub AdministrereUtstyr_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        hentUtstyr()
+        hentUtstyr(spørring)
         'Oppdaterer liste for å velge mulige lokasjoner
         For Each avdeling In AdministrereAvdeling.avdelingValg
             cmbLokasjon.Items.Add(avdeling)
@@ -174,14 +175,14 @@ Public Class AdministrereUtstyr
         'Henter prosedyre for å lese inn fra skjema
         SkjemaTilVariabel()
         'Oppretter et nytt objekt basert på informasjonen
-        Dim oppdatertUtstyr As New Utstyr(id, merke, type, pris_time, pris_døgn, pris_helg,
+        Dim oppdatertUtstyr As New Utstyr(id, merke, type, pris_time, pris_dag, pris_helg,
                                           passer_til, lokasjon, status, avdeling_nr)
         'Henter metode for å oppdatere utstyr i database
         oppdatertUtstyr.OppdaterUtstyr()
         'Sletter tekstfelt etter oppdatering
         TømSkjema()
         'Henter inn ny utstyrtabell
-        hentUtstyr()
+        hentUtstyr(spørring)
     End Sub
 
     Private Sub btnOpprett_Click(sender As Object, e As EventArgs) Handles btnOpprett.Click
@@ -189,14 +190,14 @@ Public Class AdministrereUtstyr
         SkjemaTilVariabel()
         avdeling_nr = Innlogging.innloggetAvdeling.HentAvdelingNr()
         'Oppretter et nytt objekt basert på informasjonen
-        Dim nyttUtstyr As New Utstyr(id, merke, type, pris_time, pris_døgn, pris_helg,
+        Dim nyttUtstyr As New Utstyr(id, merke, type, pris_time, pris_dag, pris_helg,
                                      passer_til, lokasjon, status, avdeling_nr)
         'Henter metode for å opprette utstyr i database
         nyttUtstyr.OpprettUtstyr()
         'Sletter tekstfelt etter oppdatering
         TømSkjema()
         'Henter inn ny utstyrtabell
-        hentUtstyr()
+        hentUtstyr(spørring)
     End Sub
 
     Private Sub btnSlettUtstyr_Click(sender As Object, e As EventArgs) Handles btnSlettUtstyr.Click
@@ -220,7 +221,7 @@ Public Class AdministrereUtstyr
             'Sletter tekstfelt etter oppdatering
             TømSkjema()
             'Henter in ny utstyrtabell
-            hentUtstyr()
+            hentUtstyr(spørring)
         End If
     End Sub
 

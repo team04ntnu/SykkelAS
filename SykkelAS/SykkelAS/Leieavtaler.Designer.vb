@@ -26,9 +26,6 @@ Partial Class Leieavtaler
         Me.dtpFraDato = New System.Windows.Forms.DateTimePicker()
         Me.dtpTilDato = New System.Windows.Forms.DateTimePicker()
         Me.lblPrisgrunnlag = New System.Windows.Forms.Label()
-        Me.chkPrisTime = New System.Windows.Forms.CheckBox()
-        Me.chkPrisDøgn = New System.Windows.Forms.CheckBox()
-        Me.chkPrisHelg = New System.Windows.Forms.CheckBox()
         Me.lblFra = New System.Windows.Forms.Label()
         Me.lblTil = New System.Windows.Forms.Label()
         Me.cmbSykkel = New System.Windows.Forms.ComboBox()
@@ -39,8 +36,8 @@ Partial Class Leieavtaler
         Me.cmbKunde = New System.Windows.Forms.ComboBox()
         Me.lstSykkel = New System.Windows.Forms.ListBox()
         Me.lblSykkel = New System.Windows.Forms.Label()
-        Me.dtpTilTid = New System.Windows.Forms.DateTimePicker()
-        Me.dtpFraTid = New System.Windows.Forms.DateTimePicker()
+        Me.dtpTilTime = New System.Windows.Forms.DateTimePicker()
+        Me.dtpFraTime = New System.Windows.Forms.DateTimePicker()
         Me.lblFraTid = New System.Windows.Forms.Label()
         Me.lblTilTid = New System.Windows.Forms.Label()
         Me.lblKunde = New System.Windows.Forms.Label()
@@ -51,6 +48,17 @@ Partial Class Leieavtaler
         Me.btnTid = New System.Windows.Forms.Button()
         Me.lblTidspunkt = New System.Windows.Forms.Label()
         Me.lstKunde = New System.Windows.Forms.ListBox()
+        Me.cmbUtlevering = New System.Windows.Forms.ComboBox()
+        Me.cmbInnlevering = New System.Windows.Forms.ComboBox()
+        Me.lblUtlevering = New System.Windows.Forms.Label()
+        Me.lblInnlevering = New System.Windows.Forms.Label()
+        Me.txtRabatt = New System.Windows.Forms.TextBox()
+        Me.lblRabatt = New System.Windows.Forms.Label()
+        Me.lblPrisFør = New System.Windows.Forms.Label()
+        Me.txtPrisFør = New System.Windows.Forms.TextBox()
+        Me.lblPrisEtter = New System.Windows.Forms.Label()
+        Me.txtPrisEtter = New System.Windows.Forms.TextBox()
+        Me.btnRegistrer = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'btnTilbake
@@ -81,41 +89,11 @@ Partial Class Leieavtaler
         'lblPrisgrunnlag
         '
         Me.lblPrisgrunnlag.AutoSize = True
-        Me.lblPrisgrunnlag.Location = New System.Drawing.Point(12, 9)
+        Me.lblPrisgrunnlag.Location = New System.Drawing.Point(12, 25)
         Me.lblPrisgrunnlag.Name = "lblPrisgrunnlag"
         Me.lblPrisgrunnlag.Size = New System.Drawing.Size(65, 13)
         Me.lblPrisgrunnlag.TabIndex = 47
         Me.lblPrisgrunnlag.Text = "Prisgrunnlag"
-        '
-        'chkPrisTime
-        '
-        Me.chkPrisTime.AutoSize = True
-        Me.chkPrisTime.Location = New System.Drawing.Point(15, 27)
-        Me.chkPrisTime.Name = "chkPrisTime"
-        Me.chkPrisTime.Size = New System.Drawing.Size(49, 17)
-        Me.chkPrisTime.TabIndex = 48
-        Me.chkPrisTime.Text = "Time"
-        Me.chkPrisTime.UseVisualStyleBackColor = True
-        '
-        'chkPrisDøgn
-        '
-        Me.chkPrisDøgn.AutoSize = True
-        Me.chkPrisDøgn.Location = New System.Drawing.Point(70, 27)
-        Me.chkPrisDøgn.Name = "chkPrisDøgn"
-        Me.chkPrisDøgn.Size = New System.Drawing.Size(52, 17)
-        Me.chkPrisDøgn.TabIndex = 49
-        Me.chkPrisDøgn.Text = "Døgn"
-        Me.chkPrisDøgn.UseVisualStyleBackColor = True
-        '
-        'chkPrisHelg
-        '
-        Me.chkPrisHelg.AutoSize = True
-        Me.chkPrisHelg.Location = New System.Drawing.Point(128, 27)
-        Me.chkPrisHelg.Name = "chkPrisHelg"
-        Me.chkPrisHelg.Size = New System.Drawing.Size(48, 17)
-        Me.chkPrisHelg.TabIndex = 50
-        Me.chkPrisHelg.Text = "Helg"
-        Me.chkPrisHelg.UseVisualStyleBackColor = True
         '
         'lblFra
         '
@@ -205,28 +183,28 @@ Partial Class Leieavtaler
         Me.lblSykkel.TabIndex = 62
         Me.lblSykkel.Text = "Sykkel"
         '
-        'dtpTilTid
+        'dtpTilTime
         '
-        Me.dtpTilTid.CustomFormat = "HH"
-        Me.dtpTilTid.Format = System.Windows.Forms.DateTimePickerFormat.Custom
-        Me.dtpTilTid.Location = New System.Drawing.Point(210, 129)
-        Me.dtpTilTid.Name = "dtpTilTid"
-        Me.dtpTilTid.ShowUpDown = True
-        Me.dtpTilTid.Size = New System.Drawing.Size(50, 20)
-        Me.dtpTilTid.TabIndex = 46
-        Me.dtpTilTid.Value = New Date(2019, 5, 1, 10, 0, 0, 0)
+        Me.dtpTilTime.CustomFormat = "HH"
+        Me.dtpTilTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom
+        Me.dtpTilTime.Location = New System.Drawing.Point(210, 129)
+        Me.dtpTilTime.Name = "dtpTilTime"
+        Me.dtpTilTime.ShowUpDown = True
+        Me.dtpTilTime.Size = New System.Drawing.Size(50, 20)
+        Me.dtpTilTime.TabIndex = 46
+        Me.dtpTilTime.Value = New Date(2019, 5, 1, 10, 0, 0, 0)
         '
-        'dtpFraTid
+        'dtpFraTime
         '
-        Me.dtpFraTid.CustomFormat = "HH"
-        Me.dtpFraTid.Format = System.Windows.Forms.DateTimePickerFormat.Custom
-        Me.dtpFraTid.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.dtpFraTid.Location = New System.Drawing.Point(210, 77)
-        Me.dtpFraTid.Name = "dtpFraTid"
-        Me.dtpFraTid.ShowUpDown = True
-        Me.dtpFraTid.Size = New System.Drawing.Size(50, 20)
-        Me.dtpFraTid.TabIndex = 45
-        Me.dtpFraTid.Value = New Date(2019, 5, 1, 10, 0, 0, 0)
+        Me.dtpFraTime.CustomFormat = "HH"
+        Me.dtpFraTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom
+        Me.dtpFraTime.ImeMode = System.Windows.Forms.ImeMode.NoControl
+        Me.dtpFraTime.Location = New System.Drawing.Point(210, 77)
+        Me.dtpFraTime.Name = "dtpFraTime"
+        Me.dtpFraTime.ShowUpDown = True
+        Me.dtpFraTime.Size = New System.Drawing.Size(50, 20)
+        Me.dtpFraTime.TabIndex = 45
+        Me.dtpFraTime.Value = New Date(2019, 5, 1, 10, 0, 0, 0)
         '
         'lblFraTid
         '
@@ -266,7 +244,7 @@ Partial Class Leieavtaler
         'lblUtstyr
         '
         Me.lblUtstyr.AutoSize = True
-        Me.lblUtstyr.Location = New System.Drawing.Point(397, 280)
+        Me.lblUtstyr.Location = New System.Drawing.Point(391, 280)
         Me.lblUtstyr.Name = "lblUtstyr"
         Me.lblUtstyr.Size = New System.Drawing.Size(34, 13)
         Me.lblUtstyr.TabIndex = 68
@@ -274,7 +252,7 @@ Partial Class Leieavtaler
         '
         'btnTømSkjema
         '
-        Me.btnTømSkjema.Location = New System.Drawing.Point(394, 397)
+        Me.btnTømSkjema.Location = New System.Drawing.Point(617, 9)
         Me.btnTømSkjema.Name = "btnTømSkjema"
         Me.btnTømSkjema.Size = New System.Drawing.Size(127, 23)
         Me.btnTømSkjema.TabIndex = 73
@@ -315,12 +293,117 @@ Partial Class Leieavtaler
         Me.lstKunde.Size = New System.Drawing.Size(350, 30)
         Me.lstKunde.TabIndex = 66
         '
+        'cmbUtlevering
+        '
+        Me.cmbUtlevering.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbUtlevering.FormattingEnabled = True
+        Me.cmbUtlevering.Location = New System.Drawing.Point(11, 388)
+        Me.cmbUtlevering.Name = "cmbUtlevering"
+        Me.cmbUtlevering.Size = New System.Drawing.Size(351, 21)
+        Me.cmbUtlevering.TabIndex = 78
+        '
+        'cmbInnlevering
+        '
+        Me.cmbInnlevering.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbInnlevering.FormattingEnabled = True
+        Me.cmbInnlevering.Location = New System.Drawing.Point(11, 444)
+        Me.cmbInnlevering.Name = "cmbInnlevering"
+        Me.cmbInnlevering.Size = New System.Drawing.Size(351, 21)
+        Me.cmbInnlevering.TabIndex = 79
+        '
+        'lblUtlevering
+        '
+        Me.lblUtlevering.AutoSize = True
+        Me.lblUtlevering.Location = New System.Drawing.Point(11, 369)
+        Me.lblUtlevering.Name = "lblUtlevering"
+        Me.lblUtlevering.Size = New System.Drawing.Size(102, 13)
+        Me.lblUtlevering.TabIndex = 80
+        Me.lblUtlevering.Text = "Velg utleveringssted"
+        '
+        'lblInnlevering
+        '
+        Me.lblInnlevering.AutoSize = True
+        Me.lblInnlevering.Location = New System.Drawing.Point(11, 425)
+        Me.lblInnlevering.Name = "lblInnlevering"
+        Me.lblInnlevering.Size = New System.Drawing.Size(107, 13)
+        Me.lblInnlevering.TabIndex = 81
+        Me.lblInnlevering.Text = "Velg innleveringssted"
+        '
+        'txtRabatt
+        '
+        Me.txtRabatt.Location = New System.Drawing.Point(457, 397)
+        Me.txtRabatt.Name = "txtRabatt"
+        Me.txtRabatt.Size = New System.Drawing.Size(50, 20)
+        Me.txtRabatt.TabIndex = 82
+        '
+        'lblRabatt
+        '
+        Me.lblRabatt.AutoSize = True
+        Me.lblRabatt.Location = New System.Drawing.Point(395, 400)
+        Me.lblRabatt.Name = "lblRabatt"
+        Me.lblRabatt.Size = New System.Drawing.Size(56, 13)
+        Me.lblRabatt.TabIndex = 83
+        Me.lblRabatt.Text = "Rabatt (%)"
+        '
+        'lblPrisFør
+        '
+        Me.lblPrisFør.AutoSize = True
+        Me.lblPrisFør.Location = New System.Drawing.Point(563, 400)
+        Me.lblPrisFør.Name = "lblPrisFør"
+        Me.lblPrisFør.Size = New System.Drawing.Size(75, 13)
+        Me.lblPrisFør.TabIndex = 84
+        Me.lblPrisFør.Text = "Pris (før rabatt)"
+        '
+        'txtPrisFør
+        '
+        Me.txtPrisFør.Location = New System.Drawing.Point(644, 397)
+        Me.txtPrisFør.Name = "txtPrisFør"
+        Me.txtPrisFør.ReadOnly = True
+        Me.txtPrisFør.Size = New System.Drawing.Size(100, 20)
+        Me.txtPrisFør.TabIndex = 85
+        '
+        'lblPrisEtter
+        '
+        Me.lblPrisEtter.AutoSize = True
+        Me.lblPrisEtter.Location = New System.Drawing.Point(554, 428)
+        Me.lblPrisEtter.Name = "lblPrisEtter"
+        Me.lblPrisEtter.Size = New System.Drawing.Size(84, 13)
+        Me.lblPrisEtter.TabIndex = 86
+        Me.lblPrisEtter.Text = "Pris (etter rabatt)"
+        '
+        'txtPrisEtter
+        '
+        Me.txtPrisEtter.Location = New System.Drawing.Point(644, 425)
+        Me.txtPrisEtter.Name = "txtPrisEtter"
+        Me.txtPrisEtter.Size = New System.Drawing.Size(100, 20)
+        Me.txtPrisEtter.TabIndex = 87
+        '
+        'btnRegistrer
+        '
+        Me.btnRegistrer.Location = New System.Drawing.Point(394, 460)
+        Me.btnRegistrer.Name = "btnRegistrer"
+        Me.btnRegistrer.Size = New System.Drawing.Size(350, 23)
+        Me.btnRegistrer.TabIndex = 88
+        Me.btnRegistrer.Text = "Registrer leieavtale"
+        Me.btnRegistrer.UseVisualStyleBackColor = True
+        '
         'Leieavtaler
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoValidate = System.Windows.Forms.AutoValidate.Disable
         Me.ClientSize = New System.Drawing.Size(984, 611)
+        Me.Controls.Add(Me.btnRegistrer)
+        Me.Controls.Add(Me.txtPrisEtter)
+        Me.Controls.Add(Me.lblPrisEtter)
+        Me.Controls.Add(Me.txtPrisFør)
+        Me.Controls.Add(Me.lblPrisFør)
+        Me.Controls.Add(Me.lblRabatt)
+        Me.Controls.Add(Me.txtRabatt)
+        Me.Controls.Add(Me.lblInnlevering)
+        Me.Controls.Add(Me.lblUtlevering)
+        Me.Controls.Add(Me.cmbInnlevering)
+        Me.Controls.Add(Me.cmbUtlevering)
         Me.Controls.Add(Me.lblTidspunkt)
         Me.Controls.Add(Me.btnTid)
         Me.Controls.Add(Me.lstTidspunkt)
@@ -341,12 +424,9 @@ Partial Class Leieavtaler
         Me.Controls.Add(Me.cmbSykkel)
         Me.Controls.Add(Me.lblTil)
         Me.Controls.Add(Me.lblFra)
-        Me.Controls.Add(Me.chkPrisHelg)
-        Me.Controls.Add(Me.chkPrisDøgn)
-        Me.Controls.Add(Me.chkPrisTime)
         Me.Controls.Add(Me.lblPrisgrunnlag)
-        Me.Controls.Add(Me.dtpTilTid)
-        Me.Controls.Add(Me.dtpFraTid)
+        Me.Controls.Add(Me.dtpTilTime)
+        Me.Controls.Add(Me.dtpFraTime)
         Me.Controls.Add(Me.dtpTilDato)
         Me.Controls.Add(Me.dtpFraDato)
         Me.Controls.Add(Me.btnTilbake)
@@ -361,9 +441,6 @@ Partial Class Leieavtaler
     Friend WithEvents dtpFraDato As DateTimePicker
     Friend WithEvents dtpTilDato As DateTimePicker
     Friend WithEvents lblPrisgrunnlag As Label
-    Friend WithEvents chkPrisTime As CheckBox
-    Friend WithEvents chkPrisDøgn As CheckBox
-    Friend WithEvents chkPrisHelg As CheckBox
     Friend WithEvents lblFra As Label
     Friend WithEvents lblTil As Label
     Friend WithEvents cmbSykkel As ComboBox
@@ -374,8 +451,8 @@ Partial Class Leieavtaler
     Friend WithEvents cmbKunde As ComboBox
     Friend WithEvents lstSykkel As ListBox
     Friend WithEvents lblSykkel As Label
-    Friend WithEvents dtpTilTid As DateTimePicker
-    Friend WithEvents dtpFraTid As DateTimePicker
+    Friend WithEvents dtpTilTime As DateTimePicker
+    Friend WithEvents dtpFraTime As DateTimePicker
     Friend WithEvents lblFraTid As Label
     Friend WithEvents lblTilTid As Label
     Friend WithEvents lblKunde As Label
@@ -386,4 +463,15 @@ Partial Class Leieavtaler
     Friend WithEvents btnTid As Button
     Friend WithEvents lblTidspunkt As Label
     Friend WithEvents lstKunde As ListBox
+    Friend WithEvents cmbUtlevering As ComboBox
+    Friend WithEvents cmbInnlevering As ComboBox
+    Friend WithEvents lblUtlevering As Label
+    Friend WithEvents lblInnlevering As Label
+    Friend WithEvents txtRabatt As TextBox
+    Friend WithEvents lblRabatt As Label
+    Friend WithEvents lblPrisFør As Label
+    Friend WithEvents txtPrisFør As TextBox
+    Friend WithEvents lblPrisEtter As Label
+    Friend WithEvents txtPrisEtter As TextBox
+    Friend WithEvents btnRegistrer As Button
 End Class

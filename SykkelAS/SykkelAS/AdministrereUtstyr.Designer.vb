@@ -32,8 +32,8 @@ Partial Class AdministrereUtstyr
         Me.lblUtstyrType = New System.Windows.Forms.Label()
         Me.txtPrisTime = New System.Windows.Forms.TextBox()
         Me.lblPrisTime = New System.Windows.Forms.Label()
-        Me.txtPrisDøgn = New System.Windows.Forms.TextBox()
-        Me.lblPrisDøgn = New System.Windows.Forms.Label()
+        Me.txtPrisDag = New System.Windows.Forms.TextBox()
+        Me.lblPrisDag = New System.Windows.Forms.Label()
         Me.txtPrisHelg = New System.Windows.Forms.TextBox()
         Me.lblPrisHelg = New System.Windows.Forms.Label()
         Me.cmbLokasjon = New System.Windows.Forms.ComboBox()
@@ -147,21 +147,21 @@ Partial Class AdministrereUtstyr
         Me.lblPrisTime.TabIndex = 30
         Me.lblPrisTime.Text = "Pris time"
         '
-        'txtPrisDøgn
+        'txtPrisDag
         '
-        Me.txtPrisDøgn.Location = New System.Drawing.Point(134, 131)
-        Me.txtPrisDøgn.Name = "txtPrisDøgn"
-        Me.txtPrisDøgn.Size = New System.Drawing.Size(200, 20)
-        Me.txtPrisDøgn.TabIndex = 4
+        Me.txtPrisDag.Location = New System.Drawing.Point(134, 131)
+        Me.txtPrisDag.Name = "txtPrisDag"
+        Me.txtPrisDag.Size = New System.Drawing.Size(200, 20)
+        Me.txtPrisDag.TabIndex = 4
         '
-        'lblPrisDøgn
+        'lblPrisDag
         '
-        Me.lblPrisDøgn.AutoSize = True
-        Me.lblPrisDøgn.Location = New System.Drawing.Point(77, 134)
-        Me.lblPrisDøgn.Name = "lblPrisDøgn"
-        Me.lblPrisDøgn.Size = New System.Drawing.Size(51, 13)
-        Me.lblPrisDøgn.TabIndex = 31
-        Me.lblPrisDøgn.Text = "Pris døgn"
+        Me.lblPrisDag.AutoSize = True
+        Me.lblPrisDag.Location = New System.Drawing.Point(81, 134)
+        Me.lblPrisDag.Name = "lblPrisDag"
+        Me.lblPrisDag.Size = New System.Drawing.Size(45, 13)
+        Me.lblPrisDag.TabIndex = 31
+        Me.lblPrisDag.Text = "Pris dag"
         '
         'txtPrisHelg
         '
@@ -440,8 +440,8 @@ Partial Class AdministrereUtstyr
         Me.Controls.Add(Me.cmbLokasjon)
         Me.Controls.Add(Me.lblPrisHelg)
         Me.Controls.Add(Me.txtPrisHelg)
-        Me.Controls.Add(Me.lblPrisDøgn)
-        Me.Controls.Add(Me.txtPrisDøgn)
+        Me.Controls.Add(Me.lblPrisDag)
+        Me.Controls.Add(Me.txtPrisDag)
         Me.Controls.Add(Me.lblPrisTime)
         Me.Controls.Add(Me.txtPrisTime)
         Me.Controls.Add(Me.lblUtstyrType)
@@ -469,8 +469,8 @@ Partial Class AdministrereUtstyr
     Friend WithEvents lblUtstyrType As Label
     Friend WithEvents txtPrisTime As TextBox
     Friend WithEvents lblPrisTime As Label
-    Friend WithEvents txtPrisDøgn As TextBox
-    Friend WithEvents lblPrisDøgn As Label
+    Friend WithEvents txtPrisDag As TextBox
+    Friend WithEvents lblPrisDag As Label
     Friend WithEvents txtPrisHelg As TextBox
     Friend WithEvents lblPrisHelg As Label
     Friend WithEvents cmbLokasjon As ComboBox

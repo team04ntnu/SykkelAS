@@ -1,7 +1,7 @@
 ﻿Imports MySql.Data.MySqlClient
 Public Class AdministrereSykkel
     Private merke, type, ramme, hjul, gir, vekt, rammenummer, lokasjon, status As String
-    Private innlogget, id, pris_time, pris_døgn, pris_helg, avdeling_nr As Integer
+    Private innlogget, id, pris_time, pris_dag, pris_helg, avdeling_nr As Integer
     Private maxRader, inc As Integer
     Public sykkeltabell As New DataTable
     Private rad As DataRow
@@ -22,7 +22,7 @@ Public Class AdministrereSykkel
         txtSykkelVekt.Text = ""
         txtSykkelRammeNummer.Text = ""
         txtPrisTime.Text = ""
-        txtPrisDøgn.Text = ""
+        txtPrisDag.Text = ""
         txtPrisHelg.Text = ""
         cmbLokasjon.SelectedIndex = -1
         cmbStatus.SelectedIndex = -1
@@ -77,7 +77,7 @@ Public Class AdministrereSykkel
         txtSykkelVekt.Text = rad(6)
         txtSykkelRammeNummer.Text = rad(7)
         txtPrisTime.Text = rad(8)
-        txtPrisDøgn.Text = rad(9)
+        txtPrisDag.Text = rad(9)
         txtPrisHelg.Text = rad(10)
         cmbLokasjon.Text = rad(11)
         cmbStatus.Text = rad(12)
@@ -97,7 +97,7 @@ Public Class AdministrereSykkel
         vekt = txtSykkelVekt.Text
         rammenummer = txtSykkelRammeNummer.Text
         pris_time = txtPrisTime.Text
-        pris_døgn = txtPrisDøgn.Text
+        pris_dag = txtPrisDag.Text
         pris_helg = txtPrisHelg.Text
         lokasjon = cmbLokasjon.Text
         status = cmbStatus.Text
@@ -153,7 +153,7 @@ Public Class AdministrereSykkel
         SkjemaTilVariabel()
         'Oppretter et nytt objekt basert på informasjonen
         Dim oppdatertSykkel As New Sykkel(id, merke, type, ramme, hjul, gir, vekt, rammenummer,
-                                          pris_time, pris_døgn, pris_helg, lokasjon, status, avdeling_nr)
+                                          pris_time, pris_dag, pris_helg, lokasjon, status, avdeling_nr)
         'Henter metode for å oppdatere sykkel i database
         oppdatertSykkel.OppdaterKunde()
         'Sletter tekstfelt etter oppdatering
@@ -168,7 +168,7 @@ Public Class AdministrereSykkel
         avdeling_nr = Innlogging.innloggetAvdeling.HentAvdelingNr()
         'Oppretter et nytt objekt basert på informasjonen
         Dim nySykkel As New Sykkel(id, merke, type, ramme, hjul, gir, vekt, rammenummer,
-                                   pris_time, pris_døgn, pris_helg, lokasjon, status, avdeling_nr)
+                                   pris_time, pris_dag, pris_helg, lokasjon, status, avdeling_nr)
         'Henter metode for å opprette sykkel i database
         nySykkel.OpprettKunde()
         'Sletter tekstfelt etter oppdatering

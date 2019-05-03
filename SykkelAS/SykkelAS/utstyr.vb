@@ -1,14 +1,14 @@
 ﻿Imports MySql.Data.MySqlClient
 Public Class Utstyr
     Private merke, type, passer_til, lokasjon, status As String
-    Private id, pris_time, pris_døgn, pris_helg, avdeling_nr As Integer
+    Private id, pris_time, pris_dag, pris_helg, avdeling_nr As Integer
 
     'Konstruktør for å opprette utstyr
     Public Sub New(ByVal id As Integer,
                    ByVal merke As String,
                    ByVal type As String,
                    ByVal pris_time As Integer,
-                   ByVal pris_døgn As Integer,
+                   ByVal pris_dag As Integer,
                    ByVal pris_helg As Integer,
                    ByVal passer_til As String,
                    ByVal lokasjon As String,
@@ -18,7 +18,7 @@ Public Class Utstyr
         Me.merke = merke
         Me.type = type
         Me.pris_time = pris_time
-        Me.pris_døgn = pris_døgn
+        Me.pris_dag = pris_dag
         Me.pris_helg = pris_helg
         Me.passer_til = passer_til
         Me.lokasjon = lokasjon
@@ -33,14 +33,14 @@ Public Class Utstyr
             tilkobling.Open()
 
             Dim sql As New MySqlCommand("INSERT INTO utstyr (utstyr_merke, utstyr_type,
-                                        pris_time, pris_døgn, pris_helg, passer_til, lokasjon, status, avdeling_nr) 
-                                        VALUES (@merke, @type, @pris_time, @pris_døgn, @pris_helg, 
+                                        pris_time, pris_dag, pris_helg, passer_til, lokasjon, status, avdeling_nr) 
+                                        VALUES (@merke, @type, @pris_time, @pris_dag, @pris_helg, 
                                         @passer_til, @lokasjon, @status, @avdeling_nr)", tilkobling)
             With sql.Parameters
                 .AddWithValue("@merke", merke)
                 .AddWithValue("@type", type)
                 .AddWithValue("@pris_time", pris_time)
-                .AddWithValue("@pris_døgn", pris_døgn)
+                .AddWithValue("@pris_dag", pris_dag)
                 .AddWithValue("@pris_helg", pris_helg)
                 .AddWithValue("@passer_til", passer_til)
                 .AddWithValue("@lokasjon", lokasjon)
@@ -64,7 +64,7 @@ Public Class Utstyr
             tilkobling.Open()
 
             Dim sql As New MySqlCommand("UPDATE utstyr SET utstyr_merke = @merke, utstyr_type = @type,
-                                        pris_time = @pris_time, pris_døgn = @pris_døgn, pris_helg = @pris_helg, 
+                                        pris_time = @pris_time, pris_dag = @pris_dag, pris_helg = @pris_helg, 
                                         passer_til = @passer_til, lokasjon = @lokasjon, status = @status, avdeling_nr = @avdeling_nr
                                         WHERE utstyr_id = @id", tilkobling)
             With sql.Parameters
@@ -72,7 +72,7 @@ Public Class Utstyr
                 .AddWithValue("@merke", merke)
                 .AddWithValue("@type", type)
                 .AddWithValue("@pris_time", pris_time)
-                .AddWithValue("@pris_døgn", pris_døgn)
+                .AddWithValue("@pris_dag", pris_dag)
                 .AddWithValue("@pris_helg", pris_helg)
                 .AddWithValue("@passer_til", passer_til)
                 .AddWithValue("@lokasjon", lokasjon)
