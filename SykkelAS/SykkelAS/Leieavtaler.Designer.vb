@@ -59,6 +59,10 @@ Partial Class Leieavtaler
         Me.lblPrisEtter = New System.Windows.Forms.Label()
         Me.txtPrisEtter = New System.Windows.Forms.TextBox()
         Me.btnRegistrer = New System.Windows.Forms.Button()
+        Me.chkManuell = New System.Windows.Forms.CheckBox()
+        Me.btnFjernrabatt = New System.Windows.Forms.Button()
+        Me.lblValgtRabatt = New System.Windows.Forms.Label()
+        Me.txtValgtRabatt = New System.Windows.Forms.TextBox()
         Me.SuspendLayout()
         '
         'btnTilbake
@@ -331,15 +335,16 @@ Partial Class Leieavtaler
         '
         'txtRabatt
         '
-        Me.txtRabatt.Location = New System.Drawing.Point(457, 397)
+        Me.txtRabatt.Location = New System.Drawing.Point(394, 397)
+        Me.txtRabatt.MaxLength = 2
         Me.txtRabatt.Name = "txtRabatt"
-        Me.txtRabatt.Size = New System.Drawing.Size(50, 20)
+        Me.txtRabatt.Size = New System.Drawing.Size(30, 20)
         Me.txtRabatt.TabIndex = 82
         '
         'lblRabatt
         '
         Me.lblRabatt.AutoSize = True
-        Me.lblRabatt.Location = New System.Drawing.Point(395, 400)
+        Me.lblRabatt.Location = New System.Drawing.Point(430, 400)
         Me.lblRabatt.Name = "lblRabatt"
         Me.lblRabatt.Size = New System.Drawing.Size(56, 13)
         Me.lblRabatt.TabIndex = 83
@@ -350,9 +355,9 @@ Partial Class Leieavtaler
         Me.lblPrisFør.AutoSize = True
         Me.lblPrisFør.Location = New System.Drawing.Point(563, 400)
         Me.lblPrisFør.Name = "lblPrisFør"
-        Me.lblPrisFør.Size = New System.Drawing.Size(75, 13)
+        Me.lblPrisFør.Size = New System.Drawing.Size(78, 13)
         Me.lblPrisFør.TabIndex = 84
-        Me.lblPrisFør.Text = "Pris (før rabatt)"
+        Me.lblPrisFør.Text = "Pris (før rabatt):"
         '
         'txtPrisFør
         '
@@ -365,7 +370,7 @@ Partial Class Leieavtaler
         'lblPrisEtter
         '
         Me.lblPrisEtter.AutoSize = True
-        Me.lblPrisEtter.Location = New System.Drawing.Point(554, 428)
+        Me.lblPrisEtter.Location = New System.Drawing.Point(557, 452)
         Me.lblPrisEtter.Name = "lblPrisEtter"
         Me.lblPrisEtter.Size = New System.Drawing.Size(84, 13)
         Me.lblPrisEtter.TabIndex = 86
@@ -373,19 +378,56 @@ Partial Class Leieavtaler
         '
         'txtPrisEtter
         '
-        Me.txtPrisEtter.Location = New System.Drawing.Point(644, 425)
+        Me.txtPrisEtter.Location = New System.Drawing.Point(644, 449)
         Me.txtPrisEtter.Name = "txtPrisEtter"
+        Me.txtPrisEtter.ReadOnly = True
         Me.txtPrisEtter.Size = New System.Drawing.Size(100, 20)
         Me.txtPrisEtter.TabIndex = 87
         '
         'btnRegistrer
         '
-        Me.btnRegistrer.Location = New System.Drawing.Point(394, 460)
+        Me.btnRegistrer.Location = New System.Drawing.Point(394, 481)
         Me.btnRegistrer.Name = "btnRegistrer"
         Me.btnRegistrer.Size = New System.Drawing.Size(350, 23)
         Me.btnRegistrer.TabIndex = 88
         Me.btnRegistrer.Text = "Registrer leieavtale"
         Me.btnRegistrer.UseVisualStyleBackColor = True
+        '
+        'chkManuell
+        '
+        Me.chkManuell.AutoSize = True
+        Me.chkManuell.Location = New System.Drawing.Point(396, 451)
+        Me.chkManuell.Name = "chkManuell"
+        Me.chkManuell.Size = New System.Drawing.Size(126, 17)
+        Me.chkManuell.TabIndex = 89
+        Me.chkManuell.Text = "Legg inn pris manuelt"
+        Me.chkManuell.UseVisualStyleBackColor = True
+        '
+        'btnFjernrabatt
+        '
+        Me.btnFjernrabatt.Location = New System.Drawing.Point(394, 425)
+        Me.btnFjernrabatt.Name = "btnFjernrabatt"
+        Me.btnFjernrabatt.Size = New System.Drawing.Size(92, 21)
+        Me.btnFjernrabatt.TabIndex = 90
+        Me.btnFjernrabatt.Text = "Fjern rabatt"
+        Me.btnFjernrabatt.UseVisualStyleBackColor = True
+        '
+        'lblValgtRabatt
+        '
+        Me.lblValgtRabatt.AutoSize = True
+        Me.lblValgtRabatt.Location = New System.Drawing.Point(599, 426)
+        Me.lblValgtRabatt.Name = "lblValgtRabatt"
+        Me.lblValgtRabatt.Size = New System.Drawing.Size(42, 13)
+        Me.lblValgtRabatt.TabIndex = 91
+        Me.lblValgtRabatt.Text = "Rabatt:"
+        '
+        'txtValgtRabatt
+        '
+        Me.txtValgtRabatt.Location = New System.Drawing.Point(644, 423)
+        Me.txtValgtRabatt.Name = "txtValgtRabatt"
+        Me.txtValgtRabatt.ReadOnly = True
+        Me.txtValgtRabatt.Size = New System.Drawing.Size(100, 20)
+        Me.txtValgtRabatt.TabIndex = 92
         '
         'Leieavtaler
         '
@@ -393,6 +435,10 @@ Partial Class Leieavtaler
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoValidate = System.Windows.Forms.AutoValidate.Disable
         Me.ClientSize = New System.Drawing.Size(984, 611)
+        Me.Controls.Add(Me.txtValgtRabatt)
+        Me.Controls.Add(Me.lblValgtRabatt)
+        Me.Controls.Add(Me.btnFjernrabatt)
+        Me.Controls.Add(Me.chkManuell)
         Me.Controls.Add(Me.btnRegistrer)
         Me.Controls.Add(Me.txtPrisEtter)
         Me.Controls.Add(Me.lblPrisEtter)
@@ -474,4 +520,8 @@ Partial Class Leieavtaler
     Friend WithEvents lblPrisEtter As Label
     Friend WithEvents txtPrisEtter As TextBox
     Friend WithEvents btnRegistrer As Button
+    Friend WithEvents chkManuell As CheckBox
+    Friend WithEvents btnFjernrabatt As Button
+    Friend WithEvents lblValgtRabatt As Label
+    Friend WithEvents txtValgtRabatt As TextBox
 End Class

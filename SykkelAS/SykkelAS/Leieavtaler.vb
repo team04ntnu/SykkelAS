@@ -2,7 +2,7 @@
 Public Class Leieavtaler
     Private fraDag, fraTime, tilDag, tilTime As Date
     Private kunde_nr, sykkel_id, utstyr_id, innlogget, søk, valgt, fra, til, prisgrunnlag As String
-    Private dager, timer, prisFørRabatt As Integer
+    Private dager, timer, rabatt, prisFørRabatt, prisEtterRabatt As Integer
     Private valgtIndeks As Integer = -1
     Private SykkelKode As New List(Of String)
     Private UtstyrKode As New List(Of String)
@@ -34,7 +34,36 @@ Public Class Leieavtaler
                 prisFørRabatt += rad("pris_time") * timer
             End If
         End If
+        prisEtterRabatt = prisFørRabatt
         txtPrisFør.Text = prisFørRabatt
+        txtPrisEtter.Text = prisEtterRabatt
+    End Sub
+
+    Private Sub txtRabatt_TextChanged(sender As Object, e As EventArgs) Handles txtRabatt.TextChanged
+        'Oppdaterer pris ut ifra rabatt
+        If IsNumeric(txtRabatt.Text) Then
+            rabatt = txtRabatt.Text
+            txtValgtRabatt.Text = rabatt & "%"
+            prisEtterRabatt = (100 - rabatt) * prisFørRabatt / 100
+            txtPrisEtter.Text = prisEtterRabatt
+        End If
+    End Sub
+
+    Private Sub btnFjernrabatt_Click(sender As Object, e As EventArgs) Handles btnFjernrabatt.Click
+        txtRabatt.Text = ""
+        txtValgtRabatt.Text = ""
+        prisEtterRabatt = prisFørRabatt
+        txtPrisEtter.Text = prisEtterRabatt
+    End Sub
+
+    Private Sub chkManuell_CheckedChanged(sender As Object, e As EventArgs) Handles chkManuell.CheckedChanged
+        'Gir mulighet til å skrive inn en pris uavhengig av det som er beregnet
+        If chkManuell.Checked = True Then
+            txtPrisEtter.ReadOnly = False
+        End If
+        If chkManuell.Checked = False Then
+            txtPrisEtter.ReadOnly = True
+        End If
     End Sub
 
     Private Sub btnTid_Click(sender As Object, e As EventArgs) Handles btnTid.Click
@@ -262,11 +291,15 @@ Public Class Leieavtaler
         Dim utfylt As Boolean
         If lstTidspunkt.Items.Count > 0 And
         lstKunde.Items.Count > 0 And
-        lstSykkel.Items.Count > 0 Then
+        lstSykkel.Items.Count > 0 And
+        cmbUtlevering.Text <> "" And
+        cmbInnlevering.Text <> "" Then
             utfylt = True
         End If
         If utfylt = True Then
             MsgBox("ok")
+        Else
+            MsgBox("Skjema er ikke korrekt utfylt")
         End If
     End Sub
 
