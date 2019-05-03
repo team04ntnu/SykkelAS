@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class Statistikk
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,11 +20,8 @@ Partial Class Statistikk
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim ChartArea1 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
-        Dim Legend1 As System.Windows.Forms.DataVisualization.Charting.Legend = New System.Windows.Forms.DataVisualization.Charting.Legend()
-        Dim Series1 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
         Me.btnBeregn = New System.Windows.Forms.Button()
         Me.RadioButton1 = New System.Windows.Forms.RadioButton()
         Me.RadioButton2 = New System.Windows.Forms.RadioButton()
@@ -32,8 +29,6 @@ Partial Class Statistikk
         Me.ListBox1 = New System.Windows.Forms.ListBox()
         Me.dtpDatoFra = New System.Windows.Forms.DateTimePicker()
         Me.dtpDatoTil = New System.Windows.Forms.DateTimePicker()
-        Me.Chart1 = New System.Windows.Forms.DataVisualization.Charting.Chart()
-        CType(Me.Chart1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'btnBeregn
@@ -100,28 +95,11 @@ Partial Class Statistikk
         Me.dtpDatoTil.Size = New System.Drawing.Size(200, 20)
         Me.dtpDatoTil.TabIndex = 6
         '
-        'Chart1
-        '
-        ChartArea1.Name = "ChartArea1"
-        Me.Chart1.ChartAreas.Add(ChartArea1)
-        Legend1.Name = "Legend1"
-        Me.Chart1.Legends.Add(Legend1)
-        Me.Chart1.Location = New System.Drawing.Point(365, 191)
-        Me.Chart1.Name = "Chart1"
-        Series1.ChartArea = "ChartArea1"
-        Series1.Legend = "Legend1"
-        Series1.Name = "Series1"
-        Me.Chart1.Series.Add(Series1)
-        Me.Chart1.Size = New System.Drawing.Size(390, 247)
-        Me.Chart1.TabIndex = 7
-        Me.Chart1.Text = "Chart1"
-        '
         'Statistikk
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 450)
-        Me.Controls.Add(Me.Chart1)
         Me.Controls.Add(Me.dtpDatoTil)
         Me.Controls.Add(Me.dtpDatoFra)
         Me.Controls.Add(Me.ListBox1)
@@ -131,7 +109,6 @@ Partial Class Statistikk
         Me.Controls.Add(Me.btnBeregn)
         Me.Name = "Statistikk"
         Me.Text = "Statistikk"
-        CType(Me.Chart1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -144,5 +121,4 @@ Partial Class Statistikk
     Friend WithEvents ListBox1 As ListBox
     Friend WithEvents dtpDatoFra As DateTimePicker
     Friend WithEvents dtpDatoTil As DateTimePicker
-    Friend WithEvents Chart1 As DataVisualization.Charting.Chart
 End Class
