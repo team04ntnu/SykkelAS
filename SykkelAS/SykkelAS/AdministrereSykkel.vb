@@ -38,7 +38,11 @@ Public Class AdministrereSykkel
             tilkobling.Open()
             'Henter kun sykler som tilhører avdelingen
             Dim sql As New MySqlCommand(spørring, tilkobling)
-            sql.Parameters.AddWithValue("@innlogget", innlogget)
+            With sql.Parameters
+                .AddWithValue("@innlogget", innlogget)
+                .AddWithValue("@fra", Leieavtaler.fra)
+                .AddWithValue("@til", Leieavtaler.til)
+            End With
             Dim da As New MySqlDataAdapter
             da.SelectCommand = sql
             da.Fill(sykkeltabell)

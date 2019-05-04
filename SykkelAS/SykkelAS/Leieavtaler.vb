@@ -1,7 +1,8 @@
 ﻿Imports MySql.Data.MySqlClient
 Public Class Leieavtaler
+    Public fra, til As String
     Private fraDag, fraTime, tilDag, tilTime As Date
-    Private kunde_nr, sykkel_id, utstyr_id, innlogget, søk, valgt, fra, til, prisgrunnlag As String
+    Private kunde_nr, sykkel_id, utstyr_id, innloggetNr, innloggetNavn, søk, valgt, prisgrunnlag, spørring As String
     Private id, nr, dager, timer, rabatt, prisFørRabatt, prisEtterRabatt As Integer
     Private valgtIndeks As Integer = -1
     Private valgtKundeNr As Integer
@@ -14,9 +15,24 @@ Public Class Leieavtaler
     Private UtstyrTabell As New DataTable
     Private rad As DataRow
 
+
+    Private Function Utfylt() As Boolean
+        'Funksjon for å validere skjema
+        If lstTidspunkt.Items.Count > 0 And
+        lstKunde.Items.Count > 0 And
+        lstSykkel.Items.Count > 0 And
+        cmbUtlevering.Text <> "" And
+        cmbInnlevering.Text <> "" Then
+            Return True
+        Else
+            Return False
+        End If
+    End Function
+
     Private Sub Leieavtaler_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated
         'Viser innlogget avdeling
-        lblInnloggetAvdeling.Text = "Innlogget på avdeling " & Innlogging.innloggetAvdeling.HentAvdelingNavn
+        innloggetNavn = Innlogging.innloggetAvdeling.HentAvdelingNavn
+        lblInnloggetAvdeling.Text = "Innlogget på avdeling " & innloggetNavn
     End Sub
 
     Private Sub Leieavtaler_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -25,7 +41,7 @@ Public Class Leieavtaler
             cmbUtlevering.Items.Add(avdeling)
             cmbInnlevering.Items.Add(avdeling)
         Next
-        innlogget = Innlogging.innloggetAvdeling.HentAvdelingNr
+        innloggetNr = Innlogging.innloggetAvdeling.HentAvdelingNr
         'Setter datovelger til dagens dato
         dtpFraDato.Value = Date.Now
         dtpFraTime.Value = Date.Now
@@ -45,6 +61,35 @@ Public Class Leieavtaler
         prisFørRabatt = 0
         valgtSykkelID.Clear()
         valgtUtstyrID.Clear()
+        txtLeieavtaleNr.Text = ""
+        txtAvdeling.Text = ""
+        txtStatus.Text = ""
+    End Sub
+
+    Private Sub HentTid()
+        'Henter ut tidspunkt og konverterer til sql-format
+        fraDag = dtpFraDato.Value
+        fraTime = dtpFraTime.Value
+        fra = fraDag.ToString("yyyy-MM-dd") & " " & fraTime.ToString("HH") & ":00:00"
+        tilDag = dtpTilDato.Value
+        tilTime = dtpTilTime.Value
+        til = tilDag.ToString("yyyy-MM-dd") & " " & tilTime.ToString("HH") & ":00:00"
+    End Sub
+
+    Private Sub HentTabeller()
+        'Henter tabeller ut i fra valgte datoer
+        'Henter kundetabell
+        AdministrereKunde.hentKunde()
+        'Henter inn tabell over ledige sykler basert på valgt dato og status
+        spørring = "SELECT * FROM sykkel WHERE status = 'Tilgjengelig' AND avdeling_nr = @innloggetNr AND sykkel_id NOT IN
+                       (SELECT sykkel_id FROM utleid_sykkel WHERE leieavtale_nr IN 
+                       (SELECT leieavtale_nr FROM leieavtale WHERE @fra < tidspunkt_til AND @til > tidspunkt_fra))"
+        AdministrereSykkel.hentSykkel(spørring)
+        'Henter inn tabell over ledig utstyr basert på valgt dato og status
+        spørring = "SELECT * FROM utstyr WHERE status = 'Tilgjengelig' AND avdeling_nr = @innloggetNr AND utstyr_id NOT IN
+                       (SELECT utstyr_id FROM utleid_utstyr WHERE leieavtale_nr IN 
+                       (SELECT leieavtale_nr FROM leieavtale WHERE @fra < tidspunkt_til AND @til > tidspunkt_fra))"
+        AdministrereUtstyr.hentUtstyr(spørring)
     End Sub
 
     Private Sub OppdaterPris()
@@ -98,13 +143,8 @@ Public Class Leieavtaler
     End Sub
 
     Private Sub btnTid_Click(sender As Object, e As EventArgs) Handles btnTid.Click
-        'Henter ut tidspunkt og konverterer til sql-format
-        fraDag = dtpFraDato.Value
-        fraTime = dtpFraTime.Value
-        fra = fraDag.ToString("yyyy-MM-dd") & " " & fraTime.ToString("HH") & ":00:00"
-        tilDag = dtpTilDato.Value
-        tilTime = dtpTilTime.Value
-        til = tilDag.ToString("yyyy-MM-dd") & " " & tilTime.ToString("HH") & ":00:00"
+        'Henter tidspunkt
+        HentTid()
         'Validerer valgt tidspunkt
         Dim valider As Boolean = True
         If fra = til Then
@@ -116,7 +156,6 @@ Public Class Leieavtaler
             MsgBox("Til-tid kan ikke være før fra-tid")
         End If
         Dim tidnå As String = Date.Now.ToString("yyyy-MM-dd") & " " & Date.Now.ToString("HH") & ":00:00"
-        MsgBox(tidnå)
         If fra < tidnå Or til < tidnå Then
             valider = False
             MsgBox("Tidspunkt kan ikke være før nåværende dato og klokkeslett")
@@ -136,24 +175,8 @@ Public Class Leieavtaler
                 .Add("Til:")
                 .Add(tilDag.ToString("dddd dd. MMMM") & " kl. " & tilTime.ToString("HH") & ":00")
             End With
-            Dim spørring As String
-            'Henter kundetabell
-            AdministrereKunde.hentKunde()
-            'Henter inn tabell over ledige sykler basert på valgt dato
-            spørring = "SELECT * FROM sykkel WHERE avdeling_nr = @innlogget AND sykkel_id NOT IN
-                       (SELECT sykkel_id FROM utleid_sykkel WHERE leieavtale_nr IN 
-                       (SELECT leieavtale_nr FROM leieavtale WHERE '" &
-                           fra & "' < tidspunkt_til AND '" &
-                           til & "' > tidspunkt_fra))"
-            AdministrereSykkel.hentSykkel(spørring)
-            'Henter inn tabell over ledig utstyr basert på valgt dato
-            spørring = "SELECT * FROM utstyr WHERE avdeling_nr = @innlogget AND utstyr_id NOT IN
-                       (SELECT utstyr_id FROM utleid_utstyr WHERE leieavtale_nr IN 
-                       (SELECT leieavtale_nr FROM leieavtale WHERE '" &
-                           fra & "' < tidspunkt_til AND '" &
-                           til & "' > tidspunkt_fra))"
-            AdministrereUtstyr.hentUtstyr(spørring)
-
+            'Henter prosedyre for å fylle ut tabeller
+            HentTabeller()
             'Finner prisgrunnlag ut ifra tidspunkt
             dager = DateDiff(DateInterval.Day, fraDag, tilDag)
             timer = DateDiff(DateInterval.Hour, fraTime, tilTime)
@@ -333,75 +356,69 @@ Public Class Leieavtaler
     End Sub
 
     Private Sub btnRegistrer_Click(sender As Object, e As EventArgs) Handles btnRegistrer.Click
-        'Sjekker at hele skjemaet er fylt ut
-        Dim utfylt As Boolean
-        If lstTidspunkt.Items.Count > 0 And
-        lstKunde.Items.Count > 0 And
-        lstSykkel.Items.Count > 0 And
-        cmbUtlevering.Text <> "" And
-        cmbInnlevering.Text <> "" Then
-            utfylt = True
-        End If
+        'Registrerer leieavtale i database dersom skjema er utfylt, og det ikke er hentet inn en eksisterende avtale
+        If txtLeieavtaleNr.Text = "" Then
+            If Utfylt() Then
 
-        'Registrerer leieavtale i database dersom validering er ok
-        If utfylt = True Then
+                Try
+                    databasetilkobling.databaseTilkobling()
+                    tilkobling.Open()
 
-            Try
-                databasetilkobling.databaseTilkobling()
-                tilkobling.Open()
-
-                'Oppretter leieavtalen
-                Dim sql As New MySqlCommand("INSERT INTO leieavtale (lokasjon_utlevering, lokasjon_innlevering, pris, 
+                    'Oppretter leieavtalen
+                    Dim sql As New MySqlCommand("INSERT INTO leieavtale (lokasjon_utlevering, lokasjon_innlevering, pris, 
                                             tidspunkt_fra, tidspunkt_til, status, kunde_nr, avdeling_nr) 
                                             VALUES (@lokasjon_utlevering, @lokasjon_innlevering, @pris, 
                                             @tidspunkt_fra, @tidspunkt_til, @status, @kunde_nr, @avdeling_nr)", tilkobling)
-                With sql.Parameters
-                    .AddWithValue("@lokasjon_utlevering", cmbUtlevering.Text)
-                    .AddWithValue("@lokasjon_innlevering", cmbInnlevering.Text)
-                    .AddWithValue("@pris", prisEtterRabatt)
-                    .AddWithValue("@tidspunkt_fra", fra)
-                    .AddWithValue("@tidspunkt_til", til)
-                    .AddWithValue("@status", "Aktiv")
-                    .AddWithValue("@kunde_nr", valgtKundeNr)
-                    .AddWithValue("@avdeling_nr", innlogget)
-                End With
-                sql.ExecuteNonQuery()
-
-                'Henter leieavtale_nr på sist opprettede leieavtale
-                Dim sql2 As New MySqlCommand("SELECT MAX(leieavtale_nr) FROM leieavtale", tilkobling)
-                Dim leieavtale_nr As Integer = sql2.ExecuteScalar()
-
-                'Kobler valgte sykler til leieavtalen
-                For i = 0 To valgtSykkelID.Count - 1
-                    Dim sql3 As New MySqlCommand("INSERT INTO utleid_sykkel VALUES (@leieavtale_nr, @sykkel_id)", tilkobling)
-                    With sql3.Parameters
-                        .AddWithValue("@leieavtale_nr", leieavtale_nr)
-                        .AddWithValue("@sykkel_id", valgtSykkelID(i))
+                    With sql.Parameters
+                        .AddWithValue("@lokasjon_utlevering", cmbUtlevering.Text)
+                        .AddWithValue("@lokasjon_innlevering", cmbInnlevering.Text)
+                        .AddWithValue("@pris", txtPrisEtter.Text)
+                        .AddWithValue("@tidspunkt_fra", fra)
+                        .AddWithValue("@tidspunkt_til", til)
+                        .AddWithValue("@status", "Aktiv")
+                        .AddWithValue("@kunde_nr", valgtKundeNr)
+                        .AddWithValue("@avdeling_nr", innloggetNr)
                     End With
-                    sql3.ExecuteNonQuery()
-                Next
+                    sql.ExecuteNonQuery()
 
-                'Kobler valgt utstyr til leieavtalen
-                For i = 0 To valgtUtstyrID.Count - 1
-                    Dim sql4 As New MySqlCommand("INSERT INTO utleid_utstyr VALUES (@leieavtale_nr, @utstyr_id)", tilkobling)
-                    With sql4.Parameters
-                        .AddWithValue("@leieavtale_nr", leieavtale_nr)
-                        .AddWithValue("@utstyr_id", valgtUtstyrID(i))
-                    End With
-                    sql4.ExecuteNonQuery()
-                Next
+                    'Henter leieavtale_nr på sist opprettede leieavtale
+                    Dim sql2 As New MySqlCommand("SELECT MAX(leieavtale_nr) FROM leieavtale", tilkobling)
+                    nr = sql2.ExecuteScalar()
 
-                MsgBox("Avtale registrert")
-                tilkobling.Close()
-                TømSkjema()
-            Catch feilmelding As MySqlException
-                MsgBox(feilmelding.Message)
-            Finally
-                tilkobling.Dispose()
-            End Try
+                    'Kobler valgte sykler til leieavtalen
+                    For i = 0 To valgtSykkelID.Count - 1
+                        Dim sql3 As New MySqlCommand("INSERT INTO utleid_sykkel VALUES (@nr, @sykkel_id)", tilkobling)
+                        With sql3.Parameters
+                            .AddWithValue("@nr", nr)
+                            .AddWithValue("@sykkel_id", valgtSykkelID(i))
+                        End With
+                        sql3.ExecuteNonQuery()
+                    Next
 
+                    'Kobler valgt utstyr til leieavtalen
+                    For i = 0 To valgtUtstyrID.Count - 1
+                        Dim sql4 As New MySqlCommand("INSERT INTO utleid_utstyr VALUES (@nr, @utstyr_id)", tilkobling)
+                        With sql4.Parameters
+                            .AddWithValue("@nr", nr)
+                            .AddWithValue("@utstyr_id", valgtUtstyrID(i))
+                        End With
+                        sql4.ExecuteNonQuery()
+                    Next
+
+                    MsgBox("Avtale registrert")
+                    tilkobling.Close()
+                    TømSkjema()
+                Catch feilmelding As MySqlException
+                    MsgBox(feilmelding.Message)
+                Finally
+                    tilkobling.Dispose()
+                End Try
+
+            Else
+                MsgBox("Skjema er ikke korrekt utfylt")
+            End If
         Else
-            MsgBox("Skjema er ikke korrekt utfylt")
+            MsgBox("Eksisterende avtale er lagt inn. Tøm skjema før du fortsetter")
         End If
     End Sub
 
@@ -410,13 +427,21 @@ Public Class Leieavtaler
         lstLeieavtaler.Items.Clear()
         LeieavtaleTabell.Clear()
         'Henter alle leieavtaler tilhørende avdelingen med status aktiv
-        innlogget = Innlogging.innloggetAvdeling.HentAvdelingNr()
+        innloggetNavn = Innlogging.innloggetAvdeling.HentAvdelingNavn()
+        innloggetNr = Innlogging.innloggetAvdeling.HentAvdelingNr()
         Try
             databasetilkobling.databaseTilkobling()
             tilkobling.Open()
-            Dim sql As New MySqlCommand("SELECT l.*, fornavn, etternavn, telefon FROM leieavtale l INNER JOIN kunde k
-                                        ON l.kunde_nr = k.kunde_nr WHERE status = 'Aktiv'", tilkobling)
-            sql.Parameters.AddWithValue("@innlogget", innlogget)
+            Dim sql As New MySqlCommand("SELECT l.*, fornavn, etternavn, k.telefon, avdeling_navn FROM leieavtale l 
+                                        INNER JOIN kunde k ON l.kunde_nr = k.kunde_nr 
+                                        INNER JOIN avdeling a ON l.avdeling_nr = a.avdeling_nr
+                                        WHERE(l.avdeling_nr = @innloggetNr 
+                                        OR lokasjon_utlevering = @innloggetNavn OR lokasjon_innlevering = @innloggetNavn)
+                                        AND (status = 'Aktiv' OR status = 'Utlevert')", tilkobling)
+            With sql.Parameters
+                .AddWithValue("@innloggetNavn", innloggetNavn)
+                .AddWithValue("@innloggetNr", innloggetNr)
+            End With
             Dim da As New MySqlDataAdapter
             da.SelectCommand = sql
             da.Fill(LeieavtaleTabell)
@@ -428,7 +453,8 @@ Public Class Leieavtaler
         End Try
         'Legger til i resultatliste
         For Each rad In LeieavtaleTabell.Rows
-            lstLeieavtaler.Items.Add(rad("leieavtale_nr") & " " & rad("etternavn") & ", " & rad("fornavn"))
+            lstLeieavtaler.Items.Add(rad("leieavtale_nr") & " - " & rad("etternavn") & ", " & rad("fornavn") &
+                                         " (" & rad("status") & ", opprettet av " & rad("avdeling_navn") & ")")
         Next
     End Sub
 
@@ -446,7 +472,6 @@ Public Class Leieavtaler
                 End If
             Next i
             rad = LeieavtaleTabell.Rows(valgtIndeks)
-            txtLeieavtaleNr.Text = rad("leieavtale_nr")
             cmbUtlevering.Text = rad("lokasjon_utlevering")
             cmbInnlevering.Text = rad("lokasjon_innlevering")
             txtPrisEtter.Text = rad("pris")
@@ -462,6 +487,9 @@ Public Class Leieavtaler
                 .Add("Til:")
                 .Add(dtpTilDato.Value.ToString("dddd dd. MMMM") & " kl. " & dtpTilTime.Value.ToString("HH") & ":00")
             End With
+            txtLeieavtaleNr.Text = rad("leieavtale_nr")
+            txtAvdeling.Text = rad("avdeling_navn")
+            txtStatus.Text = rad("status")
             valgtKundeNr = rad("kunde_nr")
             lstKunde.Items.Add(rad("kunde_nr") & " " & rad("etternavn") & ", " & rad("fornavn") & " (Tlf: " & rad("telefon") & ")")
             Try
@@ -494,7 +522,195 @@ Public Class Leieavtaler
             Finally
                 tilkobling.Dispose()
             End Try
+        End If
+    End Sub
 
+    Private Sub btnOppdater_Click(sender As Object, e As EventArgs) Handles btnOppdater.Click
+        'Sjekker først om avtale tilhører avdelingen
+        If txtAvdeling.Text = innloggetNavn Then
+            'Oppdaterer eksisterende leieavtale dersom skjema er utfylt
+            If Utfylt() And txtLeieavtaleNr.Text <> "" Then
+                HentTid()
+                nr = txtLeieavtaleNr.Text
+
+                Try
+                    databasetilkobling.databaseTilkobling()
+                    tilkobling.Open()
+
+                    'Oppdaterer leieavtalen
+                    Dim sql As New MySqlCommand("UPDATE leieavtale SET lokasjon_utlevering = @lokasjon_utlevering, 
+                                            lokasjon_innlevering = @lokasjon_innlevering, pris = @pris, 
+                                            tidspunkt_fra = @tidspunkt_fra, tidspunkt_til = @tidspunkt_til,
+                                            kunde_nr = @kunde_nr", tilkobling)
+                    With sql.Parameters
+                        .AddWithValue("@nr", nr)
+                        .AddWithValue("@lokasjon_utlevering", cmbUtlevering.Text)
+                        .AddWithValue("@lokasjon_innlevering", cmbInnlevering.Text)
+                        .AddWithValue("@pris", txtPrisEtter.Text)
+                        .AddWithValue("@tidspunkt_fra", fra)
+                        .AddWithValue("@tidspunkt_til", til)
+                        .AddWithValue("@kunde_nr", valgtKundeNr)
+                    End With
+                    sql.ExecuteNonQuery()
+
+                    'Legger til sykler
+                    For i = 0 To valgtSykkelID.Count - 1
+                        Dim sql2 As New MySqlCommand("INSERT INTO utleid_sykkel VALUES (@nr, @sykkel_id)", tilkobling)
+                        With sql2.Parameters
+                            .AddWithValue("@nr", nr)
+                            .AddWithValue("@sykkel_id", valgtSykkelID(i))
+                        End With
+                        sql2.ExecuteNonQuery()
+                    Next
+
+                    'Legger til utstyr
+                    For i = 0 To valgtUtstyrID.Count - 1
+                        Dim sql3 As New MySqlCommand("INSERT INTO utleid_utstyr VALUES (@nr, @utstyr_id)", tilkobling)
+                        With sql3.Parameters
+                            .AddWithValue("@nr", nr)
+                            .AddWithValue("@utstyr_id", valgtUtstyrID(i))
+                        End With
+                        sql3.ExecuteNonQuery()
+                    Next
+
+                    tilkobling.Close()
+                    TømSkjema()
+                Catch feilmelding As MySqlException
+                    MsgBox(feilmelding.Message)
+                Finally
+                    tilkobling.Dispose()
+                End Try
+
+            Else
+                MsgBox("Skjema er ikke korrekt utfylt")
+            End If
+        Else
+            MsgBox("Du kan ikke endre på en avtale som ikke tilhører avdelingen")
+        End If
+    End Sub
+
+    Private Sub btnFjernKunde_Click(sender As Object, e As EventArgs) Handles btnFjernKunde.Click
+        lstKunde.Items.Clear()
+    End Sub
+
+    Private Sub btnFjernSykkel_Click(sender As Object, e As EventArgs) Handles btnFjernSykkel.Click
+        If lstSykkel.SelectedIndex > -1 Then
+            'Fjerner valgt sykkel fra en eksisterende leieavtale, dersom en avtale er hentet inn
+            If txtLeieavtaleNr.Text <> "" Then
+                If MsgBox("Er du sikker på at du fjerne sykkelen fra avtalen?",
+                      MsgBoxStyle.YesNo, "OBS!") = MsgBoxResult.Yes Then
+                    valgt = lstSykkel.SelectedItem.ToString.Split(" ")(0)
+                    nr = txtLeieavtaleNr.Text
+                    Try
+                        databasetilkobling.databaseTilkobling()
+                        tilkobling.Open()
+                        'Fjerner tidligere valgte sykler og utstyr
+                        Dim sql As New MySqlCommand("DELETE from utleid_sykkel WHERE leieavtale_nr = @nr
+                                                AND sykkel_id = @valgt", tilkobling)
+                        With sql.Parameters
+                            .AddWithValue("@nr", nr)
+                            .AddWithValue("@valgt", valgt)
+                        End With
+                        sql.ExecuteNonQuery()
+                        tilkobling.Close()
+                        lstSykkel.Items.Remove(lstSykkel.SelectedItem)
+                        HentTabeller()
+                    Catch feilmelding As MySqlException
+                        MsgBox(feilmelding.Message)
+                    Finally
+                        tilkobling.Dispose()
+                    End Try
+                End If
+            Else
+                lstSykkel.Items.Remove(lstSykkel.SelectedItem)
+            End If
+        Else
+            MsgBox("Merk sykkel du ønsker å fjerne")
+        End If
+    End Sub
+
+    Private Sub btnFjernUtstyr_Click(sender As Object, e As EventArgs) Handles btnFjernUtstyr.Click
+        If lstUtstyr.SelectedIndex > -1 Then
+            'Fjerner valgt utstyr fra en eksisterende leieavtale, dersom en avtale er hentet inn
+            If txtLeieavtaleNr.Text <> "" Then
+                If MsgBox("Er du sikker på at du fjerne utstyret fra avtalen?",
+                      MsgBoxStyle.YesNo, "OBS!") = MsgBoxResult.Yes Then
+                    valgt = lstUtstyr.SelectedItem.ToString.Split(" ")(0)
+                    nr = txtLeieavtaleNr.Text
+                    Try
+                        databasetilkobling.databaseTilkobling()
+                        tilkobling.Open()
+                        'Fjerner tidligere valgte sykler og utstyr
+                        Dim sql As New MySqlCommand("DELETE from utleid_utstyr WHERE leieavtale_nr = @nr
+                                                AND utstyr_id = @valgt", tilkobling)
+                        With sql.Parameters
+                            .AddWithValue("@nr", nr)
+                            .AddWithValue("@valgt", valgt)
+                        End With
+                        sql.ExecuteNonQuery()
+                        tilkobling.Close()
+                        lstUtstyr.Items.Remove(lstUtstyr.SelectedItem)
+                        HentTabeller()
+                    Catch feilmelding As MySqlException
+                        MsgBox(feilmelding.Message)
+                    Finally
+                        tilkobling.Dispose()
+                    End Try
+                End If
+            Else
+                lstUtstyr.Items.Remove(lstUtstyr.SelectedItem)
+            End If
+        Else
+            MsgBox("Merk utstyr du ønsker å fjerne")
+        End If
+    End Sub
+
+    Private Sub btnUtlevering_Click(sender As Object, e As EventArgs) Handles btnUtlevering.Click
+        nr = txtLeieavtaleNr.Text
+        Try
+            databasetilkobling.databaseTilkobling()
+            tilkobling.Open()
+            Dim sql As New MySqlCommand("UPDATE leieavtale SET status = 'Utlevert' WHERE leieavtale_nr = @nr", tilkobling)
+            sql.Parameters.AddWithValue("@nr", nr)
+            sql.ExecuteNonQuery()
+            Dim sql2 As New MySqlCommand("UPDATE sykkel SET lokasjon = 'Hos kunde' WHERE sykkel_id IN
+                                         (SELECT sykkel_id FROM utleid_sykkel WHERE leieavtale_nr = @nr)", tilkobling)
+            sql2.Parameters.AddWithValue("@nr", nr)
+            sql2.ExecuteNonQuery()
+            tilkobling.Close()
+            TømSkjema()
+        Catch feilmelding As MySqlException
+            MsgBox(feilmelding.Message)
+        Finally
+            tilkobling.Dispose()
+        End Try
+    End Sub
+
+    Private Sub btnInnlevering_Click(sender As Object, e As EventArgs) Handles btnInnlevering.Click
+        nr = txtLeieavtaleNr.Text
+        'Sjekker at avtalen tidligere har blitt utlevert
+        If txtStatus.Text = "Utlevert" Then
+            Try
+                databasetilkobling.databaseTilkobling()
+                tilkobling.Open()
+                Dim sql As New MySqlCommand("UPDATE leieavtale SET status = 'Avsluttet' WHERE leieavtale_nr = @nr", tilkobling)
+                sql.Parameters.AddWithValue("@nr", nr)
+                sql.ExecuteNonQuery()
+                Dim sql2 As New MySqlCommand("UPDATE sykkel SET lokasjon = @innloggetNrNavn WHERE sykkel_id IN
+                                         (SELECT sykkel_id FROM utleid_sykkel WHERE leieavtale_nr = @nr)", tilkobling)
+                With sql2.Parameters
+                    .AddWithValue("@nr", nr)
+                    .AddWithValue("innloggetNavn", innloggetNavn)
+                End With
+                tilkobling.Close()
+                TømSkjema()
+            Catch feilmelding As MySqlException
+                MsgBox(feilmelding.Message)
+            Finally
+                tilkobling.Dispose()
+            End Try
+        Else
+            MsgBox("Avtale må være utlevert før den kan tas imot")
         End If
     End Sub
 

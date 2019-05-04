@@ -39,7 +39,11 @@ Public Class AdministrereUtstyr
             tilkobling.Open()
             'Henter kun utstyr som tilhører avdelingen
             Dim sql As New MySqlCommand(spørring, tilkobling)
-            sql.Parameters.AddWithValue("@innlogget", innlogget)
+            With sql.Parameters
+                .AddWithValue("@innlogget", innlogget)
+                .AddWithValue("@fra", Leieavtaler.fra)
+                .AddWithValue("@til", Leieavtaler.til)
+            End With
             Dim da As New MySqlDataAdapter
             da.SelectCommand = sql
             da.Fill(utstyrtabell)

@@ -115,7 +115,6 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Kunde.vb" />
-    <Compile Include="Leieavtale.vb" />
     <Compile Include="Leieavtaler.Designer.vb">
       <DependentUpon>Leieavtaler.vb</DependentUpon>
     </Compile>

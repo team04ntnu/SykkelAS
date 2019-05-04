@@ -73,11 +73,17 @@ Partial Class Leieavtaler
         Me.txtStatus = New System.Windows.Forms.TextBox()
         Me.lblStatus = New System.Windows.Forms.Label()
         Me.btnInnlevering = New System.Windows.Forms.Button()
+        Me.btnFjernKunde = New System.Windows.Forms.Button()
+        Me.btnFjernSykkel = New System.Windows.Forms.Button()
+        Me.btnFjernUtstyr = New System.Windows.Forms.Button()
+        Me.txtAvdeling = New System.Windows.Forms.TextBox()
+        Me.lblAvdeling = New System.Windows.Forms.Label()
+        Me.lblLeieavtaleNr = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'btnTilbake
         '
-        Me.btnTilbake.Location = New System.Drawing.Point(991, 576)
+        Me.btnTilbake.Location = New System.Drawing.Point(982, 606)
         Me.btnTilbake.Name = "btnTilbake"
         Me.btnTilbake.Size = New System.Drawing.Size(167, 23)
         Me.btnTilbake.TabIndex = 42
@@ -139,7 +145,7 @@ Partial Class Leieavtaler
         'cmbUtstyr
         '
         Me.cmbUtstyr.FormattingEnabled = True
-        Me.cmbUtstyr.Location = New System.Drawing.Point(12, 321)
+        Me.cmbUtstyr.Location = New System.Drawing.Point(11, 323)
         Me.cmbUtstyr.Name = "cmbUtstyr"
         Me.cmbUtstyr.Size = New System.Drawing.Size(350, 21)
         Me.cmbUtstyr.TabIndex = 55
@@ -184,7 +190,7 @@ Partial Class Leieavtaler
         'lstSykkel
         '
         Me.lstSykkel.FormattingEnabled = True
-        Me.lstSykkel.Location = New System.Drawing.Point(394, 207)
+        Me.lstSykkel.Location = New System.Drawing.Point(405, 207)
         Me.lstSykkel.Name = "lstSykkel"
         Me.lstSykkel.Size = New System.Drawing.Size(350, 95)
         Me.lstSykkel.TabIndex = 61
@@ -192,7 +198,7 @@ Partial Class Leieavtaler
         'lblSykkel
         '
         Me.lblSykkel.AutoSize = True
-        Me.lblSykkel.Location = New System.Drawing.Point(394, 191)
+        Me.lblSykkel.Location = New System.Drawing.Point(405, 191)
         Me.lblSykkel.Name = "lblSykkel"
         Me.lblSykkel.Size = New System.Drawing.Size(39, 13)
         Me.lblSykkel.TabIndex = 62
@@ -242,7 +248,7 @@ Partial Class Leieavtaler
         'lblKunde
         '
         Me.lblKunde.AutoSize = True
-        Me.lblKunde.Location = New System.Drawing.Point(393, 142)
+        Me.lblKunde.Location = New System.Drawing.Point(404, 142)
         Me.lblKunde.Name = "lblKunde"
         Me.lblKunde.Size = New System.Drawing.Size(38, 13)
         Me.lblKunde.TabIndex = 67
@@ -251,7 +257,7 @@ Partial Class Leieavtaler
         'lstUtstyr
         '
         Me.lstUtstyr.FormattingEnabled = True
-        Me.lstUtstyr.Location = New System.Drawing.Point(394, 321)
+        Me.lstUtstyr.Location = New System.Drawing.Point(405, 321)
         Me.lstUtstyr.Name = "lstUtstyr"
         Me.lstUtstyr.Size = New System.Drawing.Size(350, 95)
         Me.lstUtstyr.TabIndex = 61
@@ -259,7 +265,7 @@ Partial Class Leieavtaler
         'lblUtstyr
         '
         Me.lblUtstyr.AutoSize = True
-        Me.lblUtstyr.Location = New System.Drawing.Point(394, 305)
+        Me.lblUtstyr.Location = New System.Drawing.Point(405, 305)
         Me.lblUtstyr.Name = "lblUtstyr"
         Me.lblUtstyr.Size = New System.Drawing.Size(34, 13)
         Me.lblUtstyr.TabIndex = 68
@@ -267,7 +273,7 @@ Partial Class Leieavtaler
         '
         'btnTømSkjema
         '
-        Me.btnTømSkjema.Location = New System.Drawing.Point(394, 10)
+        Me.btnTømSkjema.Location = New System.Drawing.Point(405, 10)
         Me.btnTømSkjema.Name = "btnTømSkjema"
         Me.btnTømSkjema.Size = New System.Drawing.Size(145, 23)
         Me.btnTømSkjema.TabIndex = 73
@@ -277,7 +283,7 @@ Partial Class Leieavtaler
         'lstTidspunkt
         '
         Me.lstTidspunkt.FormattingEnabled = True
-        Me.lstTidspunkt.Location = New System.Drawing.Point(394, 57)
+        Me.lstTidspunkt.Location = New System.Drawing.Point(405, 57)
         Me.lstTidspunkt.Name = "lstTidspunkt"
         Me.lstTidspunkt.Size = New System.Drawing.Size(350, 82)
         Me.lstTidspunkt.TabIndex = 75
@@ -294,7 +300,7 @@ Partial Class Leieavtaler
         'lblTidspunkt
         '
         Me.lblTidspunkt.AutoSize = True
-        Me.lblTidspunkt.Location = New System.Drawing.Point(393, 41)
+        Me.lblTidspunkt.Location = New System.Drawing.Point(404, 41)
         Me.lblTidspunkt.Name = "lblTidspunkt"
         Me.lblTidspunkt.Size = New System.Drawing.Size(77, 13)
         Me.lblTidspunkt.TabIndex = 77
@@ -303,7 +309,7 @@ Partial Class Leieavtaler
         'lstKunde
         '
         Me.lstKunde.FormattingEnabled = True
-        Me.lstKunde.Location = New System.Drawing.Point(394, 158)
+        Me.lstKunde.Location = New System.Drawing.Point(405, 158)
         Me.lstKunde.Name = "lstKunde"
         Me.lstKunde.Size = New System.Drawing.Size(350, 30)
         Me.lstKunde.TabIndex = 66
@@ -312,18 +318,18 @@ Partial Class Leieavtaler
         '
         Me.cmbUtlevering.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbUtlevering.FormattingEnabled = True
-        Me.cmbUtlevering.Location = New System.Drawing.Point(12, 421)
+        Me.cmbUtlevering.Location = New System.Drawing.Point(11, 421)
         Me.cmbUtlevering.Name = "cmbUtlevering"
-        Me.cmbUtlevering.Size = New System.Drawing.Size(351, 21)
+        Me.cmbUtlevering.Size = New System.Drawing.Size(350, 21)
         Me.cmbUtlevering.TabIndex = 78
         '
         'cmbInnlevering
         '
         Me.cmbInnlevering.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbInnlevering.FormattingEnabled = True
-        Me.cmbInnlevering.Location = New System.Drawing.Point(12, 461)
+        Me.cmbInnlevering.Location = New System.Drawing.Point(11, 461)
         Me.cmbInnlevering.Name = "cmbInnlevering"
-        Me.cmbInnlevering.Size = New System.Drawing.Size(351, 21)
+        Me.cmbInnlevering.Size = New System.Drawing.Size(350, 21)
         Me.cmbInnlevering.TabIndex = 79
         '
         'lblUtlevering
@@ -346,7 +352,7 @@ Partial Class Leieavtaler
         '
         'txtRabatt
         '
-        Me.txtRabatt.Location = New System.Drawing.Point(394, 422)
+        Me.txtRabatt.Location = New System.Drawing.Point(405, 422)
         Me.txtRabatt.MaxLength = 2
         Me.txtRabatt.Name = "txtRabatt"
         Me.txtRabatt.Size = New System.Drawing.Size(30, 20)
@@ -355,7 +361,7 @@ Partial Class Leieavtaler
         'lblRabatt
         '
         Me.lblRabatt.AutoSize = True
-        Me.lblRabatt.Location = New System.Drawing.Point(430, 425)
+        Me.lblRabatt.Location = New System.Drawing.Point(441, 425)
         Me.lblRabatt.Name = "lblRabatt"
         Me.lblRabatt.Size = New System.Drawing.Size(56, 13)
         Me.lblRabatt.TabIndex = 83
@@ -364,7 +370,7 @@ Partial Class Leieavtaler
         'lblPrisFør
         '
         Me.lblPrisFør.AutoSize = True
-        Me.lblPrisFør.Location = New System.Drawing.Point(566, 425)
+        Me.lblPrisFør.Location = New System.Drawing.Point(577, 425)
         Me.lblPrisFør.Name = "lblPrisFør"
         Me.lblPrisFør.Size = New System.Drawing.Size(72, 13)
         Me.lblPrisFør.TabIndex = 84
@@ -372,7 +378,7 @@ Partial Class Leieavtaler
         '
         'txtPrisFør
         '
-        Me.txtPrisFør.Location = New System.Drawing.Point(644, 422)
+        Me.txtPrisFør.Location = New System.Drawing.Point(655, 422)
         Me.txtPrisFør.Name = "txtPrisFør"
         Me.txtPrisFør.ReadOnly = True
         Me.txtPrisFør.Size = New System.Drawing.Size(100, 20)
@@ -381,7 +387,7 @@ Partial Class Leieavtaler
         'lblPrisEtter
         '
         Me.lblPrisEtter.AutoSize = True
-        Me.lblPrisEtter.Location = New System.Drawing.Point(557, 477)
+        Me.lblPrisEtter.Location = New System.Drawing.Point(568, 477)
         Me.lblPrisEtter.Name = "lblPrisEtter"
         Me.lblPrisEtter.Size = New System.Drawing.Size(81, 13)
         Me.lblPrisEtter.TabIndex = 86
@@ -389,7 +395,7 @@ Partial Class Leieavtaler
         '
         'txtPrisEtter
         '
-        Me.txtPrisEtter.Location = New System.Drawing.Point(644, 474)
+        Me.txtPrisEtter.Location = New System.Drawing.Point(655, 474)
         Me.txtPrisEtter.Name = "txtPrisEtter"
         Me.txtPrisEtter.ReadOnly = True
         Me.txtPrisEtter.Size = New System.Drawing.Size(100, 20)
@@ -397,7 +403,7 @@ Partial Class Leieavtaler
         '
         'btnRegistrer
         '
-        Me.btnRegistrer.Location = New System.Drawing.Point(394, 511)
+        Me.btnRegistrer.Location = New System.Drawing.Point(11, 511)
         Me.btnRegistrer.Name = "btnRegistrer"
         Me.btnRegistrer.Size = New System.Drawing.Size(350, 23)
         Me.btnRegistrer.TabIndex = 88
@@ -407,7 +413,7 @@ Partial Class Leieavtaler
         'chkManuell
         '
         Me.chkManuell.AutoSize = True
-        Me.chkManuell.Location = New System.Drawing.Point(397, 488)
+        Me.chkManuell.Location = New System.Drawing.Point(408, 488)
         Me.chkManuell.Name = "chkManuell"
         Me.chkManuell.Size = New System.Drawing.Size(126, 17)
         Me.chkManuell.TabIndex = 89
@@ -416,7 +422,7 @@ Partial Class Leieavtaler
         '
         'btnFjernrabatt
         '
-        Me.btnFjernrabatt.Location = New System.Drawing.Point(394, 461)
+        Me.btnFjernrabatt.Location = New System.Drawing.Point(405, 461)
         Me.btnFjernrabatt.Name = "btnFjernrabatt"
         Me.btnFjernrabatt.Size = New System.Drawing.Size(92, 21)
         Me.btnFjernrabatt.TabIndex = 90
@@ -426,7 +432,7 @@ Partial Class Leieavtaler
         'lblValgtRabatt
         '
         Me.lblValgtRabatt.AutoSize = True
-        Me.lblValgtRabatt.Location = New System.Drawing.Point(596, 451)
+        Me.lblValgtRabatt.Location = New System.Drawing.Point(607, 451)
         Me.lblValgtRabatt.Name = "lblValgtRabatt"
         Me.lblValgtRabatt.Size = New System.Drawing.Size(42, 13)
         Me.lblValgtRabatt.TabIndex = 91
@@ -434,7 +440,7 @@ Partial Class Leieavtaler
         '
         'txtValgtRabatt
         '
-        Me.txtValgtRabatt.Location = New System.Drawing.Point(644, 448)
+        Me.txtValgtRabatt.Location = New System.Drawing.Point(655, 448)
         Me.txtValgtRabatt.Name = "txtValgtRabatt"
         Me.txtValgtRabatt.ReadOnly = True
         Me.txtValgtRabatt.Size = New System.Drawing.Size(100, 20)
@@ -444,7 +450,7 @@ Partial Class Leieavtaler
         '
         Me.lblInnloggetAvdeling.AutoSize = True
         Me.lblInnloggetAvdeling.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!)
-        Me.lblInnloggetAvdeling.Location = New System.Drawing.Point(8, 585)
+        Me.lblInnloggetAvdeling.Location = New System.Drawing.Point(8, 609)
         Me.lblInnloggetAvdeling.Name = "lblInnloggetAvdeling"
         Me.lblInnloggetAvdeling.Size = New System.Drawing.Size(143, 17)
         Me.lblInnloggetAvdeling.TabIndex = 93
@@ -452,32 +458,32 @@ Partial Class Leieavtaler
         '
         'txtLeieavtaleNr
         '
-        Me.txtLeieavtaleNr.Location = New System.Drawing.Point(644, 15)
+        Me.txtLeieavtaleNr.Location = New System.Drawing.Point(957, 422)
         Me.txtLeieavtaleNr.Name = "txtLeieavtaleNr"
         Me.txtLeieavtaleNr.ReadOnly = True
-        Me.txtLeieavtaleNr.Size = New System.Drawing.Size(100, 20)
+        Me.txtLeieavtaleNr.Size = New System.Drawing.Size(175, 20)
         Me.txtLeieavtaleNr.TabIndex = 94
         '
         'lstLeieavtaler
         '
         Me.lstLeieavtaler.FormattingEnabled = True
-        Me.lstLeieavtaler.Location = New System.Drawing.Point(777, 57)
+        Me.lstLeieavtaler.Location = New System.Drawing.Point(782, 57)
         Me.lstLeieavtaler.Name = "lstLeieavtaler"
         Me.lstLeieavtaler.Size = New System.Drawing.Size(350, 355)
         Me.lstLeieavtaler.TabIndex = 95
         '
         'btnHent
         '
-        Me.btnHent.Location = New System.Drawing.Point(987, 13)
+        Me.btnHent.Location = New System.Drawing.Point(992, 12)
         Me.btnHent.Name = "btnHent"
         Me.btnHent.Size = New System.Drawing.Size(140, 23)
         Me.btnHent.TabIndex = 96
-        Me.btnHent.Text = "Hent aktive leieavtaler"
+        Me.btnHent.Text = "Hent leieavtaler"
         Me.btnHent.UseVisualStyleBackColor = True
         '
         'btnAvbestill
         '
-        Me.btnAvbestill.Location = New System.Drawing.Point(394, 570)
+        Me.btnAvbestill.Location = New System.Drawing.Point(11, 570)
         Me.btnAvbestill.Name = "btnAvbestill"
         Me.btnAvbestill.Size = New System.Drawing.Size(350, 23)
         Me.btnAvbestill.TabIndex = 97
@@ -486,7 +492,7 @@ Partial Class Leieavtaler
         '
         'btnOppdater
         '
-        Me.btnOppdater.Location = New System.Drawing.Point(394, 541)
+        Me.btnOppdater.Location = New System.Drawing.Point(11, 541)
         Me.btnOppdater.Name = "btnOppdater"
         Me.btnOppdater.Size = New System.Drawing.Size(350, 23)
         Me.btnOppdater.TabIndex = 98
@@ -495,7 +501,7 @@ Partial Class Leieavtaler
         '
         'btnUtlevering
         '
-        Me.btnUtlevering.Location = New System.Drawing.Point(777, 444)
+        Me.btnUtlevering.Location = New System.Drawing.Point(782, 511)
         Me.btnUtlevering.Name = "btnUtlevering"
         Me.btnUtlevering.Size = New System.Drawing.Size(350, 23)
         Me.btnUtlevering.TabIndex = 99
@@ -504,7 +510,7 @@ Partial Class Leieavtaler
         '
         'txtStatus
         '
-        Me.txtStatus.Location = New System.Drawing.Point(952, 418)
+        Me.txtStatus.Location = New System.Drawing.Point(957, 474)
         Me.txtStatus.Name = "txtStatus"
         Me.txtStatus.ReadOnly = True
         Me.txtStatus.Size = New System.Drawing.Size(175, 20)
@@ -513,7 +519,7 @@ Partial Class Leieavtaler
         'lblStatus
         '
         Me.lblStatus.AutoSize = True
-        Me.lblStatus.Location = New System.Drawing.Point(906, 421)
+        Me.lblStatus.Location = New System.Drawing.Point(911, 477)
         Me.lblStatus.Name = "lblStatus"
         Me.lblStatus.Size = New System.Drawing.Size(40, 13)
         Me.lblStatus.TabIndex = 101
@@ -521,19 +527,78 @@ Partial Class Leieavtaler
         '
         'btnInnlevering
         '
-        Me.btnInnlevering.Location = New System.Drawing.Point(777, 474)
+        Me.btnInnlevering.Location = New System.Drawing.Point(782, 541)
         Me.btnInnlevering.Name = "btnInnlevering"
         Me.btnInnlevering.Size = New System.Drawing.Size(350, 23)
         Me.btnInnlevering.TabIndex = 102
         Me.btnInnlevering.Text = "Ta i mot fra kunde"
         Me.btnInnlevering.UseVisualStyleBackColor = True
         '
+        'btnFjernKunde
+        '
+        Me.btnFjernKunde.Location = New System.Drawing.Point(368, 156)
+        Me.btnFjernKunde.Name = "btnFjernKunde"
+        Me.btnFjernKunde.Size = New System.Drawing.Size(30, 23)
+        Me.btnFjernKunde.TabIndex = 103
+        Me.btnFjernKunde.Text = "X"
+        Me.btnFjernKunde.UseVisualStyleBackColor = True
+        '
+        'btnFjernSykkel
+        '
+        Me.btnFjernSykkel.Location = New System.Drawing.Point(369, 207)
+        Me.btnFjernSykkel.Name = "btnFjernSykkel"
+        Me.btnFjernSykkel.Size = New System.Drawing.Size(30, 23)
+        Me.btnFjernSykkel.TabIndex = 104
+        Me.btnFjernSykkel.Text = "X"
+        Me.btnFjernSykkel.UseVisualStyleBackColor = True
+        '
+        'btnFjernUtstyr
+        '
+        Me.btnFjernUtstyr.Location = New System.Drawing.Point(369, 321)
+        Me.btnFjernUtstyr.Name = "btnFjernUtstyr"
+        Me.btnFjernUtstyr.Size = New System.Drawing.Size(30, 23)
+        Me.btnFjernUtstyr.TabIndex = 105
+        Me.btnFjernUtstyr.Text = "X"
+        Me.btnFjernUtstyr.UseVisualStyleBackColor = True
+        '
+        'txtAvdeling
+        '
+        Me.txtAvdeling.Location = New System.Drawing.Point(957, 448)
+        Me.txtAvdeling.Name = "txtAvdeling"
+        Me.txtAvdeling.ReadOnly = True
+        Me.txtAvdeling.Size = New System.Drawing.Size(175, 20)
+        Me.txtAvdeling.TabIndex = 106
+        '
+        'lblAvdeling
+        '
+        Me.lblAvdeling.AutoSize = True
+        Me.lblAvdeling.Location = New System.Drawing.Point(900, 451)
+        Me.lblAvdeling.Name = "lblAvdeling"
+        Me.lblAvdeling.Size = New System.Drawing.Size(51, 13)
+        Me.lblAvdeling.TabIndex = 107
+        Me.lblAvdeling.Text = "Avdeling:"
+        '
+        'lblLeieavtaleNr
+        '
+        Me.lblLeieavtaleNr.AutoSize = True
+        Me.lblLeieavtaleNr.Location = New System.Drawing.Point(880, 425)
+        Me.lblLeieavtaleNr.Name = "lblLeieavtaleNr"
+        Me.lblLeieavtaleNr.Size = New System.Drawing.Size(71, 13)
+        Me.lblLeieavtaleNr.TabIndex = 108
+        Me.lblLeieavtaleNr.Text = "Leieavtale nr:"
+        '
         'Leieavtaler
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoValidate = System.Windows.Forms.AutoValidate.Disable
-        Me.ClientSize = New System.Drawing.Size(1170, 611)
+        Me.ClientSize = New System.Drawing.Size(1161, 635)
+        Me.Controls.Add(Me.lblLeieavtaleNr)
+        Me.Controls.Add(Me.lblAvdeling)
+        Me.Controls.Add(Me.txtAvdeling)
+        Me.Controls.Add(Me.btnFjernUtstyr)
+        Me.Controls.Add(Me.btnFjernSykkel)
+        Me.Controls.Add(Me.btnFjernKunde)
         Me.Controls.Add(Me.btnInnlevering)
         Me.Controls.Add(Me.lblStatus)
         Me.Controls.Add(Me.txtStatus)
@@ -643,4 +708,10 @@ Partial Class Leieavtaler
     Friend WithEvents txtStatus As TextBox
     Friend WithEvents lblStatus As Label
     Friend WithEvents btnInnlevering As Button
+    Friend WithEvents btnFjernKunde As Button
+    Friend WithEvents btnFjernSykkel As Button
+    Friend WithEvents btnFjernUtstyr As Button
+    Friend WithEvents txtAvdeling As TextBox
+    Friend WithEvents lblAvdeling As Label
+    Friend WithEvents lblLeieavtaleNr As Label
 End Class
