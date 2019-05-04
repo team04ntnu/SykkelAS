@@ -68,6 +68,11 @@ Partial Class Leieavtaler
         Me.lstLeieavtaler = New System.Windows.Forms.ListBox()
         Me.btnHent = New System.Windows.Forms.Button()
         Me.btnAvbestill = New System.Windows.Forms.Button()
+        Me.btnOppdater = New System.Windows.Forms.Button()
+        Me.btnUtlevering = New System.Windows.Forms.Button()
+        Me.txtStatus = New System.Windows.Forms.TextBox()
+        Me.lblStatus = New System.Windows.Forms.Label()
+        Me.btnInnlevering = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'btnTilbake
@@ -463,7 +468,7 @@ Partial Class Leieavtaler
         '
         'btnHent
         '
-        Me.btnHent.Location = New System.Drawing.Point(777, 15)
+        Me.btnHent.Location = New System.Drawing.Point(987, 13)
         Me.btnHent.Name = "btnHent"
         Me.btnHent.Size = New System.Drawing.Size(140, 23)
         Me.btnHent.TabIndex = 96
@@ -472,12 +477,56 @@ Partial Class Leieavtaler
         '
         'btnAvbestill
         '
-        Me.btnAvbestill.Location = New System.Drawing.Point(394, 541)
+        Me.btnAvbestill.Location = New System.Drawing.Point(394, 570)
         Me.btnAvbestill.Name = "btnAvbestill"
         Me.btnAvbestill.Size = New System.Drawing.Size(350, 23)
         Me.btnAvbestill.TabIndex = 97
         Me.btnAvbestill.Text = "Avbestill"
         Me.btnAvbestill.UseVisualStyleBackColor = True
+        '
+        'btnOppdater
+        '
+        Me.btnOppdater.Location = New System.Drawing.Point(394, 541)
+        Me.btnOppdater.Name = "btnOppdater"
+        Me.btnOppdater.Size = New System.Drawing.Size(350, 23)
+        Me.btnOppdater.TabIndex = 98
+        Me.btnOppdater.Text = "Oppdater leieavtale"
+        Me.btnOppdater.UseVisualStyleBackColor = True
+        '
+        'btnUtlevering
+        '
+        Me.btnUtlevering.Location = New System.Drawing.Point(777, 444)
+        Me.btnUtlevering.Name = "btnUtlevering"
+        Me.btnUtlevering.Size = New System.Drawing.Size(350, 23)
+        Me.btnUtlevering.TabIndex = 99
+        Me.btnUtlevering.Text = "Utlever til kunde"
+        Me.btnUtlevering.UseVisualStyleBackColor = True
+        '
+        'txtStatus
+        '
+        Me.txtStatus.Location = New System.Drawing.Point(952, 418)
+        Me.txtStatus.Name = "txtStatus"
+        Me.txtStatus.ReadOnly = True
+        Me.txtStatus.Size = New System.Drawing.Size(175, 20)
+        Me.txtStatus.TabIndex = 100
+        '
+        'lblStatus
+        '
+        Me.lblStatus.AutoSize = True
+        Me.lblStatus.Location = New System.Drawing.Point(906, 421)
+        Me.lblStatus.Name = "lblStatus"
+        Me.lblStatus.Size = New System.Drawing.Size(40, 13)
+        Me.lblStatus.TabIndex = 101
+        Me.lblStatus.Text = "Status:"
+        '
+        'btnInnlevering
+        '
+        Me.btnInnlevering.Location = New System.Drawing.Point(777, 474)
+        Me.btnInnlevering.Name = "btnInnlevering"
+        Me.btnInnlevering.Size = New System.Drawing.Size(350, 23)
+        Me.btnInnlevering.TabIndex = 102
+        Me.btnInnlevering.Text = "Ta i mot fra kunde"
+        Me.btnInnlevering.UseVisualStyleBackColor = True
         '
         'Leieavtaler
         '
@@ -485,6 +534,11 @@ Partial Class Leieavtaler
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoValidate = System.Windows.Forms.AutoValidate.Disable
         Me.ClientSize = New System.Drawing.Size(1170, 611)
+        Me.Controls.Add(Me.btnInnlevering)
+        Me.Controls.Add(Me.lblStatus)
+        Me.Controls.Add(Me.txtStatus)
+        Me.Controls.Add(Me.btnUtlevering)
+        Me.Controls.Add(Me.btnOppdater)
         Me.Controls.Add(Me.btnAvbestill)
         Me.Controls.Add(Me.btnHent)
         Me.Controls.Add(Me.lstLeieavtaler)
@@ -584,4 +638,9 @@ Partial Class Leieavtaler
     Friend WithEvents lstLeieavtaler As ListBox
     Friend WithEvents btnHent As Button
     Friend WithEvents btnAvbestill As Button
+    Friend WithEvents btnOppdater As Button
+    Friend WithEvents btnUtlevering As Button
+    Friend WithEvents txtStatus As TextBox
+    Friend WithEvents lblStatus As Label
+    Friend WithEvents btnInnlevering As Button
 End Class

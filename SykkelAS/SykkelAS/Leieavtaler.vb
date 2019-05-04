@@ -26,6 +26,11 @@ Public Class Leieavtaler
             cmbInnlevering.Items.Add(avdeling)
         Next
         innlogget = Innlogging.innloggetAvdeling.HentAvdelingNr
+        'Setter datovelger til dagens dato
+        dtpFraDato.Value = Date.Now
+        dtpFraTime.Value = Date.Now
+        dtpTilDato.Value = Date.Now
+        dtpTilTime.Value = Date.Now
     End Sub
 
     Private Sub TømSkjema()
@@ -108,9 +113,14 @@ Public Class Leieavtaler
         End If
         If fra > til Then
             valider = False
-            MsgBox("Tidspunkt til må være etter fra")
+            MsgBox("Til-tid kan ikke være før fra-tid")
         End If
-
+        Dim tidnå As String = Date.Now.ToString("yyyy-MM-dd") & " " & Date.Now.ToString("HH") & ":00:00"
+        MsgBox(tidnå)
+        If fra < tidnå Or til < tidnå Then
+            valider = False
+            MsgBox("Tidspunkt kan ikke være før nåværende dato og klokkeslett")
+        End If
         'Velger tidspunkt hvis valideringen er ok
         If valider = True Then
             'Fjerner tidligere tidspunkt
@@ -240,7 +250,7 @@ Public Class Leieavtaler
         valgtSykkelID.Add(rad(0))
         Dim valgtSykkel = rad(0) & " " & rad(1) & " " & rad(2)
         'Sjekker om samme sykkel allerede er lagt til
-        If lstSykkel.FindString(rad(0)) = -1 Then
+        If Not lstSykkel.Items.Contains(valgtSykkel) Then
             lstSykkel.Items.Add(valgtSykkel)
             'Legger til koder i arraylist for valgte sykler
             If rad(2) = "Terreng" Then
@@ -300,7 +310,7 @@ Public Class Leieavtaler
         'Sjekker om det er lagt til sykkel
         If lstSykkel.Items.Count <> 0 Then
             'Sjekker om utstyr allerede er lagt til
-            If lstUtstyr.FindString(rad(0)) = -1 Then
+            If Not lstUtstyr.Items.Contains(valgtUtstyr) Then
                 'Sjekker om utstyr passer til valgt sykkel
                 Dim koder() As Char = rad(6).ToCharArray
                 For Each kode In koder
@@ -396,6 +406,9 @@ Public Class Leieavtaler
     End Sub
 
     Private Sub btnHent_Click(sender As Object, e As EventArgs) Handles btnHent.Click
+        'Fjerner tidligere resultat
+        lstLeieavtaler.Items.Clear()
+        LeieavtaleTabell.Clear()
         'Henter alle leieavtaler tilhørende avdelingen med status aktiv
         innlogget = Innlogging.innloggetAvdeling.HentAvdelingNr()
         Try
