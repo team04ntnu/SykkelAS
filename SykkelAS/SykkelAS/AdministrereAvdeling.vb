@@ -6,8 +6,8 @@ Public Class AdministrereAvdeling
 
     Private Sub TømSkjema()
         txtAvdelingNr.Text = ""
-        txtAvdelingsnavn.Text = ""
         txtTelefon.Text = ""
+        txtAvdelingsnavn.Text = ""
         txtEpost.Text = ""
         txtAdresse.Text = ""
         txtPostnummer.Text = ""
@@ -21,8 +21,8 @@ Public Class AdministrereAvdeling
         If txtAvdelingNr.Text <> "" Then
             nr = txtAvdelingNr.Text
         End If
-        navn = txtAvdelingsnavn.Text
-        telefon = txtTelefon.Text
+        navn = txtTelefon.Text
+        telefon = txtAvdelingsnavn.Text
         epost = txtEpost.Text
         adresse = txtAdresse.Text
         postnummer = txtPostnummer.Text
@@ -81,9 +81,9 @@ Public Class AdministrereAvdeling
             Dim avdelingRad As DataRow
             avdelingRad = avdelingTabell(0)
             txtAvdelingNr.Text = avdelingRad("avdeling_nr")
-            txtAvdelingsnavn.Text = avdelingRad("avdeling_navn")
+            txtTelefon.Text = avdelingRad("avdeling_navn")
             txtEpost.Text = avdelingRad("epost")
-            txtTelefon.Text = avdelingRad("telefon")
+            txtAvdelingsnavn.Text = avdelingRad("telefon")
             txtAdresse.Text = avdelingRad("adresse")
             txtPostnummer.Text = avdelingRad("postnummer")
             txtSted.Text = avdelingRad("poststed")

@@ -22,7 +22,7 @@ Partial Class AdministrereAvdeling
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.txtAvdelingsnavn = New System.Windows.Forms.TextBox()
+        Me.txtTelefon = New System.Windows.Forms.TextBox()
         Me.lblAvdelingsnavn = New System.Windows.Forms.Label()
         Me.txtAdresse = New System.Windows.Forms.TextBox()
         Me.lblAdresse = New System.Windows.Forms.Label()
@@ -32,7 +32,7 @@ Partial Class AdministrereAvdeling
         Me.lblSted = New System.Windows.Forms.Label()
         Me.txtEpost = New System.Windows.Forms.TextBox()
         Me.lblEpost = New System.Windows.Forms.Label()
-        Me.txtTelefon = New System.Windows.Forms.TextBox()
+        Me.txtAvdelingsnavn = New System.Windows.Forms.TextBox()
         Me.lblTelefon = New System.Windows.Forms.Label()
         Me.txtPassord = New System.Windows.Forms.TextBox()
         Me.txtBekreftPassord = New System.Windows.Forms.TextBox()
@@ -47,12 +47,12 @@ Partial Class AdministrereAvdeling
         Me.btnLoggUt = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
-        'txtAvdelingsnavn
+        'txtTelefon
         '
-        Me.txtAvdelingsnavn.Location = New System.Drawing.Point(107, 58)
-        Me.txtAvdelingsnavn.Name = "txtAvdelingsnavn"
-        Me.txtAvdelingsnavn.Size = New System.Drawing.Size(200, 20)
-        Me.txtAvdelingsnavn.TabIndex = 2
+        Me.txtTelefon.Location = New System.Drawing.Point(107, 58)
+        Me.txtTelefon.Name = "txtTelefon"
+        Me.txtTelefon.Size = New System.Drawing.Size(200, 20)
+        Me.txtTelefon.TabIndex = 2
         '
         'lblAvdelingsnavn
         '
@@ -129,13 +129,13 @@ Partial Class AdministrereAvdeling
         Me.lblEpost.TabIndex = 17
         Me.lblEpost.Text = "Epost:"
         '
-        'txtTelefon
+        'txtAvdelingsnavn
         '
-        Me.txtTelefon.Location = New System.Drawing.Point(107, 32)
-        Me.txtTelefon.MaxLength = 8
-        Me.txtTelefon.Name = "txtTelefon"
-        Me.txtTelefon.Size = New System.Drawing.Size(200, 20)
-        Me.txtTelefon.TabIndex = 1
+        Me.txtAvdelingsnavn.Location = New System.Drawing.Point(107, 32)
+        Me.txtAvdelingsnavn.MaxLength = 8
+        Me.txtAvdelingsnavn.Name = "txtAvdelingsnavn"
+        Me.txtAvdelingsnavn.Size = New System.Drawing.Size(200, 20)
+        Me.txtAvdelingsnavn.TabIndex = 1
         '
         'lblTelefon
         '
@@ -255,14 +255,14 @@ Partial Class AdministrereAvdeling
         Me.Controls.Add(Me.btnOpprett)
         Me.Controls.Add(Me.txtAvdelingNr)
         Me.Controls.Add(Me.lblAvdelingNr)
-        Me.Controls.Add(Me.txtAvdelingsnavn)
+        Me.Controls.Add(Me.txtTelefon)
         Me.Controls.Add(Me.txtEpost)
         Me.Controls.Add(Me.lblAvdelingsnavn)
         Me.Controls.Add(Me.lblEpost)
         Me.Controls.Add(Me.lblBekreftPassord)
         Me.Controls.Add(Me.txtSted)
         Me.Controls.Add(Me.txtAdresse)
-        Me.Controls.Add(Me.txtTelefon)
+        Me.Controls.Add(Me.txtAvdelingsnavn)
         Me.Controls.Add(Me.lblPassord)
         Me.Controls.Add(Me.txtPostnummer)
         Me.Controls.Add(Me.lblAdresse)
@@ -278,7 +278,7 @@ Partial Class AdministrereAvdeling
 
     End Sub
 
-    Friend WithEvents txtAvdelingsnavn As TextBox
+    Friend WithEvents txtTelefon As TextBox
     Friend WithEvents lblAvdelingsnavn As Label
     Friend WithEvents txtAdresse As TextBox
     Friend WithEvents lblAdresse As Label
@@ -288,7 +288,7 @@ Partial Class AdministrereAvdeling
     Friend WithEvents lblSted As Label
     Friend WithEvents txtEpost As TextBox
     Friend WithEvents lblEpost As Label
-    Friend WithEvents txtTelefon As TextBox
+    Friend WithEvents txtAvdelingsnavn As TextBox
     Friend WithEvents lblTelefon As Label
     Friend WithEvents txtPassord As TextBox
     Friend WithEvents txtBekreftPassord As TextBox

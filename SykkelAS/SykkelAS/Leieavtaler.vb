@@ -81,12 +81,12 @@ Public Class Leieavtaler
         'Henter kundetabell
         AdministrereKunde.hentKunde()
         'Henter inn tabell over ledige sykler basert på valgt dato og status
-        spørring = "SELECT * FROM sykkel WHERE status = 'Tilgjengelig' AND avdeling_nr = @innloggetNr AND sykkel_id NOT IN
+        spørring = "SELECT * FROM sykkel WHERE status = 'Tilgjengelig' AND avdeling_nr = @innlogget AND sykkel_id NOT IN
                        (SELECT sykkel_id FROM utleid_sykkel WHERE leieavtale_nr IN 
                        (SELECT leieavtale_nr FROM leieavtale WHERE @fra < tidspunkt_til AND @til > tidspunkt_fra))"
         AdministrereSykkel.hentSykkel(spørring)
         'Henter inn tabell over ledig utstyr basert på valgt dato og status
-        spørring = "SELECT * FROM utstyr WHERE status = 'Tilgjengelig' AND avdeling_nr = @innloggetNr AND utstyr_id NOT IN
+        spørring = "SELECT * FROM utstyr WHERE status = 'Tilgjengelig' AND avdeling_nr = @innlogget AND utstyr_id NOT IN
                        (SELECT utstyr_id FROM utleid_utstyr WHERE leieavtale_nr IN 
                        (SELECT leieavtale_nr FROM leieavtale WHERE @fra < tidspunkt_til AND @til > tidspunkt_fra))"
         AdministrereUtstyr.hentUtstyr(spørring)
