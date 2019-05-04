@@ -386,7 +386,7 @@ Public Class Leieavtaler
                     Dim sql4 As New MySqlCommand("INSERT INTO utleid_utstyr VALUES (@leieavtale_nr, @utstyr_id)", tilkobling)
                     With sql4.Parameters
                         .AddWithValue("@leieavtale_nr", leieavtale_nr)
-                        .AddWithValue("@utstyr_id", valgtSykkelID(i))
+                        .AddWithValue("@utstyr_id", valgtUtstyrID(i))
                     End With
                     sql4.ExecuteNonQuery()
                 Next
