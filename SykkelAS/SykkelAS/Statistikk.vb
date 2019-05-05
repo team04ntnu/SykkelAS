@@ -80,7 +80,7 @@ Public Class Statistikk
                 Chart1.Size = New System.Drawing.Size(500, 200)
                 Chart1.TabIndex = 0
                 Chart1.Text = "Chart1"
-                Chart1.Series("Series1").XValueMember = "Sykkel_id"
+                Chart1.Series("Series1").XValueMember = "avdeling_nr"
                 Chart1.Series("Series1").YValueMembers = "COUNT(*)"
                 Chart1.DataSource = statistikktabell.Rows
 
@@ -90,12 +90,25 @@ Public Class Statistikk
                 sql3.Parameters.AddWithValue("@nr", nr)
                 sql3.Parameters.AddWithValue("@fra", fra)
                 sql3.Parameters.AddWithValue("@til", til)
-
+                ' sql3.ExecuteNonQuery()
                 Dim leser = sql3.ExecuteReader()
+                statistikktabell.Load(leser)
+                Dim da As New MySqlDataAdapter
+                'da.SelectCommand = sql3
+                'da.Fill(statistikktabell)
 
-                While leser.Read()
-                    inntekt = inntekt + leser("pris")
-                End While
+                Dim rad As DataRow
+
+                For i = 0 To statistikktabell.Rows.Count - 1
+                    rad = statistikktabell(i)
+                    inntekt = inntekt + rad(0)
+                Next
+
+                'Dim leser = sql3.ExecuteReader()
+
+                'While leser.Read()
+                'inntekt = inntekt + leser("pris")
+                'End While
 
                 tilkobling.Close()
                 Me.Controls.Add(Chart1)
