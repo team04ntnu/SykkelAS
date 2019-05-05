@@ -7,6 +7,8 @@
     Private Sub btnLoggUt_Click(sender As Object, e As EventArgs) Handles btnLoggUt.Click
         Innlogging.Show()
         Me.Hide()
+        Leieavtaler.TømSkjema()
+        Leieavtaler.lstLeieavtaler.Items.Clear()
     End Sub
 
     Private Sub btnKunde_Click(sender As Object, e As EventArgs) Handles btnKunde.Click

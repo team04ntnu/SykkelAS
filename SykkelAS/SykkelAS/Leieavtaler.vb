@@ -49,13 +49,14 @@ Public Class Leieavtaler
         dtpTilTime.Value = Date.Now
     End Sub
 
-    Private Sub TømSkjema()
+    Public Sub TømSkjema()
         lstTidspunkt.Items.Clear()
         lstKunde.Items.Clear()
         lstSykkel.Items.Clear()
         lstUtstyr.Items.Clear()
         SykkelKode.Clear()
         txtRabatt.Text = ""
+        txtValgtRabatt.Text = ""
         txtPrisFør.Text = ""
         txtPrisEtter.Text = ""
         prisFørRabatt = 0
@@ -580,7 +581,7 @@ Public Class Leieavtaler
                 Finally
                     tilkobling.Dispose()
                 End Try
-
+                lstLeieavtaler.Items.Clear()
             Else
                 MsgBox("Skjema er ikke korrekt utfylt")
             End If
@@ -667,50 +668,74 @@ Public Class Leieavtaler
 
     Private Sub btnUtlevering_Click(sender As Object, e As EventArgs) Handles btnUtlevering.Click
         nr = txtLeieavtaleNr.Text
-        Try
-            databasetilkobling.databaseTilkobling()
-            tilkobling.Open()
-            Dim sql As New MySqlCommand("UPDATE leieavtale SET status = 'Utlevert' WHERE leieavtale_nr = @nr", tilkobling)
-            sql.Parameters.AddWithValue("@nr", nr)
-            sql.ExecuteNonQuery()
-            Dim sql2 As New MySqlCommand("UPDATE sykkel SET lokasjon = 'Hos kunde' WHERE sykkel_id IN
-                                         (SELECT sykkel_id FROM utleid_sykkel WHERE leieavtale_nr = @nr)", tilkobling)
-            sql2.Parameters.AddWithValue("@nr", nr)
-            sql2.ExecuteNonQuery()
-            tilkobling.Close()
-            TømSkjema()
-        Catch feilmelding As MySqlException
-            MsgBox(feilmelding.Message)
-        Finally
-            tilkobling.Dispose()
-        End Try
-    End Sub
-
-    Private Sub btnInnlevering_Click(sender As Object, e As EventArgs) Handles btnInnlevering.Click
-        nr = txtLeieavtaleNr.Text
-        'Sjekker at avtalen tidligere har blitt utlevert
-        If txtStatus.Text = "Utlevert" Then
+        'Sjekker at utlevering gjøres på riktig avdeling
+        If innloggetNavn = cmbUtlevering.Text Then
             Try
                 databasetilkobling.databaseTilkobling()
                 tilkobling.Open()
-                Dim sql As New MySqlCommand("UPDATE leieavtale SET status = 'Avsluttet' WHERE leieavtale_nr = @nr", tilkobling)
+                Dim sql As New MySqlCommand("UPDATE leieavtale SET status = 'Utlevert' WHERE leieavtale_nr = @nr", tilkobling)
                 sql.Parameters.AddWithValue("@nr", nr)
                 sql.ExecuteNonQuery()
-                Dim sql2 As New MySqlCommand("UPDATE sykkel SET lokasjon = @innloggetNrNavn WHERE sykkel_id IN
+                Dim sql2 As New MySqlCommand("UPDATE sykkel SET lokasjon = 'Hos kunde' WHERE sykkel_id IN
                                          (SELECT sykkel_id FROM utleid_sykkel WHERE leieavtale_nr = @nr)", tilkobling)
-                With sql2.Parameters
-                    .AddWithValue("@nr", nr)
-                    .AddWithValue("innloggetNavn", innloggetNavn)
-                End With
+                sql2.Parameters.AddWithValue("@nr", nr)
+                sql2.ExecuteNonQuery()
+                Dim sql3 As New MySqlCommand("UPDATE utstyr SET lokasjon = 'Hos kunde' WHERE utstyr_id IN
+                                         (SELECT utstyr_id FROM utleid_utstyr WHERE leieavtale_nr = @nr)", tilkobling)
+                sql3.Parameters.AddWithValue("@nr", nr)
+                sql3.ExecuteNonQuery()
                 tilkobling.Close()
                 TømSkjema()
+                lstLeieavtaler.Items.Clear()
             Catch feilmelding As MySqlException
                 MsgBox(feilmelding.Message)
             Finally
                 tilkobling.Dispose()
             End Try
         Else
-            MsgBox("Avtale må være utlevert før den kan tas imot")
+            MsgBox("Valgt utleveringssted samsvarer ikke med innlogget avdeling")
+        End If
+    End Sub
+
+    Private Sub btnInnlevering_Click(sender As Object, e As EventArgs) Handles btnInnlevering.Click
+        nr = txtLeieavtaleNr.Text
+        'Sjekker at innlevering gjøres på riktig avdeling
+        If cmbInnlevering.Text = innloggetNavn Then
+            'Sjekker at avtalen tidligere har blitt utlevert
+            If txtStatus.Text = "Utlevert" Then
+                Try
+                    databasetilkobling.databaseTilkobling()
+                    tilkobling.Open()
+                    Dim sql As New MySqlCommand("UPDATE leieavtale SET status = 'Avsluttet' WHERE leieavtale_nr = @nr", tilkobling)
+                    sql.Parameters.AddWithValue("@nr", nr)
+                    sql.ExecuteNonQuery()
+                    Dim sql2 As New MySqlCommand("UPDATE sykkel SET lokasjon = @innloggetNavn WHERE sykkel_id IN
+                                         (SELECT sykkel_id FROM utleid_sykkel WHERE leieavtale_nr = @nr)", tilkobling)
+                    With sql2.Parameters
+                        .AddWithValue("@nr", nr)
+                        .AddWithValue("innloggetNavn", innloggetNavn)
+                    End With
+                    sql2.ExecuteNonQuery()
+                    Dim sql3 As New MySqlCommand("UPDATE utstyr SET lokasjon = @innloggetNavn WHERE utstyr_id IN
+                                         (SELECT utstyr_id FROM utleid_utstyr WHERE leieavtale_nr = @nr)", tilkobling)
+                    With sql3.Parameters
+                        .AddWithValue("@nr", nr)
+                        .AddWithValue("innloggetNavn", innloggetNavn)
+                    End With
+                    sql3.ExecuteNonQuery()
+                    tilkobling.Close()
+                    TømSkjema()
+                    lstLeieavtaler.Items.Clear()
+                Catch feilmelding As MySqlException
+                    MsgBox(feilmelding.Message)
+                Finally
+                    tilkobling.Dispose()
+                End Try
+            Else
+                MsgBox("Avtale må være utlevert før den kan tas imot")
+            End If
+        Else
+            MsgBox("Valgt innleveringssted samsvarer ikke med innlogget avdeling")
         End If
     End Sub
 
