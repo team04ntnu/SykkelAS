@@ -63,9 +63,10 @@ Public Class Statistikk
             ElseIf rbtnAvdeling.Checked = True Then
 
                 Dim sql2 As New MySqlCommand("SELECT avdeling_nr, COUNT(*) FROM leieavtale WHERE avdeling_nr = @nr AND leieavtale.tidspunkt_fra BETWEEN '@fra' AND '@til'", tilkobling)
+                sql2.Parameters.AddWithValue("@nr", nr)
                 sql2.Parameters.AddWithValue("@fra", fra)
                 sql2.Parameters.AddWithValue("@til", til)
-                sql2.Parameters.AddWithValue("@avdeling", nr)
+
                 sql2.ExecuteNonQuery()
                 Dim da As New MySqlDataAdapter
                 da.SelectCommand = sql2
