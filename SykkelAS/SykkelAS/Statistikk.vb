@@ -1,11 +1,47 @@
 ﻿Imports MySql.Data.MySqlClient
 Imports System.Windows.Forms.DataVisualization.Charting
-Imports System.Drawing
+
 Public Class Statistikk
     Dim dato_fra, dato_til As Date
-    Dim fra, til As String
+    Dim fra, til, navn, merke, type, lokasjon As String
     Dim statistikktabell As New DataTable
-    Dim inntekt, sum, lønn, fasteUtgifter, variableUtgifter As Integer
+    Dim inntekt, sum, lønn, fasteUtgifter, variableUtgifter, nr, id As Integer
+
+    Private Sub btnSykkelLokasjon_Click(sender As Object, e As EventArgs) Handles btnSykkelLokasjon.Click
+        nr = Innlogging.innloggetAvdeling.HentAvdelingNr()
+        navn = Innlogging.innloggetAvdeling.HentAvdelingNavn()
+        Try
+            databasetilkobling.databaseTilkobling()
+            tilkobling.Open()
+
+            Dim lokasjonTabell As New DataTable
+            Dim sql As New MySqlCommand("SELECT sykkel_id, sykkel_merke, sykkel_type, lokasjon FROM sykkel WHERE avdeling_nr = @nr AND lokasjon != @navn", tilkobling)
+            sql.Parameters.AddWithValue("@nr", nr)
+            sql.Parameters.AddWithValue("@navn", navn)
+            sql.ExecuteNonQuery()
+
+            Dim da As New MySqlDataAdapter
+            da.SelectCommand = sql
+            da.Fill(lokasjonTabell)
+            tilkobling.Close()
+            Dim rad As DataRow
+            lstboxSykkelLokasjon.Items.Clear()
+            For Each rad In lokasjonTabell.Rows
+                id = rad("sykkel_id")
+                merke = rad("sykkel_merke")
+                type = rad("sykkel_type")
+                lokasjon = rad("lokasjon")
+                lstboxSykkelLokasjon.Items.Add(id & vbTab & merke & vbTab & type & vbTab & lokasjon)
+
+            Next rad
+
+        Catch feil As Exception
+            MsgBox(feil.Message)
+        Finally
+            tilkobling.Dispose()
+        End Try
+
+    End Sub
 
     Private Sub btnHovedmeny_Click(sender As Object, e As EventArgs) Handles btnHovedmeny.Click
         Me.Hide()
@@ -16,7 +52,7 @@ Public Class Statistikk
         GroupBox1.Visible = True
     End Sub
 
-    Dim nr As Integer
+
 
     Private Sub btnBeregn_Click(sender As Object, e As EventArgs) Handles btnBeregn.Click
         dato_fra = dtpDatoFra.Value
@@ -33,7 +69,7 @@ Public Class Statistikk
 
             If rbtnSykkel.Checked = True Then
 
-                Dim sql As New MySqlCommand("SELECT sykkel_id, COUNT(*) FROM utleid_sykkel INNER JOIN leieavtale ON utleid_sykkel.leieavtale_nr = leieavtale.leieavtale_nr WHERE leieavtale.avdeling_nr = @nr AND leieavtale.tidspunkt_fra BETWEEN '@fra' AND '@til' GROUP BY sykkel_id", tilkobling)
+                Dim sql As New MySqlCommand("SELECT sykkel_id, COUNT(*) FROM utleid_sykkel INNER JOIN leieavtale ON utleid_sykkel.leieavtale_nr = leieavtale.leieavtale_nr WHERE leieavtale.avdeling_nr = @nr AND leieavtale.tidspunkt_fra BETWEEN @fra AND @til GROUP BY sykkel_id", tilkobling)
                 sql.Parameters.AddWithValue("@nr", nr)
                 sql.Parameters.AddWithValue("@fra", fra)
                 sql.Parameters.AddWithValue("@til", til)
@@ -62,7 +98,7 @@ Public Class Statistikk
 
             ElseIf rbtnAvdeling.Checked = True Then
 
-                Dim sql2 As New MySqlCommand("SELECT avdeling_nr, COUNT(*) FROM leieavtale WHERE avdeling_nr = @nr AND leieavtale.tidspunkt_fra BETWEEN '@fra' AND '@til'", tilkobling)
+                Dim sql2 As New MySqlCommand("SELECT avdeling_nr, COUNT(*) FROM leieavtale WHERE avdeling_nr = @nr AND leieavtale.tidspunkt_fra BETWEEN @fra AND @til", tilkobling)
                 sql2.Parameters.AddWithValue("@nr", nr)
                 sql2.Parameters.AddWithValue("@fra", fra)
                 sql2.Parameters.AddWithValue("@til", til)
@@ -87,7 +123,7 @@ Public Class Statistikk
 
             ElseIf rbtnAvanse.Checked = True Then
 
-                Dim sql3 As New MySqlCommand("SELECT pris FROM leieavtale WHERE avdeling_nr = @nr AND tidspunkt_fra BETWEEN '@fra' AND '@til'", tilkobling)
+                Dim sql3 As New MySqlCommand("SELECT pris FROM leieavtale WHERE avdeling_nr = @nr AND tidspunkt_fra BETWEEN @fra AND @til", tilkobling)
                 sql3.Parameters.AddWithValue("@nr", nr)
                 sql3.Parameters.AddWithValue("@fra", fra)
                 sql3.Parameters.AddWithValue("@til", til)
