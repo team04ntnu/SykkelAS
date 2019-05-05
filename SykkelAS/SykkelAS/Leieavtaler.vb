@@ -143,6 +143,7 @@ Public Class Leieavtaler
         End If
     End Sub
 
+
     Private Sub btnTid_Click(sender As Object, e As EventArgs) Handles btnTid.Click
         'Henter tidspunkt
         HentTid()
@@ -414,6 +415,8 @@ Public Class Leieavtaler
                 Finally
                     tilkobling.Dispose()
                 End Try
+
+
 
             Else
                 MsgBox("Skjema er ikke korrekt utfylt")

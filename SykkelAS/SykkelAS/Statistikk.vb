@@ -25,7 +25,7 @@ Public Class Statistikk
         til = dato_til.ToString("yyyy-MM-dd")
         nr = Innlogging.innloggetAvdeling.HentAvdelingNr()
 
-        MsgBox(fra & vbNewLine & til & vbNewLine & nr)
+        'MsgBox(fra & vbNewLine & til & vbNewLine & nr)
 
         Try
             databasetilkobling.databaseTilkobling()
@@ -33,17 +33,17 @@ Public Class Statistikk
 
             If rbtnSykkel.Checked = True Then
 
-                Dim sql As New MySqlCommand("SELECT sykkel_id, COUNT(*) FROM utleid_sykkel INNER JOIN leieavtale ON utleid_sykkel.leieavtale_nr = leieavtale.leieavtale_nr WHERE leieavtale.avdeling_nr = @nr AND leieavtale.tidspunkt_fra BETWEEN '@fra' AND '@til'", tilkobling)
+                Dim sql As New MySqlCommand("SELECT sykkel_id, COUNT(*) FROM utleid_sykkel INNER JOIN leieavtale ON utleid_sykkel.leieavtale_nr = leieavtale.leieavtale_nr WHERE leieavtale.avdeling_nr = @nr AND leieavtale.tidspunkt_fra BETWEEN '@fra' AND '@til' GROUP BY sykkel_id", tilkobling)
                 sql.Parameters.AddWithValue("@nr", nr)
                 sql.Parameters.AddWithValue("@fra", fra)
                 sql.Parameters.AddWithValue("@til", til)
+                sql.ExecuteNonQuery()
 
-
-                Dim leser = sql.ExecuteReader()
-                'Dim da As New MySqlDataAdapter
-                'da.SelectCommand = sql
-                ' da.Fill(statistikktabell)
-                statistikktabell.Load(leser)
+                'Dim leser = sql.ExecuteReader()
+                Dim da As New MySqlDataAdapter
+                da.SelectCommand = sql
+                da.Fill(statistikktabell)
+                'statistikktabell.Load(leser)
 
 
                 tilkobling.Close()
@@ -53,16 +53,16 @@ Public Class Statistikk
                 Series1.ChartArea = "ChartArea1"
                 Series1.Legend = "Legend1"
                 Series1.Name = "Antall leieavtaler"
-                Chart1.Size = New System.Drawing.Size(500, 200)
+                Chart1.Size = New System.Drawing.Size(400, 200)
                 Chart1.TabIndex = 0
                 Chart1.Text = "leieavtaler per sykkel"
-                Chart1.Series("Series1").XValueMember = "Sykkel_id"
+                Chart1.Series("Series1").XValueMember = "sykkel_id"
                 Chart1.Series("Series1").YValueMembers = "COUNT(*)"
                 Chart1.DataSource = statistikktabell.Rows
 
             ElseIf rbtnAvdeling.Checked = True Then
 
-                Dim sql2 As New MySqlCommand("SELECT COUNT(*) FROM leieavtale WHERE avdeling_nr = @nr AND leieavtale.tidspunkt_fra BETWEEN '@fra' AND '@til'", tilkobling)
+                Dim sql2 As New MySqlCommand("SELECT avdeling_nr, COUNT(*) FROM leieavtale WHERE avdeling_nr = @nr AND leieavtale.tidspunkt_fra BETWEEN '@fra' AND '@til'", tilkobling)
                 sql2.Parameters.AddWithValue("@fra", fra)
                 sql2.Parameters.AddWithValue("@til", til)
                 sql2.Parameters.AddWithValue("@avdeling", nr)
