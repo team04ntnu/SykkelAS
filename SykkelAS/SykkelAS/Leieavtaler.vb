@@ -409,6 +409,10 @@ Public Class Leieavtaler
 
                     MsgBox("Avtale registrert")
                     tilkobling.Close()
+                    If cmbUtlevering.Text <> innloggetNavn Then
+                        meldOperatør()
+                    End If
+
                     TømSkjema()
                 Catch feilmelding As MySqlException
                     MsgBox(feilmelding.Message)
@@ -749,5 +753,19 @@ Public Class Leieavtaler
     Private Sub btnTilbake_Click(sender As Object, e As EventArgs) Handles btnTilbake.Click
         Hovedmeny.Show()
         Me.Hide()
+    End Sub
+
+    Private Sub meldOperatør()
+        sendMail.info = fra.ToString()
+        Dim sykkelMail, utstyrMail As String
+        For Each item In lstSykkel.Items
+            sykkelMail = lstSykkel.Items.ToString()
+            sendMail.info = sendMail.info & sykkelMail & vbNewLine
+        Next
+        For Each item In lstUtstyr.Items
+            utstyrMail = lstUtstyr.Items.ToString()
+            sendMail.info = sendMail.info & utstyrMail & vbNewLine
+        Next
+        sendMail.Show()
     End Sub
 End Class
