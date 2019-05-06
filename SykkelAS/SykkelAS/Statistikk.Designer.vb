@@ -42,6 +42,7 @@ Partial Class Statistikk
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.btnSykkelLokasjon = New System.Windows.Forms.Button()
         Me.btnHovedmeny = New System.Windows.Forms.Button()
+        Me.rbtnKunde = New System.Windows.Forms.RadioButton()
         CType(Me.Chart1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
@@ -58,7 +59,7 @@ Partial Class Statistikk
         'rbtnSykkel
         '
         Me.rbtnSykkel.AutoSize = True
-        Me.rbtnSykkel.Location = New System.Drawing.Point(282, 74)
+        Me.rbtnSykkel.Location = New System.Drawing.Point(276, 66)
         Me.rbtnSykkel.Name = "rbtnSykkel"
         Me.rbtnSykkel.Size = New System.Drawing.Size(68, 17)
         Me.rbtnSykkel.TabIndex = 1
@@ -69,7 +70,7 @@ Partial Class Statistikk
         'rbtnAvdeling
         '
         Me.rbtnAvdeling.AutoSize = True
-        Me.rbtnAvdeling.Location = New System.Drawing.Point(282, 98)
+        Me.rbtnAvdeling.Location = New System.Drawing.Point(276, 85)
         Me.rbtnAvdeling.Name = "rbtnAvdeling"
         Me.rbtnAvdeling.Size = New System.Drawing.Size(78, 17)
         Me.rbtnAvdeling.TabIndex = 2
@@ -80,7 +81,7 @@ Partial Class Statistikk
         'rbtnAvanse
         '
         Me.rbtnAvanse.AutoSize = True
-        Me.rbtnAvanse.Location = New System.Drawing.Point(282, 122)
+        Me.rbtnAvanse.Location = New System.Drawing.Point(276, 119)
         Me.rbtnAvanse.Name = "rbtnAvanse"
         Me.rbtnAvanse.Size = New System.Drawing.Size(61, 17)
         Me.rbtnAvanse.TabIndex = 3
@@ -208,11 +209,23 @@ Partial Class Statistikk
         Me.btnHovedmeny.Text = "Hovedmeny"
         Me.btnHovedmeny.UseVisualStyleBackColor = True
         '
+        'rbtnKunde
+        '
+        Me.rbtnKunde.AutoSize = True
+        Me.rbtnKunde.Location = New System.Drawing.Point(276, 102)
+        Me.rbtnKunde.Name = "rbtnKunde"
+        Me.rbtnKunde.Size = New System.Drawing.Size(68, 17)
+        Me.rbtnKunde.TabIndex = 19
+        Me.rbtnKunde.TabStop = True
+        Me.rbtnKunde.Text = "Pr kunde"
+        Me.rbtnKunde.UseVisualStyleBackColor = True
+        '
         'Statistikk
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(981, 577)
+        Me.Controls.Add(Me.rbtnKunde)
         Me.Controls.Add(Me.btnHovedmeny)
         Me.Controls.Add(Me.btnSykkelLokasjon)
         Me.Controls.Add(Me.GroupBox1)
@@ -251,4 +264,5 @@ Partial Class Statistikk
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents btnSykkelLokasjon As Button
     Friend WithEvents btnHovedmeny As Button
+    Friend WithEvents rbtnKunde As RadioButton
 End Class

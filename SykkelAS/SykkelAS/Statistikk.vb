@@ -121,17 +121,39 @@ Public Class Statistikk
                 Chart1.Series("Series1").YValueMembers = "COUNT(*)"
                 Chart1.DataSource = statistikktabell.Rows
 
+            ElseIf rbtnKunde.Checked = True Then
+                Dim sql3 As New MySqlCommand("SELECT kunde_nr, COUNT(*) FROM leieavtale GROUP BY kunde_nr", tilkobling)
+
+
+                sql3.ExecuteNonQuery()
+                Dim da As New MySqlDataAdapter
+                da.SelectCommand = sql3
+                da.Fill(statistikktabell)
+                tilkobling.Close()
+                Me.Controls.Add(Chart1)
+                Dim Series1 As New Series()
+                Chart1.Name = "Chart1"
+                Series1.ChartArea = "ChartArea1"
+                Series1.Legend = "Legend1"
+                Series1.Name = "Series1"
+                Chart1.Size = New System.Drawing.Size(500, 200)
+                Chart1.TabIndex = 0
+                Chart1.Text = "Chart1"
+                Chart1.Series("Series1").XValueMember = "kunde_nr"
+                Chart1.Series("Series1").YValueMembers = "COUNT(*)"
+                Chart1.DataSource = statistikktabell.Rows
+
             ElseIf rbtnAvanse.Checked = True Then
 
-                Dim sql3 As New MySqlCommand("SELECT pris FROM leieavtale WHERE avdeling_nr = @nr AND tidspunkt_fra BETWEEN @fra AND @til", tilkobling)
-                sql3.Parameters.AddWithValue("@nr", nr)
-                sql3.Parameters.AddWithValue("@fra", fra)
-                sql3.Parameters.AddWithValue("@til", til)
-                ' sql3.ExecuteNonQuery()
-                Dim leser = sql3.ExecuteReader()
+                Dim sql4 As New MySqlCommand("SELECT pris FROM leieavtale WHERE avdeling_nr = @nr AND tidspunkt_fra BETWEEN @fra AND @til", tilkobling)
+                sql4.Parameters.AddWithValue("@nr", nr)
+                sql4.Parameters.AddWithValue("@fra", fra)
+                sql4.Parameters.AddWithValue("@til", til)
+                ' sql4.ExecuteNonQuery()
+                Dim leser = sql4.ExecuteReader()
                 statistikktabell.Load(leser)
                 Dim da As New MySqlDataAdapter
-                'da.SelectCommand = sql3
+                'da.SelectCommand = sql4
                 'da.Fill(statistikktabell)
 
                 Dim rad As DataRow
@@ -141,7 +163,7 @@ Public Class Statistikk
                     inntekt = inntekt + rad(0)
                 Next
 
-                'Dim leser = sql3.ExecuteReader()
+                'Dim leser = sql4.ExecuteReader()
 
                 'While leser.Read()
                 'inntekt = inntekt + leser("pris")
