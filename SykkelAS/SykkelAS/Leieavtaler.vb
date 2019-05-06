@@ -756,16 +756,16 @@ Public Class Leieavtaler
     End Sub
 
     Private Sub meldOperatør()
-        sendMail.info = fra.ToString()
+        'Varsler transportør om sykler som må fraktes, når og hvor de skal fraktes
+        sendMail.info = fra.ToString() & vbNewLine
         Dim sykkelMail, utstyrMail As String
-        For Each item In lstSykkel.Items
-            sykkelMail = lstSykkel.Items.ToString()
-            sendMail.info = sendMail.info & sykkelMail & vbNewLine
-        Next
-        For Each item In lstUtstyr.Items
-            utstyrMail = lstUtstyr.Items.ToString()
-            sendMail.info = sendMail.info & utstyrMail & vbNewLine
-        Next
+
+        sykkelMail = String.Join(vbNewLine, lstSykkel.Items.Cast(Of String))
+        sendMail.info = sendMail.info & sykkelMail & vbNewLine
+
+        utstyrMail = String.Join(" ", lstSykkel.Items.Cast(Of String))
+        sendMail.info = sendMail.info & utstyrMail & vbNewLine
+        sendMail.info = sendMail.info & cmbUtlevering.Text
         sendMail.Show()
     End Sub
 End Class
